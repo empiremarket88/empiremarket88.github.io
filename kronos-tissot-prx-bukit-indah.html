@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KRONOS — Tissot PRX Malaysia · COD Taman Bukit Indah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --hijau:    #1B4332;
+      --hijau2:   #2D6A4F;
+      --hijau3:   #40916C;
+      --emas:     #C9963A;
+      --emas2:    #E8B84B;
+      --emas-pale:#F5D78E;
+      --krem:     #FDF6E3;
+      --krem2:    #F7EDD0;
+      --coklat:   #5C3D2E;
+      --ink:      #1a1a1a;
+      --mid:      #6b6355;
+      --border:   #d4c5a0;
+      --white:    #FEFCF5;
+      --red:      #c0392b;
+      --serif:    'Cinzel', serif;
+      --lora:     'Lora', Georgia, serif;
+      --sans:     'Nunito', sans-serif;
+      --phone:    '60166730669';
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--krem); color: var(--ink); overflow-x: hidden; }
+
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      display: flex; align-items: center; gap: 0.7rem;
+      background: #25D366; color: #fff; padding: 0.85rem 1.4rem; border-radius: 50px;
+      font-weight: 700; font-size: 0.85rem; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      animation: waPulse 2.5s ease infinite;
+    }
+    .wa-float svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50%      { box-shadow: 0 4px 35px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--hijau); border-bottom: 3px solid var(--emas);
+      padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    nav::after { content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 3px; background: repeating-linear-gradient(90deg, var(--emas2) 0, var(--emas2) 8px, transparent 8px, transparent 16px); }
+    .nav-logo-wrap { display: flex; flex-direction: column; }
+    .nav-logo { font-family: var(--serif); font-size: 1.5rem; letter-spacing: 0.2em; color: var(--emas2); line-height: 1; }
+    .nav-sub  { font-size: 0.5rem; letter-spacing: 0.2em; color: rgba(232,184,75,0.6); text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas-pale); text-decoration: none; transition: color 0.25s; }
+    .nav-links a:hover { color: var(--emas2); }
+    .nav-wa {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #25D366; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      padding: 0.5rem 1.2rem; border-radius: 4px; text-decoration: none; transition: filter 0.25s;
+    }
+    .nav-wa:hover { filter: brightness(1.1); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; padding-top: 64px;
+      background: var(--hijau); position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+    }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 65% 50%, rgba(201,150,58,0.06), transparent 70%); }
+    .hero::after  { content: ''; position: absolute; top: 0; bottom: 0; left: 55%; width: 1px; background: rgba(201,150,58,0.2); }
+    .hero-ornament { position: absolute; top: 80px; left: 24px; width: 110px; height: 110px; opacity: 0.15; }
+    .hero-left {
+      padding: 4.5rem 3rem; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(201,150,58,0.15); border: 1px solid rgba(201,150,58,0.4);
+      color: var(--emas2); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.4rem 1rem; margin-bottom: 2rem; width: fit-content;
+    }
+    .promo-banner {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: var(--red); color: #fff;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.5rem 1.2rem; margin-bottom: 1.2rem; width: fit-content;
+      animation: blink 2s ease infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.8; } }
+    .hero-tagline-ms { font-family: var(--lora); font-style: italic; font-size: 1rem; color: rgba(245,215,142,0.7); margin-bottom: 0.8rem; }
+    h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.05; letter-spacing: 0.04em; color: var(--white); margin-bottom: 0.5rem; }
+    h1 .emas { color: var(--emas2); }
+    .hero-bm { font-family: var(--lora); font-style: italic; font-size: 1.1rem; color: var(--emas-pale); margin-bottom: 1.8rem; line-height: 1.6; }
+    .hero-desc { font-size: 0.9rem; line-height: 1.8; color: rgba(253,246,227,0.8); max-width: 430px; margin-bottom: 2.5rem; }
+    .price-hero {
+      display: flex; align-items: center; gap: 1.2rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .price-old { font-family: var(--serif); font-size: 1.5rem; color: rgba(245,215,142,0.45); text-decoration: line-through; }
+    .price-new { font-family: var(--serif); font-size: 3rem; color: var(--emas2); line-height: 1; }
+    .price-save { background: var(--red); color: #fff; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; }
+    .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-emas {
+      background: linear-gradient(135deg, var(--emas), var(--emas2)); color: var(--hijau);
+      font-family: var(--sans); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1rem 2rem; border: none; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      transition: filter 0.25s, transform 0.2s; box-shadow: 0 4px 20px rgba(201,150,58,0.35);
+    }
+    .btn-emas:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-wa {
+      background: #25D366; color: #fff; font-family: var(--sans); font-weight: 700;
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1rem 2rem; border: none; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: filter 0.25s, transform 0.2s; box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+    .btn-wa:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+    /* COD badge in hero */
+    .hero-cod {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      border: 1px solid rgba(201,150,58,0.3); padding: 0.8rem 1.2rem;
+      color: var(--emas-pale); font-size: 0.78rem;
+    }
+    .hero-cod strong { color: var(--emas2); }
+    .hero-cod a { color: var(--emas2); text-decoration: underline dotted; font-size: 0.68rem; }
+
+    /* hero right */
+    .hero-right { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 2; padding: 3rem 2rem; gap: 1.5rem; }
+    .hero-watch-img-wrap { position: relative; }
+    .hero-watch-img { width: 280px; height: 280px; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(0,0,0,0.4)); animation: floatWatch 4s ease-in-out infinite; }
+    @keyframes floatWatch { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .hero-color-dots { display: flex; gap: 0.5rem; justify-content: center; }
+    .c-dot {
+      width: 18px; height: 18px; border-radius: 50%; cursor: pointer;
+      border: 2px solid transparent; transition: border-color 0.25s, transform 0.2s;
+    }
+    .c-dot:hover, .c-dot.active { border-color: var(--emas2); transform: scale(1.2); }
+
+    /* ── MARQUEE ── */
+    .marquee-bar { background: var(--emas); overflow: hidden; padding: 0.7rem 0; }
+    .marquee-inner { display: flex; gap: 0; white-space: nowrap; animation: mScroll 28s linear infinite; }
+    .m-item { display: inline-flex; align-items: center; gap: 1.5rem; padding: 0 2rem; font-family: var(--sans); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hijau); }
+    .m-item .sep { color: var(--hijau2); font-size: 0.5rem; }
+    @keyframes mScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SHARED ── */
+    section { padding: 5rem 3rem; }
+    .s-kicker { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--emas); margin-bottom: 0.8rem; }
+    .s-kicker::before { content: '◆'; font-size: 0.45rem; }
+    h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.1; margin-bottom: 0.4rem; }
+    .h2-bm { font-family: var(--lora); font-style: italic; font-size: 0.95rem; color: var(--mid); margin-bottom: 2rem; }
+
+    /* ── PRODUCTS ── */
+    .products-section { background: var(--white); }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); margin-top: 2.5rem; }
+    .p-card {
+      display: flex; flex-direction: column; border-right: 1px solid var(--border);
+      position: relative; overflow: hidden; background: var(--white); cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .p-card:nth-child(3), .p-card:nth-child(6) { border-right: none; }
+    .p-card:nth-child(4), .p-card:nth-child(5), .p-card:nth-child(6) { border-top: 1px solid var(--border); }
+    .p-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(27,67,50,0.13); z-index: 2; }
+    .p-card:hover .p-img img { transform: scale(1.07); }
+    .p-img {
+      aspect-ratio: 1; overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .p-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .p-flag {
+      position: absolute; top: 0; left: 0;
+      background: var(--hijau); color: var(--emas2);
+      font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; font-weight: 700; z-index: 2;
+    }
+    .p-flag.panas { background: var(--red); color: #fff; }
+    /* Price overlay on image */
+    .p-price-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(27,67,50,0.92), transparent);
+      padding: 2rem 1rem 1rem;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      z-index: 2;
+    }
+    .p-price-old { font-size: 0.75rem; color: rgba(245,215,142,0.6); text-decoration: line-through; }
+    .p-price-new { font-family: var(--serif); font-size: 1.6rem; color: var(--emas2); line-height: 1; }
+    .p-body { padding: 1.2rem 1.4rem 1.4rem; flex: 1; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+    .p-color-name { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--emas); font-weight: 700; margin-bottom: 0.2rem; }
+    .p-name { font-family: var(--lora); font-size: 1rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.2rem; }
+    .p-ref { font-size: 0.55rem; color: var(--mid); letter-spacing: 0.1em; margin-bottom: 0.9rem; }
+    .p-specs { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1rem; }
+    .p-spec { font-size: 0.56rem; padding: 0.2rem 0.5rem; background: var(--krem2); border: 1px solid var(--border); color: var(--coklat); }
+    .p-btn {
+      margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: var(--hijau); color: var(--emas2);
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.7rem 1rem; text-decoration: none; border: none; cursor: pointer;
+      font-family: var(--sans); transition: background 0.25s; width: 100%;
+    }
+    .p-btn:hover { background: var(--hijau2); }
+    .p-btn svg { width: 14px; height: 14px; fill: #25D366; }
+
+    /* ── KENAPA KAMI ── */
+    .kenapa { background: var(--hijau); position: relative; overflow: hidden; }
+    .kenapa::before { content: ''; position: absolute; top:-100px; right:-100px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(201,150,58,0.07),transparent 70%); }
+    .kenapa h2 { color: var(--white); }
+    .kenapa .h2-bm { color: rgba(245,215,142,0.6); }
+    .kenapa .s-kicker { color: var(--emas2); }
+    .kenapa-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; border: 1px solid rgba(201,150,58,0.2); }
+    .k-card { padding: 2.5rem 2rem; border-right: 1px solid rgba(201,150,58,0.15); position: relative; transition: background 0.3s; }
+    .k-card:last-child { border-right: none; }
+    .k-card:hover { background: rgba(201,150,58,0.05); }
+    .k-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display: block; }
+    .k-card h3 { font-family: var(--lora); font-size: 1rem; color: var(--emas2); margin-bottom: 0.3rem; }
+    .k-card h3 span { display: block; font-size: 0.68rem; color: rgba(245,215,142,0.5); font-style: italic; margin-bottom: 0.4rem; }
+    .k-card p { font-size: 0.78rem; line-height: 1.75; color: rgba(253,246,227,0.7); }
+    .k-num { position: absolute; top:1.5rem; right:1.5rem; font-family: var(--serif); font-size:3.5rem; font-weight:900; color:rgba(201,150,58,0.08); line-height:1; }
+
+    /* ── COD SECTION ── */
+    .cod-section { background: var(--krem2); }
+    .cod-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .cod-info { }
+    .cod-info h2 { color: var(--hijau); }
+    .cod-details {
+      background: var(--white); border: 2px solid var(--emas); padding: 2rem; margin-top: 1.5rem;
+      position: relative;
+    }
+    .cod-details::before { content: '📍 Lokasi COD'; font-family: var(--serif); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--emas); position: absolute; top: -10px; left: 1.5rem; background: var(--krem2); padding: 0 0.5rem; }
+    .cod-address { font-family: var(--lora); font-size: 1.1rem; font-weight: 700; color: var(--hijau); margin-bottom: 0.5rem; line-height: 1.4; }
+    .cod-area { font-size: 0.8rem; color: var(--mid); margin-bottom: 1.2rem; }
+    .cod-map-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--hijau); color: var(--emas2);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.75rem 1.5rem; text-decoration: none; transition: background 0.25s;
+    }
+    .cod-map-btn:hover { background: var(--hijau2); }
+    .cod-steps { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .cod-step { display: flex; align-items: flex-start; gap: 1rem; }
+    .cod-step-n { width: 28px; height: 28px; border-radius: 50%; background: var(--hijau); color: var(--emas2); font-family: var(--serif); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cod-step-t h4 { font-size: 0.85rem; font-weight: 700; color: var(--hijau); margin-bottom: 0.2rem; }
+    .cod-step-t p { font-size: 0.78rem; color: var(--mid); line-height: 1.6; }
+
+    /* map embed placeholder */
+    .cod-map-wrap { }
+    .map-frame {
+      width: 100%; aspect-ratio: 4/3;
+      border: 2px solid var(--border); position: relative; overflow: hidden; background: var(--krem);
+    }
+    .map-frame iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── ORDER FORM ── */
+    .order-sec { background: var(--hijau); }
+    .order-sec h2 { color: var(--white); }
+    .order-sec .h2-bm { color: rgba(245,215,142,0.6); }
+    .order-sec .s-kicker { color: var(--emas2); }
+    .order-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; margin-top: 3rem; }
+
+    /* summary left */
+    .sum-card { background: rgba(201,150,58,0.08); border: 1px solid rgba(201,150,58,0.25); padding: 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 1.2rem; align-items: center; }
+    .sum-card img { width: 80px; height: 80px; object-fit: cover; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); border-radius: 4px; }
+    .sum-info h4 { font-family: var(--lora); color: var(--white); font-size: 1rem; margin-bottom: 0.2rem; }
+    .sum-info p  { font-size: 0.68rem; color: rgba(245,215,142,0.6); }
+    .sum-price-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-top: 1px solid rgba(201,150,58,0.2); border-bottom: 1px solid rgba(201,150,58,0.2); margin-bottom: 1.5rem; }
+    .sum-price-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,215,142,0.5); }
+    .sum-price-val { display: flex; align-items: baseline; gap: 0.5rem; }
+    .sum-price-old { font-family: var(--serif); font-size: 1rem; color: rgba(245,215,142,0.35); text-decoration: line-through; }
+    .sum-price-new { font-family: var(--serif); font-size: 1.8rem; color: var(--emas2); }
+    .sum-perks { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+    .s-perk { display: flex; align-items: center; gap: 0.7rem; font-size: 0.78rem; color: rgba(253,246,227,0.75); }
+    .s-perk::before { content: '◆'; color: var(--emas2); font-size: 0.4rem; flex-shrink: 0; }
+    .wa-order-btn { display: flex; align-items: center; justify-content: center; gap: 0.8rem; background: #25D366; color: #fff; font-family: var(--sans); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 1.1rem 2rem; text-decoration: none; width: 100%; transition: filter 0.25s, transform 0.2s; box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
+    .wa-order-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .wa-order-btn svg { width: 20px; height: 20px; fill: #fff; }
+
+    /* form box */
+    .order-form-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,150,58,0.25); padding: 2.5rem; }
+    .order-form-box h3 { font-family: var(--lora); color: var(--white); font-size: 1.3rem; margin-bottom: 0.3rem; }
+    .form-bm { font-size: 0.72rem; color: rgba(245,215,142,0.5); font-style: italic; margin-bottom: 2rem; }
+    .fg { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .fg.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0; }
+    .fg.row2 .fg { margin-bottom: 0; }
+    .fg label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,215,142,0.5); }
+    .fg input, .fg select, .fg textarea {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(201,150,58,0.25);
+      color: var(--white); font-family: var(--sans); font-size: 0.85rem;
+      padding: 0.75rem 1rem; outline: none; transition: border-color 0.25s;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(245,215,142,0.3); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--emas); }
+    .fg select { appearance: none; cursor: pointer; }
+    .fg select option { background: var(--hijau); color: var(--white); }
+    .form-divider { height: 1px; background: rgba(201,150,58,0.2); margin: 1.5rem 0; }
+    .pay-method-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,215,142,0.5); margin-bottom: 0.8rem; display: block; }
+
+    /* Payment tabs */
+    .pay-tabs { display: flex; gap: 0; border: 1px solid rgba(201,150,58,0.25); margin-bottom: 1rem; }
+    .p-tab { flex: 1; padding: 0.75rem; border: none; background: transparent; color: rgba(245,215,142,0.5); font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem; border-right: 1px solid rgba(201,150,58,0.25); transition: background 0.25s, color 0.25s; }
+    .p-tab:last-child { border-right: none; }
+    .p-tab.active { background: var(--emas); color: var(--hijau); font-weight: 700; }
+    .pay-panel { display: none; }
+    .pay-panel.active { display: flex; flex-direction: column; gap: 0.8rem; }
+
+    /* BMAC */
+    .bmac-blk { background: #fffdf0; border: 1px solid #f0d060; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .bmac-row { display: flex; align-items: center; gap: 0.8rem; }
+    .bmac-ico { width: 34px; height: 34px; background: #FFDD00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .bmac-inf h4 { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+    .bmac-inf p  { font-size: 0.65rem; color: var(--mid); }
+    .bmac-pay-btn { display: flex; align-items: center; justify-content: center; gap: 0.7rem; background: #FFDD00; color: #000; font-weight: 700; font-size: 0.82rem; padding: 0.85rem; text-decoration: none; font-family: var(--sans); transition: filter 0.2s, transform 0.2s; }
+    .bmac-pay-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+    /* TnG */
+    .tng-blk { background: rgba(0,114,188,0.08); border: 1px solid rgba(0,114,188,0.25); padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .tng-row { display: flex; align-items: center; gap: 0.8rem; }
+    .tng-ico { width: 34px; height: 34px; background: linear-gradient(135deg,#00AEEF,#0072BC); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 900; color: #fff; flex-shrink: 0; }
+    .tng-inf h4 { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+    .tng-inf p  { font-size: 0.65rem; color: rgba(245,215,142,0.5); }
+    .tng-id-block { display: flex; flex-direction: column; gap: 0.3rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(0,174,239,0.2); padding: 0.8rem 1rem; }
+    .tng-id-label { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,215,142,0.4); }
+    .tng-id-num { font-family: var(--serif); font-size: 1.2rem; color: #7dd3fc; letter-spacing: 0.1em; }
+    .tng-steps-row { display: flex; flex-direction: column; gap: 0.4rem; }
+    .tng-step { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.7rem; color: rgba(253,246,227,0.7); }
+    .step-n { width: 16px; height: 16px; border-radius: 50%; background: #0072BC; color: #fff; font-size: 0.5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tng-pay-btn { display: flex; align-items: center; justify-content: center; gap: 0.7rem; background: linear-gradient(135deg,#00AEEF,#0072BC); color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.85rem; text-decoration: none; font-family: var(--sans); transition: filter 0.2s, transform 0.2s; }
+    .tng-pay-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .pay-secure { text-align: center; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,215,142,0.4); margin-top: 0.5rem; }
+
+    /* ── TESTIMONIAL ── */
+    .testi-sec { background: var(--krem2); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .t-card { background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--emas); padding: 2rem; position: relative; }
+    .t-stars { color: var(--emas); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .t-quote { position: absolute; top: 1rem; right: 1.5rem; font-family: var(--serif); font-size: 4rem; color: rgba(201,150,58,0.12); line-height: 1; }
+    .t-text { font-family: var(--lora); font-style: italic; font-size: 0.88rem; line-height: 1.8; color: var(--coklat); margin-bottom: 1.2rem; }
+    .t-author { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--hijau); text-transform: uppercase; }
+    .t-loc    { font-size: 0.65rem; color: var(--mid); margin-top: 0.2rem; }
+    .t-watch  { font-size: 0.62rem; color: var(--emas); margin-top: 0.4rem; font-style: italic; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--hijau); border-top: 3px solid var(--emas); padding: 4rem 3rem 2rem; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .f-brand { font-family: var(--serif); font-size: 2rem; letter-spacing: 0.2em; color: var(--emas2); }
+    .f-sub { font-size: 0.78rem; color: rgba(245,215,142,0.5); line-height: 1.75; max-width: 260px; margin: 0.6rem 0 1.5rem; }
+    .f-pay-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .f-pay-badge { padding: 0.4rem 0.9rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-decoration: none; }
+    .footer-col h4 { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--emas); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.75rem; color: rgba(245,215,142,0.5); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--emas2); }
+    .footer-bottom { border-top: 1px solid rgba(201,150,58,0.15); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .f-copy { font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(245,215,142,0.3); }
+    .f-badges { display: flex; gap: 1rem; }
+    .f-badge { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,215,142,0.3); border: 1px solid rgba(201,150,58,0.15); padding: 0.3rem 0.6rem; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+    .hero-left .hero-badge     { animation: fadeUp 0.7s 0.1s both; }
+    .hero-left .promo-banner   { animation: fadeUp 0.7s 0.15s both; }
+    .hero-left .hero-tagline-ms{ animation: fadeUp 0.7s 0.2s both; }
+    .hero-left h1              { animation: fadeUp 0.8s 0.3s both; }
+    .hero-left .hero-bm        { animation: fadeUp 0.7s 0.4s both; }
+    .hero-left .hero-desc      { animation: fadeUp 0.7s 0.5s both; }
+    .hero-left .price-hero     { animation: fadeUp 0.7s 0.55s both; }
+    .hero-left .hero-cta-row   { animation: fadeUp 0.7s 0.6s both; }
+    .hero-left .hero-cod       { animation: fadeUp 0.7s 0.7s both; }
+    .hero-right                { animation: fadeUp 0.9s 0.4s both; }
+
+    @media (max-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .p-card:nth-child(3) { border-right: 1px solid var(--border); }
+      .p-card:nth-child(2), .p-card:nth-child(4), .p-card:nth-child(6) { border-right: none; }
+      .p-card:nth-child(3), .p-card:nth-child(4), .p-card:nth-child(5), .p-card:nth-child(6) { border-top: 1px solid var(--border); }
+      .kenapa-grid { grid-template-columns: repeat(2, 1fr); }
+      .k-card { border-bottom: 1px solid rgba(201,150,58,0.15); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero::after { display: none; }
+      .hero-left { padding: 3.5rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .kenapa-grid { grid-template-columns: 1fr; }
+      .cod-inner { grid-template-columns: 1fr; }
+      .order-layout { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .fg.row2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating WA -->
+<a href="https://wa.me/60166730669?text=Assalamualaikum%2C%20saya%20berminat%20dengan%20Tissot%20PRX%20KRONOS." target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  WhatsApp Kami
+</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo-wrap">
+    <div class="nav-logo">KRONOS</div>
+    <div class="nav-sub">Tissot PRX · Taman Bukit Indah, JB</div>
+  </div>
+  <div class="nav-links">
+    <a href="#koleksi">Koleksi</a>
+    <a href="#cod">COD</a>
+    <a href="#order">Tempah</a>
+  </div>
+  <a href="https://wa.me/60166730669" target="_blank" class="nav-wa">
+    <svg style="width:14px;height:14px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    016-673 0669
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-ornament" viewBox="0 0 120 120" fill="none">
+    <polygon points="60,5 115,30 115,90 60,115 5,90 5,30" stroke="#C9963A" stroke-width="1.5" fill="none"/>
+    <polygon points="60,20 100,40 100,80 60,100 20,80 20,40" stroke="#C9963A" stroke-width="1" fill="none"/>
+    <circle cx="60" cy="60" r="15" stroke="#C9963A" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="hero-left">
+    <div class="hero-badge">⌚ Tissot PRX Collection · 2026</div>
+    <div class="promo-banner">🔥 TAWARAN ISTIMEWA — Stok Terhad!</div>
+    <div class="hero-tagline-ms">Untuk lelaki yang faham erti gaya…</div>
+    <h1>Tissot <span class="emas">PRX</span> —<br/>Gaya Swiss<br/>Harga Terjangkau.</h1>
+    <div class="hero-bm">"Jam Swiss berkelas, harga yang tidak akan membebankan poket anda."</div>
+    <p class="hero-desc">Koleksi Tissot PRX hadir dalam pelbagai warna pilihan — hitam, hijau, biru, putih perak, Tiffany blue &amp; stainless steel. Dapatkan terus melalui COD di <strong style="color:var(--emas2)">Taman Bukit Indah, Johor Bahru</strong>.</p>
+    <div class="price-hero">
+      <div class="price-old">RM199</div>
+      <div class="price-new">RM149</div>
+      <div class="price-save">Jimat RM50!</div>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#koleksi" class="btn-emas">⌚ Pilih Warna Anda</a>
+      <a href="https://wa.me/60166730669?text=Assalamualaikum%2C%20saya%20nak%20tanya%20pasal%20Tissot%20PRX." target="_blank" class="btn-wa">
+        <svg style="width:16px;height:16px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Kami
+      </a>
+    </div>
+    <div class="hero-cod">
+      📍 <span>COD di <strong>8th Avenue, Taman Bukit Indah</strong>, Johor Bahru &nbsp;·&nbsp; <a href="https://maps.google.com/?q=Jalan+Indah+8,+Taman+Bukit+Indah,+81200+Johor+Bahru,+Johor" target="_blank">Lihat di Google Maps →</a></span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img id="heroWatchImg" class="hero-watch-img"
+      src="https://images.unsplash.com/photo-1619134778706-7015533a6150?w=600&q=85&fit=crop"
+      alt="Tissot PRX"/>
+    <div class="hero-color-dots" id="heroDots">
+      <div class="c-dot active" style="background:#2c2c2c;" title="Hitam" onclick="changeHeroWatch(0,this)"></div>
+      <div class="c-dot" style="background:#2d6a4f;" title="Hijau" onclick="changeHeroWatch(1,this)"></div>
+      <div class="c-dot" style="background:#1a4a7a;" title="Biru" onclick="changeHeroWatch(2,this)"></div>
+      <div class="c-dot" style="background:#e8e4dc;" title="Putih Perak" onclick="changeHeroWatch(3,this)"></div>
+      <div class="c-dot" style="background:#81d8d0;" title="Tiffany Blue" onclick="changeHeroWatch(4,this)"></div>
+      <div class="c-dot" style="background:linear-gradient(135deg,#c0c0c0,#e8e8e8);" title="Metal Bracelet" onclick="changeHeroWatch(5,this)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <div class="m-item">Tissot PRX Swiss Made <span class="sep">◆</span></div>
+    <div class="m-item">COD Taman Bukit Indah JB <span class="sep">◆</span></div>
+    <div class="m-item">Harga RM149 Sahaja <span class="sep">◆</span></div>
+    <div class="m-item">6 Pilihan Warna <span class="sep">◆</span></div>
+    <div class="m-item">Bayar TnG &amp; BMAC <span class="sep">◆</span></div>
+    <div class="m-item">WhatsApp 016-673 0669 <span class="sep">◆</span></div>
+    <div class="m-item">Stok Terhad — Tempah Segera <span class="sep">◆</span></div>
+    <div class="m-item">Tissot PRX Swiss Made <span class="sep">◆</span></div>
+    <div class="m-item">COD Taman Bukit Indah JB <span class="sep">◆</span></div>
+    <div class="m-item">Harga RM149 Sahaja <span class="sep">◆</span></div>
+    <div class="m-item">6 Pilihan Warna <span class="sep">◆</span></div>
+    <div class="m-item">Bayar TnG &amp; BMAC <span class="sep">◆</span></div>
+    <div class="m-item">WhatsApp 016-673 0669 <span class="sep">◆</span></div>
+    <div class="m-item">Stok Terhad — Tempah Segera <span class="sep">◆</span></div>
+  </div>
+</div>
+
+<!-- KOLEKSI -->
+<section class="products-section" id="koleksi">
+  <div class="s-kicker reveal">Koleksi Tissot PRX</div>
+  <h2 class="reveal">6 Pilihan Warna —<br/>Satu untuk Anda</h2>
+  <div class="h2-bm reveal">Setiap warna, setiap cerita</div>
+
+  <div class="products-grid reveal">
+
+    <!-- 1. Hitam -->
+    <div class="p-card">
+      <div class="p-img">
+        <span class="p-flag panas">🔥 Paling Laris</span>
+        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=85&fit=crop" alt="Tissot PRX Hitam"/>
+        <div class="p-price-overlay">
+          <div><div class="p-price-old">RM199</div><div class="p-price-new">RM149</div></div>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="p-color-name">⚫ Hitam / Black</div>
+        <div class="p-name">Tissot PRX 40mm</div>
+        <div class="p-ref">Black Dial · Steel Bracelet</div>
+        <div class="p-specs"><span class="p-spec">40mm</span><span class="p-spec">Swiss</span><span class="p-spec">10 ATM</span></div>
+        <a class="p-btn" onclick="orderThis('Tissot PRX Hitam (Black Dial)','https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=200&q=80&fit=crop')" href="#order">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Tempah via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- 2. Hijau -->
+    <div class="p-card">
+      <div class="p-img">
+        <span class="p-flag">🌿 Hijau</span>
+        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=600&q=85&fit=crop&hue=120" alt="Tissot PRX Hijau" style="filter:hue-rotate(100deg) saturate(0.8)"/>
+        <div class="p-price-overlay">
+          <div><div class="p-price-old">RM199</div><div class="p-price-new">RM149</div></div>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="p-color-name">🟢 Hijau / Green</div>
+        <div class="p-name">Tissot PRX 40mm</div>
+        <div class="p-ref">Green Dial · Steel Bracelet</div>
+        <div class="p-specs"><span class="p-spec">40mm</span><span class="p-spec">Swiss</span><span class="p-spec">10 ATM</span></div>
+        <a class="p-btn" onclick="orderThis('Tissot PRX Hijau (Green Dial)','https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=200&q=80&fit=crop')" href="#order">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Tempah via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- 3. Biru -->
+    <div class="p-card">
+      <div class="p-img">
+        <span class="p-flag">💙 Biru</span>
+        <img src="https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?w=600&q=85&fit=crop" alt="Tissot PRX Biru"/>
+        <div class="p-price-overlay">
+          <div><div class="p-price-old">RM199</div><div class="p-price-new">RM149</div></div>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="p-color-name">🔵 Biru / Blue</div>
+        <div class="p-name">Tissot PRX 40mm</div>
+        <div class="p-ref">Blue Dial · Steel Bracelet</div>
+        <div class="p-specs"><span class="p-spec">40mm</span><span class="p-spec">Swiss</span><span class="p-spec">10 ATM</span></div>
+        <a class="p-btn" onclick="orderThis('Tissot PRX Biru (Blue Dial)','https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?w=200&q=80&fit=crop')" href="#order">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Tempah via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- 4. Silver White -->
+    <div class="p-card">
+      <div class="p-img">
+        <span class="p-flag">🤍 Putih Perak</span>
+        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=85&fit=crop" alt="Tissot PRX Silver White"/>
+        <div class="p-price-overlay">
+          <div><div class="p-price-old">RM199</div><div class="p-price-new">RM149</div></div>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="p-color-name">⚪ Putih Perak / Silver White</div>
+        <div class="p-name">Tissot PRX 40mm</div>
+        <div class="p-ref">Silver White Dial · Steel Bracelet</div>
+        <div class="p-specs"><span class="p-spec">40mm</span><span class="p-spec">Swiss</span><span class="p-spec">10 ATM</span></div>
+        <a class="p-btn" onclick="orderThis('Tissot PRX Putih Perak (Silver White)','https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80&fit=crop')" href="#order">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Tempah via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- 5. Tiffany Blue -->
+    <div class="p-card">
+      <div class="p-img">
+        <span class="p-flag" style="background:#0abfbc;color:#fff;">✨ Tiffany Blue</span>
+        <img src="https://images.unsplash.com/photo-1619134778706-7015533a6150?w=600&q=85&fit=crop" alt="Tissot PRX Tiffany Blue" style="filter:hue-rotate(170deg) saturate(0.7) brightness(1.1)"/>
+        <div class="p-price-overlay">
+          <div><div class="p-price-old">RM199</div><div class="p-price-new">RM149</div></div>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="p-color-name">🩵 Tiffany Blue</div>
+        <div class="p-name">Tissot PRX 40mm</div>
+        <div class="p-ref">Tiffany Blue Dial · Steel Bracelet</div>
+        <div class="p-specs"><span class="p-spec">40mm</span><span class="p-spec">Swiss</span><span class="p-spec">10 ATM</span></div>
+        <a class="p-btn" onclick="orderThis('Tissot PRX Tiffany Blue','https://images.unsplash.com/photo-1619134778706-7015533a6150?w=200&q=80&fit=crop')" href="#order">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Tempah via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- 6. Metal Bracelet -->
+    <div class="p-card">
+      <div class="p-img">
+        <span class="p-flag" style="background:var(--coklat);color:var(--emas-pale);">🔗 Metal Strap</span>
+        <img src="https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=600&q=85&fit=crop" alt="Tissot PRX Metal Bracelet"/>
+        <div class="p-price-overlay">
+          <div><div class="p-price-old">RM199</div><div class="p-price-new">RM149</div></div>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="p-color-name">🔗 Full Metal / Stainless</div>
+        <div class="p-name">Tissot PRX 40mm</div>
+        <div class="p-ref">Silver Dial · Full Metal Bracelet</div>
+        <div class="p-specs"><span class="p-spec">40mm</span><span class="p-spec">Swiss</span><span class="p-spec">10 ATM</span></div>
+        <a class="p-btn" onclick="orderThis('Tissot PRX Full Metal Bracelet (Stainless)','https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=200&q=80&fit=crop')" href="#order">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Tempah via WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KENAPA KAMI -->
+<section class="kenapa">
+  <div class="s-kicker reveal">Kenapa KRONOS?</div>
+  <h2 class="reveal">Amanah &amp; Telus —<br/>Janji Kami</h2>
+  <div class="h2-bm reveal">Kepercayaan anda adalah keutamaan kami</div>
+  <div class="kenapa-grid reveal">
+    <div class="k-card">
+      <div class="k-num">01</div>
+      <span class="k-icon">💰</span>
+      <h3>Harga Terbaik<span>RM149 Sahaja</span></h3>
+      <p>Daripada harga asal RM199, kini RM149. Tawaran ini terhad — jangan lepaskan peluang ini.</p>
+    </div>
+    <div class="k-card">
+      <div class="k-num">02</div>
+      <span class="k-icon">🤝</span>
+      <h3>COD Terus<span>Taman Bukit Indah</span></h3>
+      <p>Jumpa terus di 8th Avenue, Taman Bukit Indah, Johor Bahru. Tengok, pegang, baru bayar. Tiada risiko.</p>
+    </div>
+    <div class="k-card">
+      <div class="k-num">03</div>
+      <span class="k-icon">🎨</span>
+      <h3>6 Pilihan Warna<span>Untuk semua gaya</span></h3>
+      <p>Hitam, Hijau, Biru, Putih Perak, Tiffany Blue &amp; Full Metal. Pilih yang paling sesuai dengan anda.</p>
+    </div>
+    <div class="k-card">
+      <div class="k-num">04</div>
+      <span class="k-icon">💳</span>
+      <h3>Bayaran Mudah<span>TnG &amp; BMAC</span></h3>
+      <p>Bayar menggunakan Touch 'n Go eWallet atau Buy Me a Coffee. Pantas dan mudah.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COD SECTION -->
+<section class="cod-section" id="cod">
+  <div class="cod-inner">
+    <div class="cod-info reveal">
+      <div class="s-kicker">Cara Dapatkan</div>
+      <h2 style="color:var(--hijau)">COD di<br/>Taman Bukit Indah</h2>
+      <div class="h2-bm">Jumpa terus — tengok dulu, baru bayar</div>
+      <div class="cod-details">
+        <div class="cod-address">8th Avenue (Jalan Indah 8)<br/>Taman Bukit Indah</div>
+        <div class="cod-area">81200 Johor Bahru, Johor · Berdekatan AEON Bukit Indah</div>
+        <a class="cod-map-btn" href="https://maps.google.com/?q=Jalan+Indah+8,+Taman+Bukit+Indah,+81200+Johor+Bahru,+Johor" target="_blank">
+          📍 Buka Google Maps →
+        </a>
+      </div>
+      <div class="cod-steps">
+        <div class="cod-step">
+          <div class="cod-step-n">1</div>
+          <div class="cod-step-t">
+            <h4>WhatsApp Kami Dahulu</h4>
+            <p>Hubungi 016-673 0669 untuk confirm tarikh &amp; masa COD yang sesuai.</p>
+          </div>
+        </div>
+        <div class="cod-step">
+          <div class="cod-step-n">2</div>
+          <div class="cod-step-t">
+            <h4>Datang ke Lokasi</h4>
+            <p>Jumpa kami di 8th Avenue, Taman Bukit Indah. Kami akan tunggu anda.</p>
+          </div>
+        </div>
+        <div class="cod-step">
+          <div class="cod-step-n">3</div>
+          <div class="cod-step-t">
+            <h4>Lihat &amp; Cuba</h4>
+            <p>Tengok sendiri jam anda. Puas hati baru bayar — RM149 sahaja!</p>
+          </div>
+        </div>
+        <div class="cod-step">
+          <div class="cod-step-n">4</div>
+          <div class="cod-step-t">
+            <h4>Bayar &amp; Bawa Balik</h4>
+            <p>Bayar via TnG, BMAC atau tunai. Terus bawa balik jam anda!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cod-map-wrap reveal">
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.0!2d103.659!3d1.481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da735d6aeeeff9%3A0x5b7d7d3a6a7e2e1a!2sJalan%20Indah%208%2C%20Taman%20Bukit%20Indah%2C%2081200%20Johor%20Bahru%2C%20Johor!5e0!3m2!1sen!2smy!4v1680000000000!5m2!1sen!2smy"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div style="margin-top:1rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+        <a href="https://maps.google.com/?q=Jalan+Indah+8,+Taman+Bukit+Indah,+81200+Johor+Bahru,+Johor" target="_blank" class="cod-map-btn">📍 Buka Google Maps</a>
+        <a href="https://wa.me/60166730669?text=Assalamualaikum%2C%20saya%20nak%20COD%20Tissot%20PRX%20di%20Bukit%20Indah.%20Boleh%20arrange%3F" target="_blank" class="btn-wa" style="font-size:0.7rem;padding:0.75rem 1.2rem;">💬 Arrange COD</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM -->
+<section class="order-sec" id="order">
+  <div class="s-kicker reveal">Borang Tempahan</div>
+  <h2 class="reveal">Tempah &amp; COD —<br/>Mudah &amp; Pantas</h2>
+  <div class="h2-bm reveal">Isi borang, kami akan whatsapp anda untuk confirm</div>
+
+  <div class="order-layout reveal">
+    <div>
+      <div class="sum-card" id="sumCard">
+        <img id="sumImg" src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=200&q=80&fit=crop" alt="Jam Dipilih"/>
+        <div class="sum-info">
+          <h4 id="sumName">Tissot PRX Hitam (Black Dial)</h4>
+          <p id="sumModel">40mm · Steel Bracelet · Swiss</p>
+          <p style="margin-top:0.4rem;font-size:0.72rem;">
+            <span style="color:rgba(245,215,142,0.4);text-decoration:line-through;">RM199</span>
+            <span id="sumPrice" style="color:var(--emas2);font-family:var(--serif);font-size:1.2rem;margin-left:0.5rem;">RM149</span>
+          </p>
+        </div>
+      </div>
+      <div class="sum-perks">
+        <div class="s-perk">COD di 8th Avenue, Taman Bukit Indah</div>
+        <div class="s-perk">Bayar selepas tengok jam sendiri</div>
+        <div class="s-perk">Harga tetap RM149</div>
+        <div class="s-perk">Pilihan warna masih ada</div>
+        <div class="s-perk">Arrange tarikh &amp; masa via WhatsApp</div>
+      </div>
+      <a href="#" id="waDirectBtn" target="_blank" class="wa-order-btn" style="margin-top:1.5rem;">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hantar Terus ke WhatsApp
+      </a>
+      <p style="margin-top:0.8rem;font-size:0.65rem;color:rgba(245,215,142,0.35);text-align:center;">Borang di sebelah kanan akan auto-isi mesej WA anda →</p>
+    </div>
+
+    <div class="order-form-box">
+      <h3>Borang Tempahan COD</h3>
+      <div class="form-bm">Isi maklumat di bawah, klik "Hantar ke WhatsApp" — mesej akan auto-terisi!</div>
+
+      <div class="fg row2">
+        <div class="fg"><label>Nama Penuh *</label><input type="text" id="fName" placeholder="Ahmad Faizal" oninput="buildWAMsg()"/></div>
+        <div class="fg"><label>No. WhatsApp *</label><input type="tel" id="fPhone" placeholder="+60 12-345 6789" oninput="buildWAMsg()"/></div>
+      </div>
+
+      <div class="fg" style="margin-top:1rem;">
+        <label>Model Tissot PRX *</label>
+        <select id="fModel" onchange="selectModel()">
+          <option value="Tissot PRX Hitam (Black Dial)|https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=200&q=80&fit=crop">Tissot PRX Hitam (Black Dial) — RM149</option>
+          <option value="Tissot PRX Hijau (Green Dial)|https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=200&q=80&fit=crop">Tissot PRX Hijau (Green Dial) — RM149</option>
+          <option value="Tissot PRX Biru (Blue Dial)|https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?w=200&q=80&fit=crop">Tissot PRX Biru (Blue Dial) — RM149</option>
+          <option value="Tissot PRX Putih Perak (Silver White)|https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80&fit=crop">Tissot PRX Putih Perak (Silver White) — RM149</option>
+          <option value="Tissot PRX Tiffany Blue|https://images.unsplash.com/photo-1619134778706-7015533a6150?w=200&q=80&fit=crop">Tissot PRX Tiffany Blue — RM149</option>
+          <option value="Tissot PRX Full Metal Bracelet (Stainless)|https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=200&q=80&fit=crop">Tissot PRX Full Metal Bracelet — RM149</option>
+        </select>
+      </div>
+
+      <div class="fg row2" style="margin-top:1rem;">
+        <div class="fg">
+          <label>Tarikh COD *</label>
+          <input type="date" id="fDate" oninput="buildWAMsg()"/>
+        </div>
+        <div class="fg">
+          <label>Masa COD *</label>
+          <select id="fTime" onchange="buildWAMsg()">
+            <option value="">-- Pilih Masa --</option>
+            <option>10:00 pagi</option>
+            <option>11:00 pagi</option>
+            <option>12:00 tengah hari</option>
+            <option>2:00 petang</option>
+            <option>3:00 petang</option>
+            <option>4:00 petang</option>
+            <option>5:00 petang</option>
+            <option>6:00 petang</option>
+            <option>7:00 malam</option>
+            <option>8:00 malam</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fg" style="margin-top:0.5rem;">
+        <label>Catatan Tambahan (Pilihan)</label>
+        <textarea id="fNote" rows="2" placeholder="Contoh: Saya akan datang dengan kenderaan..." oninput="buildWAMsg()"></textarea>
+      </div>
+
+      <!-- Preview mesej WA -->
+      <div style="background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);padding:1rem;margin:1rem 0;border-radius:2px;">
+        <div style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,215,142,0.45);margin-bottom:0.5rem;">📋 Pratonton Mesej WhatsApp</div>
+        <div id="msgPreview" style="font-size:0.72rem;color:rgba(253,246,227,0.7);line-height:1.7;white-space:pre-wrap;font-family:monospace;">Isi borang di atas untuk lihat pratonton mesej...</div>
+      </div>
+
+      <button onclick="sendToWA()" class="wa-order-btn" style="width:100%;border:none;cursor:pointer;">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ✅ Hantar Tempahan ke WhatsApp
+      </button>
+
+      <div class="form-divider"></div>
+      <span class="pay-method-label">Kaedah Bayaran Semasa COD</span>
+      <div class="pay-tabs">
+        <button class="p-tab active" onclick="swTab('bmac',this)">☕ Buy Me a Coffee</button>
+        <button class="p-tab" onclick="swTab('tng',this)">📲 Touch 'n Go</button>
+        <button class="p-tab" onclick="swTab('tunai',this)">💵 Tunai</button>
+      </div>
+
+      <div class="pay-panel active" id="pp-bmac">
+        <div class="bmac-blk">
+          <div class="bmac-row"><div class="bmac-ico">☕</div><div class="bmac-inf"><h4>Buy Me a Coffee</h4><p>tinypawtv · Selamat &amp; Pantas</p></div></div>
+          <a href="https://www.buymeacoffee.com/tinypawtv" target="_blank" class="bmac-pay-btn">☕ Bayar di Buy Me a Coffee</a>
+        </div>
+      </div>
+
+      <div class="pay-panel" id="pp-tng">
+        <div class="tng-blk">
+          <div class="tng-row"><div class="tng-ico">TnG</div><div class="tng-inf"><h4>Touch 'n Go eWallet</h4><p>Hantar ke nombor kami</p></div></div>
+          <div class="tng-id-block">
+            <div class="tng-id-label">Nombor TnG</div>
+            <div class="tng-id-num">016-673 0669</div>
+          </div>
+          <div class="tng-steps-row">
+            <div class="tng-step"><div class="step-n">1</div>Buka TnG eWallet, tekan Hantar</div>
+            <div class="tng-step"><div class="step-n">2</div>Masukkan no. <strong>016-673 0669</strong></div>
+            <div class="tng-step"><div class="step-n">3</div>Masukkan jumlah <strong>RM149</strong></div>
+            <div class="tng-step"><div class="step-n">4</div>Screenshot resit &amp; hantar ke WA</div>
+          </div>
+          <a href="https://tngdigital.com.my" target="_blank" class="tng-pay-btn">📲 Buka App Touch 'n Go</a>
+        </div>
+      </div>
+
+      <div class="pay-panel" id="pp-tunai">
+        <div style="background:rgba(201,150,58,0.08);border:1px solid rgba(201,150,58,0.2);padding:1.2rem;display:flex;flex-direction:column;gap:0.6rem;">
+          <div style="font-size:0.82rem;font-weight:700;color:var(--emas2);">💵 Bayar Tunai Semasa COD</div>
+          <p style="font-size:0.75rem;color:rgba(253,246,227,0.7);line-height:1.7;">Sedia wang tunai <strong style="color:var(--emas2);">RM149</strong> semasa COD. Bayar terus kepada kami selepas anda berpuas hati dengan jam pilihan anda.</p>
+        </div>
+      </div>
+
+      <div class="pay-secure">🔒 Selamat · Telus · Amanah</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testi-sec">
+  <div class="s-kicker reveal">Testimoni</div>
+  <h2 class="reveal" style="color:var(--hijau)">Kata Mereka<br/>Yang Dah Beli</h2>
+  <div class="testi-grid reveal">
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"COD kat Bukit Indah semalam. Jam memang cantik, warna hitam nampak mewah sangat. Harga RM149 berbaloi gila! Tuan kedai pun ramah dan professional."</div>
+      <div class="t-author">Encik Hafiz Rozali</div>
+      <div class="t-loc">📍 Taman Bukit Indah, JB</div>
+      <div class="t-watch">Tissot PRX Hitam (Black Dial)</div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"Dapat yang Tiffany Blue. Isteri suka sangat! Proses COD mudah je — WhatsApp dulu, confirm masa, datang ambil. Tak sampai 10 minit pun!"</div>
+      <div class="t-author">Encik Danial Hisham</div>
+      <div class="t-loc">📍 Skudai, JB</div>
+      <div class="t-watch">Tissot PRX Tiffany Blue</div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"Yang full metal bracket memang kelas lain. Pakai ke office pun sesuai. Bayar RM149, rasa macam pakai jam mahal. Syabas KRONOS!"</div>
+      <div class="t-author">Encik Ridzwan Salleh</div>
+      <div class="t-loc">📍 Johor Bahru</div>
+      <div class="t-watch">Tissot PRX Full Metal Bracelet</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-brand">KRONOS</div>
+      <p class="f-sub">Tissot PRX Malaysia. COD di 8th Avenue, Taman Bukit Indah, Johor Bahru. 6 pilihan warna · RM149 sahaja.</p>
+      <div class="f-pay-row">
+        <a href="https://www.buymeacoffee.com/tinypawtv" target="_blank" class="f-pay-badge" style="background:#FFDD00;color:#333;">☕ Buy Me a Coffee</a>
+        <a href="#order" class="f-pay-badge" style="background:linear-gradient(135deg,#00AEEF,#0072BC);color:#fff;">📲 Touch 'n Go</a>
+        <a href="https://wa.me/60166730669" target="_blank" class="f-pay-badge" style="background:#25D366;color:#fff;">💬 016-673 0669</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Koleksi PRX</h4>
+      <a href="#koleksi">Hitam / Black</a>
+      <a href="#koleksi">Hijau / Green</a>
+      <a href="#koleksi">Biru / Blue</a>
+      <a href="#koleksi">Putih Perak</a>
+      <a href="#koleksi">Tiffany Blue</a>
+      <a href="#koleksi">Full Metal</a>
+    </div>
+    <div class="footer-col">
+      <h4>Hubungi Kami</h4>
+      <a href="https://wa.me/60166730669" target="_blank">WhatsApp: 016-673 0669</a>
+      <a href="https://maps.google.com/?q=Jalan+Indah+8,+Taman+Bukit+Indah,+81200+Johor+Bahru" target="_blank">📍 8th Ave, Taman Bukit Indah</a>
+      <a href="#cod">Cara COD</a>
+      <a href="#order">Tempah Sekarang</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ikuti Kami</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Facebook</a>
+      <a href="#">Telegram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="f-copy">© 2026 KRONOS Malaysia · Taman Bukit Indah, Johor Bahru · Hak Cipta Terpelihara</div>
+    <div class="f-badges">
+      <div class="f-badge">COD Bukit Indah</div>
+      <div class="f-badge">RM149</div>
+      <div class="f-badge">6 Warna</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── scroll reveal ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── hero watch color swap ── */
+  const heroImgs = [
+    'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=85&fit=crop',
+    'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=600&q=85&fit=crop',
+    'https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?w=600&q=85&fit=crop',
+    'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=85&fit=crop',
+    'https://images.unsplash.com/photo-1619134778706-7015533a6150?w=600&q=85&fit=crop',
+    'https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=600&q=85&fit=crop'
+  ];
+  function changeHeroWatch(idx, el) {
+    document.getElementById('heroWatchImg').src = heroImgs[idx];
+    document.querySelectorAll('.c-dot').forEach(d => d.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  /* ── orderThis from product card ── */
+  function orderThis(model, img) {
+    document.getElementById('fModel').value = model + '|' + img;
+    document.getElementById('sumName').textContent = model;
+    document.getElementById('sumImg').src = img;
+    buildWAMsg();
+  }
+
+  /* ── select model from form ── */
+  function selectModel() {
+    const val = document.getElementById('fModel').value;
+    const [model, img] = val.split('|');
+    document.getElementById('sumName').textContent = model;
+    document.getElementById('sumImg').src = img;
+    buildWAMsg();
+  }
+
+  /* ── build WhatsApp pre-filled message ── */
+  function buildWAMsg() {
+    const name  = document.getElementById('fName').value.trim() || '(nama belum diisi)';
+    const phone = document.getElementById('fPhone').value.trim() || '(no. belum diisi)';
+    const modelRaw = document.getElementById('fModel').value;
+    const model = modelRaw.split('|')[0] || 'Tissot PRX';
+    const dateRaw = document.getElementById('fDate').value;
+    const date  = dateRaw ? new Date(dateRaw).toLocaleDateString('ms-MY', {weekday:'long', year:'numeric', month:'long', day:'numeric'}) : '(tarikh belum dipilih)';
+    const time  = document.getElementById('fTime').value || '(masa belum dipilih)';
+    const note  = document.getElementById('fNote').value.trim();
+
+    const msg =
+`Assalamualaikum KRONOS 👋
+
+*📋 TEMPAHAN TISSOT PRX — COD*
+━━━━━━━━━━━━━━━━━━━
+👤 *Nama:* ${name}
+📱 *No. WA:* ${phone}
+⌚ *Model:* ${model}
+💰 *Harga:* ~~RM199~~ *RM149*
+━━━━━━━━━━━━━━━━━━━
+📅 *Tarikh COD:* ${date}
+🕐 *Masa COD:* ${time}
+📍 *Lokasi:* 8th Avenue, Taman Bukit Indah, JB
+━━━━━━━━━━━━━━━━━━━${note ? '\n📝 *Catatan:* ' + note + '\n━━━━━━━━━━━━━━━━━━━' : ''}
+
+Saya berminat untuk COD jam ini. Boleh confirm? Terima kasih! 🙏`;
+
+    document.getElementById('msgPreview').textContent = msg;
+
+    // update direct WA btn
+    const waUrl = 'https://wa.me/60166730669?text=' + encodeURIComponent(msg);
+    document.getElementById('waDirectBtn').href = waUrl;
+    return msg;
+  }
+
+  /* ── send form to WA ── */
+  function sendToWA() {
+    const name = document.getElementById('fName').value.trim();
+    if (!name) { alert('Sila isi nama anda terlebih dahulu.'); return; }
+    const msg = buildWAMsg();
+    window.open('https://wa.me/60166730669?text=' + encodeURIComponent(msg), '_blank');
+  }
+
+  /* ── payment tab switch ── */
+  function swTab(id, btn) {
+    document.querySelectorAll('.p-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pp-' + id).classList.add('active');
+  }
+
+  // init
+  buildWAMsg();
+  document.getElementById('fDate').min = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
