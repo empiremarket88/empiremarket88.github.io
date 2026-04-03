@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KRONOS — Timepieces for the Bold</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dim: #7a6030;
+      --black: #080808;
+      --dark: #111010;
+      --dark2: #1a1918;
+      --charcoal: #2a2825;
+      --smoke: #8a8580;
+      --cream: #f0ebe2;
+      --white: #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: 0.25em;
+      color: var(--gold);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--smoke); text-decoration: none; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 65% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    }
+    .hero-text { position: relative; z-index: 2; padding-right: 3rem; }
+    .hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 9vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    h1 span { color: var(--gold); }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--smoke); line-height: 1.7;
+      max-width: 380px; margin-bottom: 3rem;
+    }
+    .hero-cta { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: background 0.3s, transform 0.2s;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent; border: 1px solid var(--gold-dim);
+      color: var(--gold); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 1rem 2.5rem; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    /* hero watch visual */
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .watch-showcase {
+      width: 420px; height: 420px;
+      position: relative;
+    }
+    .watch-ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.2);
+      animation: rotateRing 20s linear infinite;
+    }
+    .watch-ring::before {
+      content: ''; position: absolute;
+      width: 8px; height: 8px; background: var(--gold);
+      border-radius: 50%; top: -4px; left: 50%; transform: translateX(-50%);
+    }
+    .watch-ring-2 {
+      position: absolute; inset: 20px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201,168,76,0.1);
+      animation: rotateRing 30s linear infinite reverse;
+    }
+    @keyframes rotateRing { to { transform: rotate(360deg); } }
+
+    .watch-face {
+      position: absolute; inset: 40px;
+      background: radial-gradient(ellipse at 35% 35%, #2a2720, #0d0c0a);
+      border-radius: 50%;
+      border: 2px solid var(--gold-dim);
+      box-shadow:
+        0 0 60px rgba(201,168,76,0.15),
+        0 0 120px rgba(201,168,76,0.05),
+        inset 0 0 40px rgba(0,0,0,0.8);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .watch-inner {
+      text-align: center; position: relative; z-index: 2;
+    }
+    .watch-brand-face {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; letter-spacing: 0.3em;
+      color: var(--gold); display: block; margin-bottom: 0.2rem;
+    }
+    .watch-model {
+      font-size: 0.45rem; letter-spacing: 0.2em; color: var(--smoke); text-transform: uppercase;
+    }
+    .watch-dial-lines {
+      position: absolute; inset: 0;
+    }
+    .dial-tick {
+      position: absolute; top: 8px; left: 50%; width: 1px; transform-origin: bottom center;
+      background: rgba(201,168,76,0.4);
+    }
+    .clock-hand {
+      position: absolute; bottom: 50%; left: 50%;
+      transform-origin: bottom center;
+      border-radius: 2px;
+    }
+    .hand-hour { width: 2px; height: 28%; background: var(--gold); margin-left: -1px; animation: rotateHour 43200s linear infinite; }
+    .hand-min  { width: 1.5px; height: 38%; background: var(--cream); margin-left: -0.75px; animation: rotateMins 3600s linear infinite; }
+    .hand-sec  { width: 1px; height: 42%; background: #e03a3a; margin-left: -0.5px; animation: rotateSecs 60s linear infinite; }
+    @keyframes rotateHour { to { transform: rotate(360deg); } }
+    @keyframes rotateMins { to { transform: rotate(360deg); } }
+    @keyframes rotateSecs { to { transform: rotate(360deg); } }
+
+    .watch-price-tag {
+      position: absolute; bottom: -10px; right: -10px;
+      background: var(--gold); color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; letter-spacing: 0.1em;
+      padding: 0.7rem 1.2rem;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 7rem 4rem; }
+    .section-label {
+      font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 0.05em; line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: var(--dark); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      margin-top: 4rem; border: 1px solid var(--charcoal);
+    }
+    .feature-card {
+      padding: 3rem 2.5rem; border-right: 1px solid var(--charcoal);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .feature-card:last-child { border-right: none; }
+    .feature-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .feature-card:hover { background: rgba(201,168,76,0.03); }
+    .feature-card:hover::after { transform: scaleX(1); }
+    .feature-icon {
+      font-size: 2rem; margin-bottom: 1.5rem; display: block;
+    }
+    .feature-card h3 {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
+      letter-spacing: 0.08em; margin-bottom: 0.8rem; color: var(--white);
+    }
+    .feature-card p {
+      font-size: 0.8rem; line-height: 1.8; color: var(--smoke);
+    }
+
+    /* ── COLLECTION ── */
+    .collection { background: var(--black); }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      margin-top: 4rem;
+    }
+    .product-card {
+      background: var(--dark2);
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .product-card:hover { transform: translateY(-4px); }
+    .product-card:hover .product-overlay { opacity: 1; }
+    .product-img {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .product-watch-art {
+      width: 160px; height: 160px;
+      border-radius: 50%; border: 2px solid var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at 35% 30%, #2d2822, #0d0c09);
+      box-shadow: 0 0 40px rgba(201,168,76,0.1);
+      flex-direction: column; gap: 0.3rem;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+    .product-watch-art span:first-child { font-size: 0.9rem; letter-spacing: 0.25em; color: var(--gold); }
+    .product-watch-art span:last-child { font-size: 0.4rem; letter-spacing: 0.15em; color: var(--smoke); text-transform: uppercase; }
+    .product-overlay {
+      position: absolute; inset: 0;
+      background: rgba(201,168,76,0.08);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .overlay-btn {
+      background: var(--gold); color: var(--black);
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.8rem 2rem; border: none; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-weight: 500;
+      text-decoration: none;
+    }
+    .product-info { padding: 1.5rem 2rem 2rem; }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; margin-bottom: 0.3rem;
+    }
+    .product-ref {
+      font-size: 0.6rem; letter-spacing: 0.2em; color: var(--smoke); text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .product-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: 0.05em; color: var(--gold);
+    }
+
+    /* ── PAYMENT / BUY ME A COFFEE ── */
+    .payment-section { background: var(--dark); position: relative; overflow: hidden; }
+    .payment-section::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .payment-inner {
+      max-width: 900px; margin: 0 auto; text-align: center;
+    }
+    .payment-inner h2 { margin-bottom: 1rem; }
+    .payment-sub {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 1.15rem; color: var(--smoke); margin-bottom: 4rem; line-height: 1.7;
+    }
+
+    /* order box */
+    .order-box {
+      background: var(--dark2);
+      border: 1px solid var(--charcoal);
+      padding: 3rem 3.5rem;
+      text-align: left;
+      position: relative;
+    }
+    .order-box::before {
+      content: ''; position: absolute; top: 0; left: 3.5rem; right: 3.5rem; height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+    }
+    .form-group select,
+    .form-group input {
+      background: var(--charcoal); border: 1px solid rgba(201,168,76,0.2);
+      color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.85rem;
+      padding: 0.85rem 1rem; outline: none; appearance: none;
+      transition: border-color 0.3s;
+    }
+    .form-group select:focus, .form-group input:focus { border-color: var(--gold); }
+    .form-group select option { background: #1a1918; }
+
+    .order-summary {
+      border-top: 1px solid var(--charcoal); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .summary-line { display: flex; flex-direction: column; gap: 0.3rem; }
+    .summary-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--smoke); }
+    .summary-value {
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.05em; color: var(--gold);
+    }
+
+    /* BMAC button */
+    .bmac-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 0.8rem; }
+    .bmac-note { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--smoke); }
+    .bmac-btn {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: #FFDD00; color: #000;
+      border: none; cursor: pointer; text-decoration: none;
+      padding: 1rem 2rem; font-weight: 600; font-size: 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .bmac-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,221,0,0.25); }
+    .bmac-icon { font-size: 1.3rem; }
+    .bmac-secure {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--smoke);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--black); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+    .testi-card {
+      border: 1px solid var(--charcoal); padding: 2.5rem;
+      position: relative;
+    }
+    .testi-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif; font-size: 6rem; line-height: 1;
+      color: rgba(201,168,76,0.15); position: absolute; top: 1rem; left: 1.5rem;
+    }
+    .testi-text {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 1rem; line-height: 1.8; color: var(--cream); margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .testi-stars { color: var(--gold); font-size: 0.7rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .testi-author { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--smoke); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark2); border-top: 1px solid var(--charcoal);
+      padding: 4rem 4rem 2rem; display: flex; flex-direction: column; gap: 3rem;
+    }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.2em; color: var(--gold); }
+    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--smoke); font-size: 0.9rem; }
+    .footer-links { display: flex; gap: 3rem; }
+    .footer-col h4 { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.75rem; color: var(--smoke); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid var(--charcoal); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--smoke); }
+    .footer-badges { display: flex; gap: 1rem; }
+    .badge { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--smoke); border: 1px solid var(--charcoal); padding: 0.35rem 0.7rem; }
+
+    /* animations on load */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+    .hero-text > * { animation: fadeUp 0.9s ease both; }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    h1 { animation-delay: 0.25s; }
+    .hero-sub { animation-delay: 0.4s; }
+    .hero-cta { animation-delay: 0.55s; }
+    .hero-visual { animation: fadeUp 1s 0.3s ease both; }
+
+    /* scroll reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .hero { grid-template-columns: 1fr; padding: 8rem 2rem 4rem; text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-sub { margin: 0 auto 2.5rem; }
+      .hero-cta { justify-content: center; }
+      .hero-visual { margin-top: 3rem; }
+      section { padding: 5rem 2rem; }
+      .features-grid, .products-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .feature-card { border-right: none; border-bottom: 1px solid var(--charcoal); }
+      .order-grid { grid-template-columns: 1fr; }
+      .order-summary { flex-direction: column; align-items: flex-start; }
+      .bmac-wrap { align-items: flex-start; }
+      .footer-top { flex-direction: column; gap: 2rem; }
+      .footer-links { flex-wrap: wrap; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KRONOS</div>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#features">Craftsmanship</a></li>
+    <li><a href="#order">Order</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Precision Timepieces</div>
+    <h1>TIME<br/>IS<br/><span>POWER</span></h1>
+    <p class="hero-sub">Handcrafted for the man who understands that every second is a statement of character.</p>
+    <div class="hero-cta">
+      <a href="#order" class="btn-primary">
+        ☕ Order Now
+      </a>
+      <a href="#collection" class="btn-outline">View Collection</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="watch-showcase">
+      <div class="watch-ring"></div>
+      <div class="watch-ring-2"></div>
+      <div class="watch-face">
+        <svg class="dial-tick" style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 200 200">
+          <!-- 12 hour ticks -->
+          <g stroke="rgba(201,168,76,0.5)" stroke-width="2">
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(0 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(30 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(60 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(90 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(120 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(150 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(180 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(210 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(240 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(270 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(300 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" transform="rotate(330 100 100)"/>
+          </g>
+        </svg>
+        <div class="clock-hand hand-hour" style="transform: rotate(150deg)"></div>
+        <div class="clock-hand hand-min"  style="transform: rotate(270deg)"></div>
+        <div class="clock-hand hand-sec"  style="transform: rotate(180deg)"></div>
+        <div class="watch-inner">
+          <span class="watch-brand-face">KRONOS</span>
+          <span class="watch-model">Automatic • Swiss</span>
+        </div>
+      </div>
+      <div class="watch-price-tag">RM 1,299</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-label reveal">Craftsmanship</div>
+  <h2 class="reveal">BUILT TO<br/>OUTLAST<br/>LEGENDS</h2>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <span class="feature-icon">⚙️</span>
+      <h3>Swiss Movement</h3>
+      <p>Every KRONOS houses a precision Swiss automatic movement, beating at 28,800 vibrations per hour with a 72-hour power reserve.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💎</span>
+      <h3>Sapphire Crystal</h3>
+      <p>Anti-reflective sapphire crystal glass. Scratch-resistant, distortion-free, and crafted to endure a lifetime of adventure.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛡️</span>
+      <h3>50M Water Resistant</h3>
+      <p>Pressure-tested to 50 metres. From boardroom to boat deck, KRONOS moves with you — always protected, always precise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="collection" id="collection">
+  <div class="section-label reveal">Our Collection</div>
+  <h2 class="reveal">SELECT YOUR<br/>TIMEPIECE</h2>
+  <div class="products-grid reveal">
+    <!-- Card 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-watch-art">
+          <span>KRONOS</span>
+          <span>Obsidian</span>
+        </div>
+        <div class="product-overlay">
+          <a href="#order" class="overlay-btn">Select This</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Obsidian Commander</div>
+        <div class="product-ref">REF. KR-001-BLK</div>
+        <div class="product-price">RM 1,299</div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #1d1a14;">
+        <div class="product-watch-art" style="border-color: #C9A84C; box-shadow: 0 0 40px rgba(201,168,76,0.2);">
+          <span>KRONOS</span>
+          <span>Aurum</span>
+        </div>
+        <div class="product-overlay">
+          <a href="#order" class="overlay-btn">Select This</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Aurum Sovereign</div>
+        <div class="product-ref">REF. KR-002-GLD</div>
+        <div class="product-price">RM 1,899</div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #151a1f;">
+        <div class="product-watch-art" style="border-color: #7ab3cc; box-shadow: 0 0 40px rgba(100,160,200,0.15);">
+          <span style="color:#7ab3cc;">KRONOS</span>
+          <span>Mariner</span>
+        </div>
+        <div class="product-overlay">
+          <a href="#order" class="overlay-btn">Select This</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Mariner Depth</div>
+        <div class="product-ref">REF. KR-003-BLU</div>
+        <div class="product-price">RM 1,599</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="payment-section" id="order">
+  <div class="payment-inner">
+    <div class="section-label reveal" style="justify-content:center">Place Your Order</div>
+    <h2 class="reveal">CLAIM YOUR<br/>KRONOS</h2>
+    <p class="payment-sub reveal">Complete your details below and proceed to payment via Buy Me a Coffee — fast, secure, and trusted.</p>
+
+    <div class="order-box reveal">
+      <div class="order-grid">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Ahmad Faizal"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+60 12-345 6789"/>
+        </div>
+        <div class="form-group full">
+          <label>Delivery Address</label>
+          <input type="text" placeholder="No. 12, Jalan Harmoni, Johor Bahru, Johor"/>
+        </div>
+        <div class="form-group">
+          <label>Select Model</label>
+          <select id="modelSelect" onchange="updatePrice()">
+            <option value="1299">Obsidian Commander — RM 1,299</option>
+            <option value="1899">Aurum Sovereign — RM 1,899</option>
+            <option value="1599">Mariner Depth — RM 1,599</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Strap Option</label>
+          <select>
+            <option>Genuine Leather — Black</option>
+            <option>Genuine Leather — Brown</option>
+            <option>Stainless Steel Bracelet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <div>
+          <div class="summary-line">
+            <span class="summary-label">Total Amount</span>
+            <span class="summary-value" id="priceDisplay">RM 1,299</span>
+          </div>
+          <div class="bmac-secure">🔒&nbsp; Secured via Buy Me a Coffee</div>
+        </div>
+        <div class="bmac-wrap">
+          <span class="bmac-note">Pay with</span>
+          <a href="https://www.buymeacoffee.com/tinypawtv" target="_blank" class="bmac-btn" id="bmacBtn">
+            <span class="bmac-icon">☕</span>
+            Buy Me a Coffee
+          </a>
+          <span class="bmac-secure" style="font-size:0.55rem;">Free shipping · 7-day returns · 2-year warranty</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:1.5rem; font-size:0.65rem; letter-spacing:0.1em; color:var(--smoke); line-height:1.8;">
+      After payment, send your order confirmation + delivery details to our WhatsApp: <strong style="color:var(--gold)">+60 12-000 0000</strong><br/>
+      We'll process your order within 1 business day. ⌚
+    </p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label reveal">What They Say</div>
+  <h2 class="reveal">WORN BY<br/>REAL MEN</h2>
+  <div class="testimonials-grid reveal">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">The Obsidian Commander is nothing short of stunning. Gets compliments at every meeting. Worth every ringgit.</p>
+      <div class="testi-author">— Hafiz R., Kuala Lumpur</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Bought the Aurum Sovereign for my wedding. The quality rivals watches triple the price. Incredibly proud to wear it.</p>
+      <div class="testi-author">— Daniel T., Penang</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Fast delivery, beautifully packaged. The Mariner keeps perfect time. KRONOS has earned a loyal customer.</p>
+      <div class="testi-author">— Reza M., Johor Bahru</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">KRONOS</div>
+      <div class="footer-tagline">Timepieces for the Bold</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Collection</h4>
+        <a href="#collection">Obsidian Commander</a>
+        <a href="#collection">Aurum Sovereign</a>
+        <a href="#collection">Mariner Depth</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">WhatsApp Us</a>
+        <a href="#">FAQ</a>
+        <a href="#">Warranty Policy</a>
+        <a href="#">Returns</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 KRONOS Timepieces. All rights reserved.</div>
+    <div class="footer-badges">
+      <div class="badge">Swiss Quality</div>
+      <div class="badge">Secure Payment</div>
+      <div class="badge">2-Year Warranty</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Price update
+  function updatePrice() {
+    const sel = document.getElementById('modelSelect');
+    const price = parseInt(sel.value);
+    document.getElementById('priceDisplay').textContent = 'RM ' + price.toLocaleString();
+    // Update BMAC link with amount note (conceptual — BMAC handles actual amount on their end)
+    const btn = document.getElementById('bmacBtn');
+    btn.href = `https://www.buymeacoffee.com/tinypawtv`;
+  }
+
+  // Ticking clock
+  function setHandRotations() {
+    const now = new Date();
+    const h = now.getHours() % 12, m = now.getMinutes(), s = now.getSeconds();
+    const hourDeg = h * 30 + m * 0.5;
+    const minDeg  = m * 6 + s * 0.1;
+    const secDeg  = s * 6;
+    const hh = document.querySelector('.hand-hour');
+    const mh = document.querySelector('.hand-min');
+    const sh = document.querySelector('.hand-sec');
+    if (hh) hh.style.transform = `rotate(${hourDeg}deg)`;
+    if (mh) mh.style.transform = `rotate(${minDeg}deg)`;
+    if (sh) sh.style.transform = `rotate(${secDeg}deg)`;
+  }
+  setHandRotations();
+  setInterval(setHandRotations, 1000);
+</script>
+</body>
+</html>
