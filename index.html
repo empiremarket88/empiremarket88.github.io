@@ -1,924 +1,1194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KRONOS — Curated Timepieces</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <title>KRONOS — Jam Tangan Mewah Untuk Lelaki Berkelas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+Malay:wght@400;500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ink: #0e0e0e;
-      --ink2: #1c1c1c;
-      --charcoal: #3a3a3a;
-      --mid: #888;
-      --border: #ddd;
-      --light: #f5f3ef;
-      --white: #fefefe;
-      --accent: #b8966e;
-      --accent2: #8c6e4f;
-      --red: #c0392b;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'DM Sans', sans-serif;
-      --mono: 'DM Mono', monospace;
+      --hijau:    #1B4332;
+      --hijau2:   #2D6A4F;
+      --hijau3:   #40916C;
+      --emas:     #C9963A;
+      --emas2:    #E8B84B;
+      --emas-pale:#F5D78E;
+      --merah:    #8B1A1A;
+      --krem:     #FDF6E3;
+      --krem2:    #F7EDD0;
+      --coklat:   #5C3D2E;
+      --ink:      #1a1a1a;
+      --mid:      #6b6355;
+      --border:   #d4c5a0;
+      --white:    #FEFCF5;
+      --serif:    'Cinzel', 'Palatino Linotype', serif;
+      --lora:     'Lora', Georgia, serif;
+      --sans:     'Nunito', sans-serif;
     }
-
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--sans);
-      background: var(--white);
+      background: var(--krem);
       color: var(--ink);
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* ══════════════════════════════════
+       SONGKET / AWAN LARAT PATTERN SVG
+    ══════════════════════════════════ */
+    .songket-divider {
+      width: 100%; height: 24px; overflow: hidden;
+      background: var(--hijau);
+    }
+    .songket-divider svg { width: 100%; height: 100%; }
+
+    .pucuk-border {
+      width: 100%; height: 16px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--emas) 0px, var(--emas) 4px,
+        transparent 4px, transparent 12px,
+        var(--emas2) 12px, var(--emas2) 16px,
+        transparent 16px, transparent 24px
+      );
+      opacity: 0.6;
+    }
+
+    /* ══════════════════════════════════
+       FLOATING WA BUTTON
+    ══════════════════════════════════ */
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      display: flex; align-items: center; gap: 0.7rem;
+      background: #25D366; color: #fff;
+      padding: 0.85rem 1.4rem; border-radius: 50px;
+      font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      animation: waPulse 2.5s ease infinite;
+    }
+    .wa-float svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50%       { box-shadow: 0 4px 35px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+    }
+
+    /* ══════════════════════════════════
+       NAV
+    ══════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--hijau);
+      border-bottom: 3px solid var(--emas);
+      padding: 0 3rem;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3.5rem;
-      background: rgba(254,254,254,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      height: 64px;
     }
-    .nav-logo {
-      font-family: var(--serif); font-weight: 900; font-size: 1.5rem;
-      letter-spacing: 0.15em; color: var(--ink);
+    /* songket strip in nav */
+    nav::after {
+      content: '';
+      position: absolute; bottom: -6px; left: 0; right: 0; height: 3px;
+      background: repeating-linear-gradient(90deg, var(--emas2) 0, var(--emas2) 8px, transparent 8px, transparent 16px);
     }
-    .nav-tagline {
-      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
-      color: var(--mid); text-transform: uppercase;
+    .nav-logo-wrap { display: flex; flex-direction: column; }
+    .nav-logo { font-family: var(--serif); font-size: 1.5rem; letter-spacing: 0.2em; color: var(--emas2); line-height: 1; }
+    .nav-sub  { font-size: 0.52rem; letter-spacing: 0.25em; color: rgba(232,184,75,0.6); text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas-pale); text-decoration: none; transition: color 0.25s; }
+    .nav-links a:hover { color: var(--emas2); }
+    .nav-wa {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #25D366; color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      padding: 0.5rem 1.2rem; border-radius: 4px; text-decoration: none;
+      transition: filter 0.25s;
     }
-    .nav-right { display: flex; gap: 2rem; align-items: center; }
-    .nav-right a {
-      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--charcoal); text-decoration: none; transition: color 0.25s;
-    }
-    .nav-right a:hover { color: var(--accent); }
-    .nav-cta {
-      background: var(--ink); color: var(--white) !important;
-      padding: 0.6rem 1.4rem; font-size: 0.68rem !important;
-      transition: background 0.25s !important;
-    }
-    .nav-cta:hover { background: var(--accent) !important; }
+    .nav-wa:hover { filter: brightness(1.1); }
 
-    /* ── HERO ── */
+    /* ══════════════════════════════════
+       HERO
+    ══════════════════════════════════ */
     .hero {
       min-height: 100vh;
-      display: grid; grid-template-columns: 55% 45%;
-      padding-top: 72px;
-      overflow: hidden;
-    }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 4rem 5rem 3.5rem;
+      padding-top: 64px;
+      background: var(--hijau);
       position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
     }
-    .hero-left::after {
+    /* Awan larat background pattern */
+    .hero::before {
       content: '';
-      position: absolute; right: 0; top: 8%; bottom: 8%;
-      width: 1px; background: var(--border);
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(201,150,58,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(201,150,58,0.06) 0%, transparent 50%);
     }
-    .issue-tag {
+    /* Diagonal songket line */
+    .hero::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0; left: 55%;
+      width: 1px; background: rgba(201,150,58,0.2);
+    }
+
+    /* geometric corner ornament */
+    .hero-ornament {
+      position: absolute; top: 80px; left: 24px;
+      width: 120px; height: 120px; opacity: 0.15;
+    }
+
+    .hero-left {
+      padding: 4.5rem 3rem 4.5rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; z-index: 2;
+    }
+    .hero-badge {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 2rem;
+      background: rgba(201,150,58,0.15);
+      border: 1px solid rgba(201,150,58,0.4);
+      color: var(--emas2); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.4rem 1rem; margin-bottom: 2rem; width: fit-content;
+      font-family: var(--sans);
     }
-    .issue-tag::before { content: '●'; font-size: 0.4rem; }
+    .hero-badge span { color: var(--emas2); font-size: 0.8rem; }
+    .hero-tagline-ms {
+      font-family: var(--lora); font-style: italic;
+      font-size: 1rem; color: rgba(245,215,142,0.7); margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
     h1 {
-      font-family: var(--serif); font-weight: 900;
-      font-size: clamp(3.5rem, 7vw, 6.5rem);
-      line-height: 1; letter-spacing: -0.02em;
-      color: var(--ink); margin-bottom: 1.5rem;
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.05; letter-spacing: 0.04em;
+      color: var(--white); margin-bottom: 0.5rem;
     }
-    h1 em { font-style: italic; color: var(--accent); }
+    h1 .emas { color: var(--emas2); }
+    .hero-bm {
+      font-family: var(--lora); font-style: italic;
+      font-size: 1.15rem; color: var(--emas-pale); margin-bottom: 1.8rem; line-height: 1.6;
+    }
     .hero-desc {
-      font-size: 1rem; line-height: 1.75; color: var(--charcoal);
-      max-width: 420px; margin-bottom: 3rem;
+      font-size: 0.9rem; line-height: 1.8; color: rgba(253,246,227,0.8);
+      max-width: 440px; margin-bottom: 2.5rem;
     }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .btn-dark {
-      background: var(--ink); color: var(--white);
-      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 1rem 2.2rem; border: none; cursor: pointer; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      transition: background 0.25s, transform 0.2s;
-      font-family: var(--sans);
-    }
-    .btn-dark:hover { background: var(--accent); transform: translateY(-1px); }
-    .btn-ghost {
-      background: transparent; border: 1px solid var(--border);
-      color: var(--charcoal); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 1rem 2.2rem; cursor: pointer; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      transition: border-color 0.25s, color 0.25s;
-      font-family: var(--sans);
-    }
-    .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+    .hero-desc strong { color: var(--emas2); }
 
-    .hero-stats {
-      margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border);
-      display: flex; gap: 3rem;
+    .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-emas {
+      background: linear-gradient(135deg, var(--emas), var(--emas2));
+      color: var(--hijau); font-family: var(--sans); font-weight: 700;
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1rem 2rem; border: none; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      transition: filter 0.25s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(201,150,58,0.35);
     }
-    .stat-n {
-      font-family: var(--serif); font-size: 2.2rem; font-weight: 700;
-      color: var(--ink); line-height: 1;
+    .btn-emas:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-wa {
+      background: #25D366; color: #fff; font-family: var(--sans); font-weight: 700;
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1rem 2rem; border: none; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: filter 0.25s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
     }
-    .stat-l { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-top: 0.3rem; }
+    .btn-wa:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
-    /* hero right — featured watch */
+    .hero-trust {
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+      padding-top: 2rem; border-top: 1px solid rgba(201,150,58,0.2);
+    }
+    .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--emas-pale); }
+    .trust-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emas2); flex-shrink: 0; }
+
+    /* hero right */
     .hero-right {
-      background: var(--light);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; z-index: 2; padding: 3rem 2rem;
+    }
+    .watch-frame {
+      position: relative; width: 320px; height: 320px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* outer songket ring */
+    .watch-ring-outer {
+      position: absolute; inset: 0; border-radius: 50%;
+      border: 2px solid rgba(201,150,58,0.3);
+      animation: spin 25s linear infinite;
+    }
+    .watch-ring-outer::before, .watch-ring-outer::after {
+      content: '◆'; position: absolute; left: 50%; transform: translateX(-50%);
+      color: var(--emas); font-size: 0.7rem;
+    }
+    .watch-ring-outer::before { top: -8px; }
+    .watch-ring-outer::after  { bottom: -8px; }
+    .watch-ring-mid {
+      position: absolute; inset: 20px; border-radius: 50%;
+      border: 1px dashed rgba(201,150,58,0.2);
+      animation: spin 40s linear infinite reverse;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .watch-face-wrap {
+      position: absolute; inset: 45px; border-radius: 50%;
+      background: radial-gradient(ellipse at 35% 30%, #2d3a2e, #0d1a0f);
+      border: 3px solid var(--emas);
+      box-shadow:
+        0 0 50px rgba(201,150,58,0.2),
+        0 0 100px rgba(201,150,58,0.08),
+        inset 0 0 30px rgba(0,0,0,0.6);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .watch-face-inner { text-align: center; position: relative; z-index: 3; }
+    .wf-brand { font-family: var(--serif); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--emas2); display: block; margin-bottom: 0.1rem; }
+    .wf-model { font-size: 0.35rem; letter-spacing: 0.2em; color: rgba(245,215,142,0.5); text-transform: uppercase; }
+    /* clock hands */
+    .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom center; border-radius: 2px; }
+    .hand-h { width: 2.5px; height: 27%; background: var(--emas2); margin-left: -1.25px; animation: spinH 43200s linear infinite; transform: rotate(150deg); }
+    .hand-m { width: 2px;   height: 36%; background: #eee; margin-left: -1px; animation: spinM 3600s linear infinite; transform: rotate(240deg); }
+    .hand-s { width: 1px;   height: 40%; background: var(--merah); margin-left: -0.5px; animation: spinS 60s linear infinite; transform: rotate(180deg); }
+    @keyframes spinH { to { transform: rotate(360deg); } }
+    @keyframes spinM { to { transform: rotate(360deg); } }
+    @keyframes spinS { to { transform: rotate(360deg); } }
+    .hand-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--emas); z-index: 4; }
+    /* tick marks */
+    .ticks { position: absolute; inset: 0; }
+
+    .hero-price-pill {
+      margin-top: 2rem; text-align: center;
+    }
+    .price-from { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,215,142,0.6); margin-bottom: 0.3rem; }
+    .price-num { font-family: var(--serif); font-size: 2rem; color: var(--emas2); letter-spacing: 0.05em; }
+    .price-brand-tag {
+      margin-top: 0.6rem; display: inline-block;
+      background: rgba(201,150,58,0.15); border: 1px solid rgba(201,150,58,0.3);
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--emas-pale); padding: 0.3rem 1rem;
+    }
+
+    /* ══════════════════════════════════
+       MARQUEE — Bahasa Malaysia
+    ══════════════════════════════════ */
+    .marquee-bar {
+      background: var(--emas);
+      overflow: hidden; padding: 0.7rem 0;
+    }
+    .marquee-inner {
+      display: flex; gap: 0; white-space: nowrap;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .m-item {
+      display: inline-flex; align-items: center; gap: 1.5rem;
+      padding: 0 2rem; font-family: var(--sans); font-weight: 700;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--hijau);
+    }
+    .m-item .sep { color: var(--hijau2); font-size: 0.5rem; }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ══════════════════════════════════
+       SECTION SHARED
+    ══════════════════════════════════ */
+    section { padding: 5.5rem 3rem; }
+    .s-kicker {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--emas); margin-bottom: 0.8rem;
+    }
+    .s-kicker::before { content: '◆'; font-size: 0.45rem; }
+    h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1.1; margin-bottom: 0.5rem; }
+    .h2-bm { font-family: var(--lora); font-style: italic; font-size: 1rem; color: var(--mid); margin-bottom: 2rem; }
+
+    /* ══════════════════════════════════
+       PRODUCTS — KOLEKSI KAMI
+    ══════════════════════════════════ */
+    .products-section { background: var(--white); }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--border);
+      margin-top: 2.5rem;
+    }
+    .p-card {
       display: flex; flex-direction: column;
+      border-right: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      background: var(--white); cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .p-card:last-child { border-right: none; }
+    .p-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(27,67,50,0.12); z-index: 2; }
+    .p-card:hover .p-img img { transform: scale(1.06); }
+    .p-img {
+      aspect-ratio: 1; background: var(--krem2);
+      overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .p-img img { width: 85%; height: 85%; object-fit: contain; transition: transform 0.5s; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15)); }
+    .p-flag {
+      position: absolute; top: 0.8rem; left: 0;
+      background: var(--hijau); color: var(--emas2);
+      font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.25rem 0.8rem; font-weight: 700;
+    }
+    .p-flag.panas { background: var(--merah); color: #fff; }
+    .p-flag.emas  { background: var(--emas); color: var(--hijau); }
+    .p-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+    .p-brand-tag { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hijau2); font-weight: 700; margin-bottom: 0.3rem; }
+    .p-name { font-family: var(--lora); font-size: 1.05rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.25rem; }
+    .p-ref  { font-size: 0.55rem; color: var(--mid); letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+    .p-specs { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1rem; }
+    .p-spec { font-size: 0.56rem; padding: 0.2rem 0.5rem; background: var(--krem2); border: 1px solid var(--border); color: var(--coklat); letter-spacing: 0.05em; }
+    .p-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+    .p-price { font-family: var(--serif); font-size: 1.3rem; color: var(--hijau); font-weight: 700; }
+    .p-btn {
+      background: var(--hijau); color: var(--emas2);
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.55rem 1rem; text-decoration: none; border: none; cursor: pointer;
+      font-family: var(--sans); transition: background 0.25s;
+    }
+    .p-btn:hover { background: var(--hijau2); }
+
+    /* ══════════════════════════════════
+       KENAPA KRONOS — WHY US
+    ══════════════════════════════════ */
+    .kenapa { background: var(--hijau); position: relative; overflow: hidden; }
+    .kenapa::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(201,150,58,0.07), transparent 70%);
+    }
+    .kenapa h2 { color: var(--white); }
+    .kenapa .h2-bm { color: rgba(245,215,142,0.6); }
+    .kenapa .s-kicker { color: var(--emas2); }
+    .kenapa-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; border: 1px solid rgba(201,150,58,0.2); }
+    .k-card {
+      padding: 2.5rem 2rem; border-right: 1px solid rgba(201,150,58,0.15);
+      position: relative; transition: background 0.3s;
+    }
+    .k-card:last-child { border-right: none; }
+    .k-card:hover { background: rgba(201,150,58,0.05); }
+    .k-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display: block; }
+    .k-card h3 { font-family: var(--lora); font-size: 1.05rem; color: var(--emas2); margin-bottom: 0.3rem; }
+    .k-card h3 span { display: block; font-size: 0.7rem; color: rgba(245,215,142,0.5); font-style: italic; margin-bottom: 0.5rem; }
+    .k-card p { font-size: 0.8rem; line-height: 1.75; color: rgba(253,246,227,0.7); }
+    .k-num {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-family: var(--serif); font-size: 3.5rem; font-weight: 900;
+      color: rgba(201,150,58,0.08); line-height: 1;
+    }
+
+    /* ══════════════════════════════════
+       HADIAH SECTION — Gift angle
+    ══════════════════════════════════ */
+    .hadiah { background: var(--krem2); }
+    .hadiah-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hadiah-visual {
+      background: var(--hijau); padding: 3rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
       position: relative; overflow: hidden;
     }
-    .hero-feat-label {
-      padding: 2.5rem 2.5rem 0;
-      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--mid);
+    .hadiah-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent, transparent 30px,
+        rgba(201,150,58,0.03) 30px, rgba(201,150,58,0.03) 60px
+      );
     }
-    .hero-feat-title {
-      padding: 0.8rem 2.5rem 0;
-      font-family: var(--serif); font-size: 1.6rem; font-weight: 700;
+    .hadiah-tag {
+      background: var(--emas); color: var(--hijau);
+      font-family: var(--serif); font-size: 0.8rem; letter-spacing: 0.2em;
+      padding: 0.5rem 1.5rem; font-weight: 700; text-transform: uppercase;
     }
-    .hero-watch-img {
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      padding: 2rem;
+    .hadiah-watch-img { width: 200px; height: 200px; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3)); z-index: 1; }
+    .hadiah-occasion {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; z-index: 1;
     }
-    .hero-watch-img img {
-      max-height: 50vh; width: 100%; object-fit: contain;
-      filter: drop-shadow(0 20px 60px rgba(0,0,0,0.18));
-      transition: transform 0.6s ease;
+    .occasion-pill {
+      background: rgba(201,150,58,0.15); border: 1px solid rgba(201,150,58,0.3);
+      color: var(--emas2); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
     }
-    .hero-watch-img img:hover { transform: scale(1.04) rotate(1deg); }
-    .hero-price-strip {
-      background: var(--ink); color: var(--white);
+    .hadiah-text h2 { color: var(--hijau); }
+    .hadiah-text p { font-size: 0.9rem; line-height: 1.8; color: var(--coklat); margin-bottom: 1.5rem; }
+    .hadiah-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+    .hadiah-list li {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      font-size: 0.85rem; color: var(--coklat);
+    }
+    .hadiah-list li::before {
+      content: '◆'; color: var(--emas); font-size: 0.5rem; margin-top: 4px; flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════
+       INSTALLMENT / ANSURAN
+    ══════════════════════════════════ */
+    .ansuran { background: var(--white); }
+    .ansuran h2 { color: var(--hijau); }
+    .ansuran-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .ans-card {
+      border: 2px solid var(--border); padding: 2rem;
+      position: relative; text-align: center; transition: border-color 0.3s, transform 0.3s;
+    }
+    .ans-card:hover { border-color: var(--emas); transform: translateY(-4px); }
+    .ans-card.featured { border-color: var(--emas); background: var(--hijau); color: var(--white); }
+    .ans-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--emas); color: var(--hijau);
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.2rem 0.8rem; white-space: nowrap;
+    }
+    .ans-period { font-family: var(--serif); font-size: 2rem; color: var(--emas); margin-bottom: 0.3rem; }
+    .ans-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 1.5rem; }
+    .ans-card.featured .ans-label { color: rgba(245,215,142,0.7); }
+    .ans-monthly { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .ans-card.featured .ans-monthly { color: var(--emas2); }
+    .ans-per { font-size: 0.7rem; color: var(--mid); margin-bottom: 1.5rem; }
+    .ans-card.featured .ans-per { color: rgba(245,215,142,0.6); }
+    .ans-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; text-align: left; }
+    .ans-features li { font-size: 0.78rem; display: flex; gap: 0.6rem; align-items: flex-start; }
+    .ans-features li::before { content: '✓'; color: var(--emas); font-weight: 700; flex-shrink: 0; }
+    .ans-card.featured .ans-features li { color: rgba(253,246,227,0.8); }
+    .ans-note { margin-top: 2rem; font-size: 0.72rem; color: var(--mid); font-style: italic; text-align: center; }
+
+    /* ══════════════════════════════════
+       ORDER FORM
+    ══════════════════════════════════ */
+    .order-sec { background: var(--hijau); }
+    .order-sec h2 { color: var(--white); }
+    .order-sec .h2-bm { color: rgba(245,215,142,0.6); }
+    .order-sec .s-kicker { color: var(--emas2); }
+    .order-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; margin-top: 3rem; }
+
+    /* summary left */
+    .order-sum-box { }
+    .sum-card {
+      background: rgba(201,150,58,0.08); border: 1px solid rgba(201,150,58,0.25);
+      padding: 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 1.2rem; align-items: center;
+    }
+    .sum-card img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
+    .sum-info h4 { font-family: var(--lora); color: var(--white); font-size: 1rem; margin-bottom: 0.2rem; }
+    .sum-info p  { font-size: 0.68rem; color: rgba(245,215,142,0.6); }
+    .sum-price-row {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 2.5rem;
-    }
-    .hero-price-strip .label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
-    .hero-price-strip .price { font-family: var(--serif); font-size: 1.8rem; color: var(--white); }
-    .hero-price-strip a {
-      background: var(--accent); color: var(--white);
-      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 0.7rem 1.5rem; text-decoration: none;
-      font-family: var(--sans);
-      transition: background 0.25s;
-    }
-    .hero-price-strip a:hover { background: var(--accent2); }
-
-    /* ── MARQUEE ── */
-    .marquee-wrap {
-      background: var(--ink); overflow: hidden;
-      padding: 0.9rem 0; border-top: 1px solid #222; border-bottom: 1px solid #222;
-    }
-    .marquee-track {
-      display: flex; gap: 0; white-space: nowrap;
-      animation: marquee 30s linear infinite;
-    }
-    .marquee-item {
-      display: inline-flex; align-items: center; gap: 2rem;
-      padding: 0 2.5rem;
-      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: #666;
-    }
-    .marquee-item span { color: var(--accent); }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ── COLLECTION ── */
-    .collection { padding: 6rem 3.5rem; }
-    .section-head {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 3.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
-    }
-    .section-kicker {
-      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
-    }
-    h2 {
-      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 900; line-height: 1.1;
-    }
-    .see-all {
-      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--charcoal); text-decoration: none;
-      border-bottom: 1px solid var(--border); padding-bottom: 2px;
-      transition: color 0.25s, border-color 0.25s;
-    }
-    .see-all:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* products */
-    .products-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
-      background: var(--border);
-    }
-    .product-card {
-      background: var(--white); display: flex; flex-direction: column;
-      cursor: pointer; position: relative; overflow: hidden;
-      transition: box-shadow 0.3s;
-    }
-    .product-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.1); z-index: 2; }
-    .product-card:hover .p-img img { transform: scale(1.05); }
-    .p-img {
-      aspect-ratio: 1; background: var(--light);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; position: relative;
-    }
-    .p-img img {
-      width: 85%; height: 85%; object-fit: contain;
-      transition: transform 0.5s ease;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.13));
-    }
-    .p-badge {
-      position: absolute; top: 1rem; left: 1rem;
-      font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.15em;
-      text-transform: uppercase; padding: 0.25rem 0.6rem;
-      background: var(--ink); color: var(--white);
-    }
-    .p-badge.new { background: var(--accent); }
-    .p-badge.hot { background: var(--red); }
-    .p-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .p-brand { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.4rem; }
-    .p-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.4rem; }
-    .p-ref { font-family: var(--mono); font-size: 0.52rem; color: var(--mid); letter-spacing: 0.1em; margin-bottom: 1rem; }
-    .p-specs {
-      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;
-    }
-    .p-spec {
-      font-size: 0.58rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem;
-      background: var(--light); color: var(--charcoal); border: 1px solid var(--border);
-    }
-    .p-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
-    .p-price { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; }
-    .p-buy {
-      background: var(--ink); color: var(--white);
-      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 0.6rem 1.2rem; border: none; cursor: pointer;
-      font-family: var(--sans); text-decoration: none; display: inline-block;
-      transition: background 0.25s;
-    }
-    .p-buy:hover { background: var(--accent); }
-
-    /* ── WHY ── */
-    .why { background: var(--ink); color: var(--white); padding: 6rem 3.5rem; }
-    .why h2 { color: var(--white); margin-bottom: 3.5rem; }
-    .why .section-kicker { color: var(--accent); }
-    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid #2a2a2a; }
-    .why-card {
-      padding: 2.5rem 2rem; border-right: 1px solid #2a2a2a;
-      position: relative;
-    }
-    .why-card:last-child { border-right: none; }
-    .why-num {
-      font-family: var(--serif); font-size: 4rem; font-weight: 900;
-      color: #1e1e1e; line-height: 1; margin-bottom: 1rem;
-      position: absolute; top: 1.5rem; right: 1.5rem;
-    }
-    .why-icon { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
-    .why-card h3 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.8rem; }
-    .why-card p { font-size: 0.8rem; line-height: 1.7; color: #888; }
-
-    /* ── ORDER ── */
-    .order-section { padding: 6rem 3.5rem; background: var(--light); }
-    .order-inner { max-width: 860px; margin: 0 auto; }
-    .order-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; margin-top: 3rem; align-items: start; }
-
-    /* left: summary */
-    .order-summary-box { }
-    .sum-watch-card {
-      background: var(--white); border: 1px solid var(--border); padding: 2rem; margin-bottom: 2rem;
-      display: flex; gap: 1.5rem; align-items: center;
-    }
-    .sum-watch-card img {
-      width: 90px; height: 90px; object-fit: contain;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
-    }
-    .sum-watch-info h4 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.2rem; }
-    .sum-watch-info p { font-size: 0.72rem; color: var(--mid); }
-    .sum-total {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 1rem 0; border-top: 1px solid rgba(201,150,58,0.2); border-bottom: 1px solid rgba(201,150,58,0.2);
       margin-bottom: 1.5rem;
     }
-    .sum-total-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
-    .sum-total-val { font-family: var(--serif); font-size: 2rem; font-weight: 700; }
-    .sum-perks { display: flex; flex-direction: column; gap: 0.6rem; }
-    .perk { display: flex; align-items: center; gap: 0.8rem; font-size: 0.75rem; color: var(--charcoal); }
-    .perk::before { content: '✓'; color: var(--accent); font-weight: 700; }
+    .sum-price-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,215,142,0.5); }
+    .sum-price-val   { font-family: var(--serif); font-size: 1.8rem; color: var(--emas2); }
+    .sum-perks { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+    .s-perk { display: flex; align-items: center; gap: 0.7rem; font-size: 0.78rem; color: rgba(253,246,227,0.75); }
+    .s-perk::before { content: '✓'; color: var(--emas2); font-weight: 700; flex-shrink: 0; }
 
-    /* right: form */
-    .order-form { background: var(--white); border: 1px solid var(--border); padding: 2.5rem; }
-    .order-form h3 { font-family: var(--serif); font-size: 1.4rem; margin-bottom: 2rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-row.single { grid-template-columns: 1fr; }
-    .fgroup { display: flex; flex-direction: column; gap: 0.4rem; }
-    .fgroup label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); }
-    .fgroup input, .fgroup select, .fgroup textarea {
-      border: 1px solid var(--border); background: var(--white);
-      color: var(--ink); font-family: var(--sans); font-size: 0.85rem;
-      padding: 0.75rem 1rem; outline: none;
-      transition: border-color 0.25s;
+    .wa-order-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+      background: #25D366; color: #fff;
+      font-family: var(--sans); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1.1rem 2rem; text-decoration: none; width: 100%;
+      transition: filter 0.25s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
     }
-    .fgroup input:focus, .fgroup select:focus { border-color: var(--ink); }
-    .fgroup select { appearance: none; cursor: pointer; }
-    .divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
-    .payment-label {
-      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--mid); margin-bottom: 1rem; display: block;
+    .wa-order-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .wa-order-btn svg { width: 20px; height: 20px; fill: #fff; }
+
+    /* right form */
+    .order-form-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,150,58,0.25);
+      padding: 2.5rem;
     }
+    .order-form-box h3 { font-family: var(--lora); color: var(--white); font-size: 1.3rem; margin-bottom: 0.3rem; }
+    .form-bm { font-size: 0.72rem; color: rgba(245,215,142,0.5); font-style: italic; margin-bottom: 2rem; }
+    .fg { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .fg.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fg.row2 .fg { margin-bottom: 0; }
+    .fg label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,215,142,0.5); }
+    .fg input, .fg select, .fg textarea {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(201,150,58,0.25);
+      color: var(--white); font-family: var(--sans); font-size: 0.85rem;
+      padding: 0.75rem 1rem; outline: none; transition: border-color 0.25s;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(245,215,142,0.3); }
+    .fg input:focus, .fg select:focus { border-color: var(--emas); }
+    .fg select { appearance: none; cursor: pointer; }
+    .fg select option { background: var(--hijau); color: var(--white); }
+    .form-divider { height: 1px; background: rgba(201,150,58,0.2); margin: 1.5rem 0; }
+    .pay-method-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,215,142,0.5); margin-bottom: 0.8rem; display: block; }
 
     /* Payment tabs */
-    .pay-tabs { display: flex; gap: 0; margin-bottom: 1rem; border: 1px solid var(--border); }
-    .pay-tab {
-      flex: 1; padding: 0.75rem 1rem; border: none; background: var(--white);
-      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--mid); cursor: pointer; transition: background 0.2s, color 0.2s;
-      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      border-right: 1px solid var(--border);
+    .pay-tabs { display: flex; gap: 0; border: 1px solid rgba(201,150,58,0.25); margin-bottom: 1rem; }
+    .p-tab {
+      flex: 1; padding: 0.75rem; border: none;
+      background: transparent; color: rgba(245,215,142,0.5);
+      font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      border-right: 1px solid rgba(201,150,58,0.25); transition: background 0.25s, color 0.25s;
     }
-    .pay-tab:last-child { border-right: none; }
-    .pay-tab.active { background: var(--ink); color: var(--white); }
+    .p-tab:last-child { border-right: none; }
+    .p-tab.active { background: var(--emas); color: var(--hijau); font-weight: 700; }
     .pay-panel { display: none; }
-    .pay-panel.active { display: flex; flex-direction: column; gap: 1rem; }
+    .pay-panel.active { display: flex; flex-direction: column; gap: 0.8rem; }
 
     /* BMAC */
-    .bmac-block {
-      border: 1px solid #f0d060; background: #fffdf0;
-      padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;
+    .bmac-blk {
+      background: #fffdf0; border: 1px solid #f0d060;
+      padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem;
     }
-    .bmac-top { display: flex; align-items: center; gap: 0.8rem; }
-    .bmac-logo {
-      width: 36px; height: 36px; background: #FFDD00; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-      flex-shrink: 0;
+    .bmac-row { display: flex; align-items: center; gap: 0.8rem; }
+    .bmac-ico { width: 34px; height: 34px; background: #FFDD00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .bmac-inf h4 { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+    .bmac-inf p  { font-size: 0.65rem; color: var(--mid); }
+    .bmac-pay-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+      background: #FFDD00; color: #000; font-weight: 700; font-size: 0.82rem;
+      padding: 0.85rem; text-decoration: none; font-family: var(--sans);
+      transition: filter 0.2s, transform 0.2s;
     }
-    .bmac-info h4 { font-size: 0.85rem; font-weight: 500; }
-    .bmac-info p { font-size: 0.7rem; color: var(--mid); }
-    .bmac-btn {
-      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-      background: #FFDD00; color: #000;
-      font-weight: 600; font-size: 0.85rem; font-family: var(--sans);
-      padding: 0.9rem 2rem; border: none; cursor: pointer;
-      text-decoration: none; transition: filter 0.2s, transform 0.2s;
-    }
-    .bmac-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-    .bmac-secure {
-      text-align: center; font-size: 0.6rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--mid);
-    }
+    .bmac-pay-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
-    /* Touch n Go */
-    .tng-block {
-      border: 1px solid #d0e8f0; background: #f0f8ff;
-      padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;
+    /* TnG */
+    .tng-blk {
+      background: rgba(0,114,188,0.08); border: 1px solid rgba(0,114,188,0.25);
+      padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem;
     }
-    .tng-top { display: flex; align-items: center; gap: 0.8rem; }
-    .tng-logo {
-      width: 42px; height: 42px; border-radius: 10px; overflow: hidden; flex-shrink: 0;
-      background: linear-gradient(135deg, #00AEEF, #0072BC);
+    .tng-row { display: flex; align-items: center; gap: 0.8rem; }
+    .tng-ico { width: 34px; height: 34px; background: linear-gradient(135deg,#00AEEF,#0072BC); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 900; color: #fff; flex-shrink: 0; }
+    .tng-inf h4 { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+    .tng-inf p  { font-size: 0.65rem; color: rgba(245,215,142,0.5); }
+    .tng-qr-box {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(0,174,239,0.2);
+      padding: 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    }
+    .tng-qr-lbl { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,215,142,0.5); }
+    .tng-qr-placeholder {
+      width: 110px; height: 110px;
+      background: repeating-conic-gradient(#0072BC 0% 25%, #fff 0% 50%) 0 0 / 9px 9px;
+      border: 2px solid #0072BC; position: relative; border-radius: 4px;
+    }
+    .tng-qr-placeholder::after {
+      content: 'QR\A ANDA'; white-space: pre;
+      position: absolute; inset: 0; background: rgba(0,60,120,0.8);
       display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 0.65rem; color: #fff; letter-spacing: 0.05em;
-      font-family: var(--sans);
+      font-size: 0.7rem; font-weight: 700; color: #fff; text-align: center;
+      border-radius: 2px;
     }
-    .tng-info h4 { font-size: 0.85rem; font-weight: 500; }
-    .tng-info p { font-size: 0.7rem; color: var(--mid); }
-    .tng-qr-wrap {
-      display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
-      background: var(--white); border: 1px solid #cce5f5; padding: 1.2rem;
+    .tng-id { font-size: 0.65rem; color: #7dd3fc; letter-spacing: 0.1em; }
+    .tng-steps-row { display: flex; flex-direction: column; gap: 0.4rem; }
+    .tng-step { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.7rem; color: rgba(253,246,227,0.7); }
+    .step-n { width: 16px; height: 16px; border-radius: 50%; background: #0072BC; color: #fff; font-size: 0.5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tng-pay-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+      background: linear-gradient(135deg,#00AEEF,#0072BC); color: #fff;
+      font-weight: 700; font-size: 0.82rem; padding: 0.85rem;
+      text-decoration: none; font-family: var(--sans); transition: filter 0.2s, transform 0.2s;
     }
-    .tng-qr-label { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
-    /* Fake QR placeholder — replace with your real QR image */
-    .tng-qr-img {
-      width: 130px; height: 130px;
-      background: repeating-conic-gradient(#0072BC 0% 25%, #fff 0% 50%) 0 0 / 10px 10px;
-      border: 3px solid #0072BC; border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.55rem; letter-spacing: 0.1em; color: #fff; text-align: center;
-      padding: 0.3rem;
-      position: relative;
-    }
-    .tng-qr-img::after {
-      content: 'YOUR QR\AHERE';
-      white-space: pre;
-      position: absolute;
-      background: rgba(0,114,188,0.85);
-      inset: 0; display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: #fff;
-      text-align: center; border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .tng-id { font-family: var(--mono); font-size: 0.65rem; color: #0072BC; letter-spacing: 0.1em; }
-    .tng-btn {
-      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-      background: linear-gradient(135deg, #00AEEF, #0072BC); color: #fff;
-      font-weight: 600; font-size: 0.85rem; font-family: var(--sans);
-      padding: 0.9rem 2rem; border: none; cursor: pointer;
-      text-decoration: none; transition: filter 0.2s, transform 0.2s;
-    }
-    .tng-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-    .tng-steps {
-      display: flex; flex-direction: column; gap: 0.5rem;
-    }
-    .tng-step {
-      display: flex; align-items: flex-start; gap: 0.8rem;
-      font-size: 0.72rem; color: var(--charcoal); line-height: 1.5;
-    }
-    .tng-step-num {
-      width: 18px; height: 18px; border-radius: 50%;
-      background: #0072BC; color: #fff;
-      font-size: 0.55rem; font-weight: 700; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .tng-pay-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .pay-secure { text-align: center; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,215,142,0.4); }
 
-    /* ── REVIEWS ── */
-    .reviews { padding: 6rem 3.5rem; }
-    .reviews h2 { margin-bottom: 3rem; }
-    .reviews-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .review-card {
-      border: 1px solid var(--border); padding: 2rem;
-      position: relative;
-    }
-    .review-stars { color: var(--accent); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
-    .review-text {
-      font-family: var(--serif); font-style: italic;
-      font-size: 1rem; line-height: 1.7; color: var(--charcoal); margin-bottom: 1.5rem;
-    }
-    .review-author { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
-    .review-watch { font-size: 0.65rem; color: var(--accent); margin-top: 0.3rem; }
+    /* ══════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════ */
+    .testi-sec { background: var(--krem2); }
+    .testi-sec h2 { color: var(--hijau); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .t-card { background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--emas); padding: 2rem; position: relative; }
+    .t-stars { color: var(--emas); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .t-quote { position: absolute; top: 1rem; right: 1.5rem; font-family: var(--serif); font-size: 4rem; color: rgba(201,150,58,0.12); line-height: 1; }
+    .t-text { font-family: var(--lora); font-style: italic; font-size: 0.9rem; line-height: 1.8; color: var(--coklat); margin-bottom: 1.2rem; }
+    .t-author { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--hijau); text-transform: uppercase; }
+    .t-loc { font-size: 0.65rem; color: var(--mid); margin-top: 0.2rem; }
+    .t-watch { font-size: 0.62rem; color: var(--emas); margin-top: 0.4rem; font-style: italic; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--ink); color: var(--white);
-      padding: 4rem 3.5rem 2.5rem;
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer { background: var(--hijau); border-top: 3px solid var(--emas); padding: 4rem 3rem 2rem; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .f-brand { font-family: var(--serif); font-size: 2rem; letter-spacing: 0.2em; color: var(--emas2); }
+    .f-sub { font-size: 0.78rem; color: rgba(245,215,142,0.5); line-height: 1.75; max-width: 260px; margin: 0.6rem 0 1.5rem; }
+    .f-pay-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .f-pay-badge {
+      padding: 0.4rem 0.9rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+      text-decoration: none;
     }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .footer-brand { font-family: var(--serif); font-size: 1.8rem; font-weight: 900; margin-bottom: 0.5rem; }
-    .footer-sub { font-size: 0.75rem; color: #666; line-height: 1.7; max-width: 260px; margin-bottom: 1.5rem; }
-    .footer-col h4 { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
-    .footer-col a { display: block; font-size: 0.75rem; color: #666; text-decoration: none; margin-bottom: 0.7rem; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--white); }
+    .footer-col h4 { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--emas); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.75rem; color: rgba(245,215,142,0.5); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--emas2); }
     .footer-bottom {
-      border-top: 1px solid #1f1f1f; padding-top: 2rem;
-      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(201,150,58,0.15); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
     }
-    .footer-copy { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: #555; }
-    .footer-trust { display: flex; gap: 1.5rem; }
-    .trust-badge {
-      font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: #555; border: 1px solid #222; padding: 0.3rem 0.7rem;
-    }
+    .f-copy { font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(245,215,142,0.3); }
+    .f-badges { display: flex; gap: 1rem; }
+    .f-badge { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,215,142,0.3); border: 1px solid rgba(201,150,58,0.15); padding: 0.3rem 0.6rem; }
 
-    /* scroll reveal */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    /* ══════════════════════════════════
+       SCROLL REVEAL + LOAD ANIMS
+    ══════════════════════════════════ */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-
-    /* hero load */
-    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
-    .hero-left .issue-tag { animation: fadeUp 0.7s 0.1s both; }
-    .hero-left h1 { animation: fadeUp 0.8s 0.2s both; }
-    .hero-left .hero-desc { animation: fadeUp 0.7s 0.35s both; }
-    .hero-left .hero-actions { animation: fadeUp 0.7s 0.5s both; }
-    .hero-left .hero-stats { animation: fadeUp 0.7s 0.65s both; }
-    .hero-right { animation: fadeUp 0.9s 0.3s both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+    .hero-left .hero-badge     { animation: fadeUp 0.7s 0.1s both; }
+    .hero-left .hero-tagline-ms{ animation: fadeUp 0.7s 0.2s both; }
+    .hero-left h1              { animation: fadeUp 0.8s 0.3s both; }
+    .hero-left .hero-bm        { animation: fadeUp 0.7s 0.4s both; }
+    .hero-left .hero-desc      { animation: fadeUp 0.7s 0.5s both; }
+    .hero-left .hero-cta-row   { animation: fadeUp 0.7s 0.6s both; }
+    .hero-left .hero-trust     { animation: fadeUp 0.7s 0.75s both; }
+    .hero-right                { animation: fadeUp 0.9s 0.4s both; }
 
     @media (max-width: 1100px) {
-      .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
-      .why-card { border-bottom: 1px solid #2a2a2a; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .products-grid   { grid-template-columns: repeat(2, 1fr); }
+      .kenapa-grid     { grid-template-columns: repeat(2, 1fr); }
+      .k-card          { border-bottom: 1px solid rgba(201,150,58,0.15); }
+      .footer-top      { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-tagline, .nav-right a:not(.nav-cta) { display: none; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 4rem 1.5rem 3rem; }
-      .hero-left::after { display: none; }
-      .hero-right { display: none; }
-      .collection, .why, .order-section, .reviews { padding: 4rem 1.5rem; }
-      .products-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
-      .why-grid { grid-template-columns: 1fr; }
-      .order-layout { grid-template-columns: 1fr; gap: 2rem; }
-      .reviews-strip { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .hero-stats { gap: 2rem; }
+      nav              { padding: 0 1.2rem; }
+      .nav-links, .nav-wa { display: none; }
+      .hero            { grid-template-columns: 1fr; }
+      .hero-right      { display: none; }
+      .hero-left       { padding: 3.5rem 1.5rem 3rem; }
+      section          { padding: 4rem 1.5rem; }
+      .products-grid   { grid-template-columns: 1fr 1fr; gap: 1px; }
+      .kenapa-grid     { grid-template-columns: 1fr; }
+      .hadiah-inner    { grid-template-columns: 1fr; }
+      .ansuran-grid    { grid-template-columns: 1fr; }
+      .order-layout    { grid-template-columns: 1fr; }
+      .testi-grid      { grid-template-columns: 1fr; }
+      .footer-top      { grid-template-columns: 1fr; }
+      .hero::after     { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- WhatsApp Floating -->
+<a href="https://wa.me/601200000000?text=Assalamualaikum%2C%20saya%20berminat%20dengan%20jam%20tangan%20KRONOS." target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Tanya Kami di WhatsApp
+</a>
+
 <!-- NAV -->
 <nav>
-  <div>
+  <div class="nav-logo-wrap">
     <div class="nav-logo">KRONOS</div>
-    <div class="nav-tagline">Curated Luxury Timepieces</div>
+    <div class="nav-sub">Jam Tangan Mewah · Malaysia</div>
   </div>
-  <div class="nav-right">
-    <a href="#collection">Collection</a>
-    <a href="#why">About</a>
-    <a href="#order">Order</a>
-    <a href="#order" class="nav-cta">Buy Now ☕</a>
+  <div class="nav-links">
+    <a href="#koleksi">Koleksi</a>
+    <a href="#kenapa">Kenapa Kami</a>
+    <a href="#order">Tempah Sekarang</a>
   </div>
+  <a href="https://wa.me/601200000000" target="_blank" class="nav-wa">
+    <svg style="width:14px;height:14px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Kami
+  </a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="hero">
+  <!-- Geometric Malay ornament -->
+  <svg class="hero-ornament" viewBox="0 0 120 120" fill="none">
+    <polygon points="60,5 115,30 115,90 60,115 5,90 5,30" stroke="#C9963A" stroke-width="1.5" fill="none"/>
+    <polygon points="60,20 100,40 100,80 60,100 20,80 20,40" stroke="#C9963A" stroke-width="1" fill="none"/>
+    <circle cx="60" cy="60" r="15" stroke="#C9963A" stroke-width="1" fill="none"/>
+    <line x1="60" y1="5" x2="60" y2="20" stroke="#C9963A" stroke-width="1"/>
+    <line x1="60" y1="100" x2="60" y2="115" stroke="#C9963A" stroke-width="1"/>
+    <line x1="5" y1="60" x2="20" y2="60" stroke="#C9963A" stroke-width="1"/>
+    <line x1="100" y1="60" x2="115" y2="60" stroke="#C9963A" stroke-width="1"/>
+  </svg>
+
   <div class="hero-left">
-    <div class="issue-tag">New Arrivals — 2026 Edition</div>
-    <h1>Fine Watches.<br/><em>Serious</em><br/>Craft.</h1>
-    <p class="hero-desc">We source, curate, and deliver the world's most celebrated timepieces — directly to discerning collectors in Malaysia. Authentic. Guaranteed.</p>
-    <div class="hero-actions">
-      <a href="#collection" class="btn-dark">Explore Collection →</a>
-      <a href="#order" class="btn-ghost">☕ Order via BMAC</a>
+    <div class="hero-badge"><span>⌚</span> Koleksi Premium 2026 · Terhad</div>
+    <div class="hero-tagline-ms">Untuk lelaki yang faham nilai masa…</div>
+    <h1>Pakai <span class="emas">Jam</span><br/>Cermin<br/>Kejayaan.</h1>
+    <div class="hero-bm">"Masa adalah emas — pakai yang terbaik di pergelangan tangan anda."</div>
+    <p class="hero-desc">
+      KRONOS menghadirkan koleksi jam tangan Swiss yang <strong>100% original</strong> dan <strong>diperakui</strong> terus ke pintu rumah anda di seluruh Malaysia. Dari Rolex hingga Vacheron Constantin — semua ada di sini.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#koleksi" class="btn-emas">⌚ Lihat Koleksi</a>
+      <a href="https://wa.me/601200000000?text=Assalamualaikum%2C%20saya%20nak%20tahu%20lebih%20lanjut%20pasal%20jam%20KRONOS." target="_blank" class="btn-wa">
+        <svg style="width:16px;height:16px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Kami
+      </a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-n">4+</div>
-        <div class="stat-l">Iconic Brands</div>
-      </div>
-      <div>
-        <div class="stat-n">100%</div>
-        <div class="stat-l">Authenticated</div>
-      </div>
-      <div>
-        <div class="stat-n">2yr</div>
-        <div class="stat-l">Warranty</div>
-      </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="dot"></div>100% Original &amp; Dijamin</div>
+      <div class="trust-item"><div class="dot"></div>Penghantaran Seluruh Malaysia</div>
+      <div class="trust-item"><div class="dot"></div>Ansuran Tersedia</div>
+      <div class="trust-item"><div class="dot"></div>Waranti 2 Tahun</div>
     </div>
   </div>
+
   <div class="hero-right">
-    <div class="hero-feat-label">Featured · Editor's Pick</div>
-    <div class="hero-feat-title">Rolex Submariner</div>
-    <div class="hero-watch-img">
-      <!-- Rolex Submariner — dark bezel, black dial, steel bracelet -->
-      <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=600&q=80&fit=crop" alt="Rolex Submariner"/>
-    </div>
-    <div class="hero-price-strip">
-      <div>
-        <div class="label">Starting From</div>
-        <div class="price">RM 45,000</div>
+    <div class="watch-frame">
+      <div class="watch-ring-outer"></div>
+      <div class="watch-ring-mid"></div>
+      <div class="watch-face-wrap">
+        <svg class="ticks" viewBox="0 0 200 200" style="position:absolute;inset:0;width:100%;height:100%;">
+          <g stroke="rgba(201,150,58,0.5)" stroke-width="2">
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(0 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(30 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(60 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(90 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(120 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(150 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(180 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(210 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(240 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="20" transform="rotate(270 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(300 100 100)"/>
+            <line x1="100" y1="8" x2="100" y2="16" stroke-width="1" transform="rotate(330 100 100)"/>
+          </g>
+        </svg>
+        <div class="hand hand-h"></div>
+        <div class="hand hand-m"></div>
+        <div class="hand hand-s"></div>
+        <div class="hand-center"></div>
+        <div class="watch-face-inner">
+          <span class="wf-brand">KRONOS</span>
+          <span class="wf-model">Swiss · Automatic</span>
+        </div>
       </div>
-      <a href="#order">Order Now →</a>
+    </div>
+    <div class="hero-price-pill">
+      <div class="price-from">Bermula dari</div>
+      <div class="price-num">RM 2,800</div>
+      <div class="price-brand-tag">Tissot · Rolex · Vacheron Constantin</div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <div class="marquee-item">Swiss Made <span>✦</span></div>
-    <div class="marquee-item">Free Shipping in Malaysia <span>✦</span></div>
-    <div class="marquee-item">100% Authentic <span>✦</span></div>
-    <div class="marquee-item">Pay via Buy Me A Coffee <span>✦</span></div>
-    <div class="marquee-item">2-Year Warranty <span>✦</span></div>
-    <div class="marquee-item">Rolex · Tissot · Vacheron Constantin <span>✦</span></div>
-    <div class="marquee-item">Swiss Made <span>✦</span></div>
-    <div class="marquee-item">Free Shipping in Malaysia <span>✦</span></div>
-    <div class="marquee-item">100% Authentic <span>✦</span></div>
-    <div class="marquee-item">Pay via Buy Me A Coffee <span>✦</span></div>
-    <div class="marquee-item">2-Year Warranty <span>✦</span></div>
-    <div class="marquee-item">Rolex · Tissot · Vacheron Constantin <span>✦</span></div>
+<!-- MARQUEE — BM -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <div class="m-item">100% Original <span class="sep">◆</span></div>
+    <div class="m-item">Penghantaran Percuma <span class="sep">◆</span></div>
+    <div class="m-item">Bayar via TnG & BMAC <span class="sep">◆</span></div>
+    <div class="m-item">Waranti 2 Tahun <span class="sep">◆</span></div>
+    <div class="m-item">Ansuran Tersedia <span class="sep">◆</span></div>
+    <div class="m-item">Swiss Made <span class="sep">◆</span></div>
+    <div class="m-item">Stok Terhad <span class="sep">◆</span></div>
+    <div class="m-item">Hubungi Kami di WhatsApp <span class="sep">◆</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="m-item">100% Original <span class="sep">◆</span></div>
+    <div class="m-item">Penghantaran Percuma <span class="sep">◆</span></div>
+    <div class="m-item">Bayar via TnG & BMAC <span class="sep">◆</span></div>
+    <div class="m-item">Waranti 2 Tahun <span class="sep">◆</span></div>
+    <div class="m-item">Ansuran Tersedia <span class="sep">◆</span></div>
+    <div class="m-item">Swiss Made <span class="sep">◆</span></div>
+    <div class="m-item">Stok Terhad <span class="sep">◆</span></div>
+    <div class="m-item">Hubungi Kami di WhatsApp <span class="sep">◆</span></div>
   </div>
 </div>
 
-<!-- COLLECTION -->
-<section class="collection" id="collection">
-  <div class="section-head reveal">
-    <div>
-      <div class="section-kicker">Our Collection</div>
-      <h2>Selected Timepieces</h2>
-    </div>
-    <a href="#order" class="see-all">Enquire All →</a>
-  </div>
+<!-- KOLEKSI -->
+<section class="products-section" id="koleksi">
+  <div class="s-kicker reveal">Koleksi Kami</div>
+  <h2 class="reveal">Pilihan Jam Tangan<br/>Eksklusif</h2>
+  <div class="h2-bm reveal">Dipilih khas untuk lelaki Malaysia yang menghargai kualiti</div>
 
   <div class="products-grid reveal">
-
-    <!-- 1. Rolex Submariner -->
-    <div class="product-card">
+    <!-- Rolex Submariner -->
+    <div class="p-card">
       <div class="p-img">
-        <span class="p-badge hot">Best Seller</span>
+        <span class="p-flag panas">🔥 Paling Laris</span>
         <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=500&q=80&fit=crop" alt="Rolex Submariner"/>
       </div>
-      <div class="p-info">
-        <div class="p-brand">Rolex</div>
+      <div class="p-body">
+        <div class="p-brand-tag">Rolex</div>
         <div class="p-name">Submariner Date</div>
         <div class="p-ref">Ref. 126610LN · Oystersteel</div>
         <div class="p-specs">
           <span class="p-spec">41mm</span>
-          <span class="p-spec">300m Water Resistant</span>
-          <span class="p-spec">Ceramic Bezel</span>
-          <span class="p-spec">Cal. 3235</span>
+          <span class="p-spec">300m Tahan Air</span>
+          <span class="p-spec">Seramik Bezel</span>
         </div>
         <div class="p-footer">
           <div class="p-price">RM 45,000</div>
-          <a href="#order" class="p-buy">Enquire</a>
+          <a href="#order" class="p-btn">Tempah</a>
         </div>
       </div>
     </div>
 
-    <!-- 2. Tissot PRX -->
-    <div class="product-card">
+    <!-- Tissot PRX -->
+    <div class="p-card">
       <div class="p-img">
-        <span class="p-badge new">New</span>
+        <span class="p-flag">Mampu Beli</span>
         <img src="https://images.unsplash.com/photo-1619134778706-7015533a6150?w=500&q=80&fit=crop" alt="Tissot PRX"/>
       </div>
-      <div class="p-info">
-        <div class="p-brand">Tissot</div>
+      <div class="p-body">
+        <div class="p-brand-tag">Tissot</div>
         <div class="p-name">PRX Automatic</div>
-        <div class="p-ref">Ref. T137.407.11.031.00 · Steel</div>
+        <div class="p-ref">Ref. T137.407 · Steel</div>
         <div class="p-specs">
           <span class="p-spec">40mm</span>
           <span class="p-spec">10 ATM</span>
-          <span class="p-spec">Sapphire Crystal</span>
           <span class="p-spec">Powermatic 80</span>
         </div>
         <div class="p-footer">
           <div class="p-price">RM 2,800</div>
-          <a href="#order" class="p-buy">Enquire</a>
+          <a href="#order" class="p-btn">Tempah</a>
         </div>
       </div>
     </div>
 
-    <!-- 3. Rolex Datejust -->
-    <div class="product-card">
+    <!-- Rolex Datejust -->
+    <div class="p-card">
       <div class="p-img">
-        <span class="p-badge">Classic</span>
+        <span class="p-flag emas">Pilihan Majlis</span>
         <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500&q=80&fit=crop" alt="Rolex Datejust"/>
       </div>
-      <div class="p-info">
-        <div class="p-brand">Rolex</div>
+      <div class="p-body">
+        <div class="p-brand-tag">Rolex</div>
         <div class="p-name">Datejust 41</div>
         <div class="p-ref">Ref. 126300 · Oystersteel</div>
         <div class="p-specs">
           <span class="p-spec">41mm</span>
-          <span class="p-spec">100m Water Resistant</span>
-          <span class="p-spec">Fluted Bezel</span>
+          <span class="p-spec">100m Tahan Air</span>
           <span class="p-spec">Cal. 3235</span>
         </div>
         <div class="p-footer">
           <div class="p-price">RM 38,000</div>
-          <a href="#order" class="p-buy">Enquire</a>
+          <a href="#order" class="p-btn">Tempah</a>
         </div>
       </div>
     </div>
 
-    <!-- 4. Vacheron Constantin Historiques -->
-    <div class="product-card">
+    <!-- Vacheron Constantin -->
+    <div class="p-card">
       <div class="p-img">
-        <span class="p-badge" style="background:#8c6e4f;">Ultra Rare</span>
-        <img src="https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=500&q=80&fit=crop" alt="Vacheron Constantin Historiques 222"/>
+        <span class="p-flag" style="background:var(--coklat);color:var(--emas-pale);">Ultra Mewah</span>
+        <img src="https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=500&q=80&fit=crop" alt="Vacheron Constantin 222"/>
       </div>
-      <div class="p-info">
-        <div class="p-brand">Vacheron Constantin</div>
+      <div class="p-body">
+        <div class="p-brand-tag">Vacheron Constantin</div>
         <div class="p-name">Historiques 222</div>
-        <div class="p-ref">Ref. 4200H/222A · Stainless Steel</div>
+        <div class="p-ref">Ref. 4200H/222A · Steel</div>
         <div class="p-specs">
           <span class="p-spec">37mm</span>
           <span class="p-spec">Automatic</span>
-          <span class="p-spec">Integrated Bracelet</span>
           <span class="p-spec">Cal. 2455/2</span>
         </div>
         <div class="p-footer">
           <div class="p-price">RM 195,000</div>
-          <a href="#order" class="p-buy">Enquire</a>
+          <a href="#order" class="p-btn">Tempah</a>
         </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why" id="why">
-  <div class="section-kicker reveal">Why KRONOS</div>
-  <h2 class="reveal" style="color:var(--white); margin-bottom: 3.5rem;">The Standard<br/>We Keep.</h2>
-  <div class="why-grid reveal">
-    <div class="why-card">
-      <div class="why-num">01</div>
-      <span class="why-icon">🔍</span>
-      <h3>Full Authentication</h3>
-      <p>Every piece is verified by certified watchmakers and includes full documentation, box, and papers before it reaches you.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🚚</span>
-      <div class="why-num">02</div>
-      <h3>Insured Delivery</h3>
-      <p>All orders ship fully insured via armoured courier directly to your door anywhere in Malaysia. Zero risk, total peace of mind.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🛡️</span>
-      <div class="why-num">03</div>
-      <h3>2-Year Warranty</h3>
-      <p>We stand behind every watch with a full two-year service warranty. If anything goes wrong, we make it right.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">☕</span>
-      <div class="why-num">04</div>
-      <h3>Easy Payment</h3>
-      <p>Pay via Buy Me a Coffee or Touch 'n Go eWallet — simple, secure, and trusted by Malaysian buyers.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ORDER -->
-<section class="order-section" id="order">
-  <div class="order-inner">
-    <div class="section-kicker reveal">Secure Order</div>
-    <h2 class="reveal">Place Your Order</h2>
-    <p class="reveal" style="font-size:0.9rem; color:var(--charcoal); margin-top:0.5rem;">Fill in your details, pick your watch, and complete payment via Buy Me a Coffee or Touch 'n Go eWallet.</p>
-
-    <div class="order-layout reveal">
-      <!-- Left: Summary -->
-      <div class="order-summary-box">
-        <div class="sum-watch-card" id="sumCard">
-          <img id="sumImg" src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=200&q=80&fit=crop" alt="Selected Watch"/>
-          <div class="sum-watch-info">
-            <h4 id="sumName">Rolex Submariner Date</h4>
-            <p id="sumRef">Ref. 126610LN · Oystersteel</p>
-            <p id="sumBrand" style="margin-top:0.3rem; color:var(--accent); font-size:0.72rem;">Rolex</p>
-          </div>
-        </div>
-        <div class="sum-total">
-          <div class="sum-total-label">Total Price</div>
-          <div class="sum-total-val" id="sumPrice">RM 45,000</div>
-        </div>
-        <div class="sum-perks">
-          <div class="perk">Free insured shipping across Malaysia</div>
-          <div class="perk">Full box & papers included</div>
-          <div class="perk">2-year service warranty</div>
-          <div class="perk">100% authenticity guaranteed</div>
-        </div>
-      </div>
-
-      <!-- Right: Form -->
-      <div class="order-form">
-        <h3>Your Details</h3>
-        <div class="form-row">
-          <div class="fgroup">
-            <label>First Name</label>
-            <input type="text" placeholder="Ahmad"/>
-          </div>
-          <div class="fgroup">
-            <label>Last Name</label>
-            <input type="text" placeholder="Faizal"/>
-          </div>
-        </div>
-        <div class="form-row single">
-          <div class="fgroup">
-            <label>Phone (WhatsApp)</label>
-            <input type="tel" placeholder="+60 12-345 6789"/>
-          </div>
-        </div>
-        <div class="form-row single">
-          <div class="fgroup">
-            <label>Delivery Address</label>
-            <input type="text" placeholder="Street, City, State, Postcode"/>
-          </div>
-        </div>
-        <div class="form-row single" style="margin-top:0.5rem;">
-          <div class="fgroup">
-            <label>Select Watch</label>
-            <select id="watchSelect" onchange="updateOrder()">
-              <option value="rolex-sub|RM 45,000|Rolex Submariner Date|Ref. 126610LN · Oystersteel|Rolex|https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=200&q=80&fit=crop">Rolex Submariner Date — RM 45,000</option>
-              <option value="tissot-prx|RM 2,800|Tissot PRX Automatic|Ref. T137.407.11.031.00 · Steel|Tissot|https://images.unsplash.com/photo-1619134778706-7015533a6150?w=200&q=80&fit=crop">Tissot PRX Automatic — RM 2,800</option>
-              <option value="rolex-dj|RM 38,000|Rolex Datejust 41|Ref. 126300 · Oystersteel|Rolex|https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80&fit=crop">Rolex Datejust 41 — RM 38,000</option>
-              <option value="vc-222|RM 195,000|Vacheron Constantin Historiques 222|Ref. 4200H/222A · Steel|Vacheron Constantin|https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=200&q=80&fit=crop">Vacheron Constantin Historiques 222 — RM 195,000</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <span class="payment-label">Choose Payment Method</span>
-
-        <!-- Payment Tabs -->
-        <div class="pay-tabs">
-          <button class="pay-tab active" onclick="switchPay('bmac', this)">☕ Buy Me a Coffee</button>
-          <button class="pay-tab" onclick="switchPay('tng', this)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            Touch 'n Go
-          </button>
-        </div>
-
-        <!-- BMAC Panel -->
-        <div class="pay-panel active" id="panel-bmac">
-          <div class="bmac-block">
-            <div class="bmac-top">
-              <div class="bmac-logo">☕</div>
-              <div class="bmac-info">
-                <h4>Buy Me a Coffee</h4>
-                <p>Fast &amp; secure · tinypawtv</p>
-              </div>
-            </div>
-            <a href="https://www.buymeacoffee.com/tinypawtv" target="_blank" class="bmac-btn" id="bmacLink">
-              ☕ &nbsp;Proceed to Payment
-            </a>
-            <div class="bmac-secure">🔒 Secure · Encrypted · Trusted</div>
-          </div>
-        </div>
-
-        <!-- Touch n Go Panel -->
-        <div class="pay-panel" id="panel-tng">
-          <div class="tng-block">
-            <div class="tng-top">
-              <div class="tng-logo">TnG</div>
-              <div class="tng-info">
-                <h4>Touch 'n Go eWallet</h4>
-                <p>Scan QR · Instant transfer · Malaysia's #1 eWallet</p>
-              </div>
-            </div>
-
-            <div class="tng-qr-wrap">
-              <div class="tng-qr-label">Scan to Pay</div>
-              <!-- ⚠️ Replace the div below with: <img src="your-tng-qr.png" width="130" height="130" alt="TnG QR"/> -->
-              <div class="tng-qr-img"></div>
-              <div class="tng-id">TnG ID: +60 12-000 0000</div>
-            </div>
-
-            <div class="tng-steps">
-              <div class="tng-step"><div class="tng-step-num">1</div>Open your Touch 'n Go eWallet app</div>
-              <div class="tng-step"><div class="tng-step-num">2</div>Tap <strong>Scan</strong> and scan the QR code above</div>
-              <div class="tng-step"><div class="tng-step-num">3</div>Enter the exact amount shown on the left</div>
-              <div class="tng-step"><div class="tng-step-num">4</div>Screenshot your receipt and send to our WhatsApp</div>
-            </div>
-
-            <a href="https://tngdigital.com.my" target="_blank" class="tng-btn">
-              📲 &nbsp;Open Touch 'n Go App
-            </a>
-            <div class="bmac-secure">🔒 Powered by TNG Digital · Licensed by BNM</div>
-          </div>
-        </div>
-
-        <p style="margin-top:1.2rem; font-size:0.68rem; color:var(--mid); line-height:1.7;">
-          After payment, send your receipt + order details to our WhatsApp: <strong style="color:var(--ink)">+60 12-000 0000</strong>. We'll confirm within 1 business day. ⌚
-        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section class="reviews" id="reviews">
-  <div class="section-kicker reveal">Testimonials</div>
-  <h2 class="reveal">Trusted by<br/>Collectors.</h2>
-  <div class="reviews-strip reveal">
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"The Submariner arrived perfectly packaged with all original papers. KRONOS made the whole process seamless — I'll be back for the Datejust."</div>
-      <div class="review-author">— Hafiz R., Kuala Lumpur</div>
-      <div class="review-watch">Purchased: Rolex Submariner</div>
+<!-- KENAPA KRONOS -->
+<section class="kenapa" id="kenapa">
+  <div class="s-kicker reveal">Kenapa Kami?</div>
+  <h2 class="reveal">Amanah &amp; Berkualiti —<br/>Janji KRONOS</h2>
+  <div class="h2-bm reveal">Kepercayaan anda adalah keutamaan kami</div>
+  <div class="kenapa-grid reveal">
+    <div class="k-card">
+      <div class="k-num">01</div>
+      <span class="k-icon">🔍</span>
+      <h3>100% Original<span>Dijamin Sahih</span></h3>
+      <p>Setiap jam disahkan oleh pakar horologi bertauliah. Lengkap dengan kotak asal, dokumen dan sijil keaslian.</p>
     </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"Got the Tissot PRX as my first serious watch. Outstanding value and the team at KRONOS were incredibly knowledgeable and patient."</div>
-      <div class="review-author">— Daniel T., Penang</div>
-      <div class="review-watch">Purchased: Tissot PRX Automatic</div>
+    <div class="k-card">
+      <div class="k-num">02</div>
+      <span class="k-icon">🚚</span>
+      <h3>Penghantaran Selamat<span>Seluruh Malaysia</span></h3>
+      <p>Penghantaran bima dengan insurans penuh ke seluruh Malaysia — dari Perlis hingga Sabah &amp; Sarawak.</p>
     </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"Acquiring the Vacheron 222 through KRONOS was an experience in itself. Rare, authentic, delivered safely. Truly world-class service."</div>
-      <div class="review-author">— Reza M., Johor Bahru</div>
-      <div class="review-watch">Purchased: Vacheron Constantin Historiques 222</div>
+    <div class="k-card">
+      <div class="k-num">03</div>
+      <span class="k-icon">🛡️</span>
+      <h3>Waranti 2 Tahun<span>Tanpa Soal</span></h3>
+      <p>Kami berdiri di sebalik setiap jam yang kami jual. Sekiranya ada masalah, kami uruskan — tanpa bayaran tambahan.</p>
+    </div>
+    <div class="k-card">
+      <div class="k-num">04</div>
+      <span class="k-icon">💳</span>
+      <h3>Bayaran Mudah<span>TnG &amp; BMAC</span></h3>
+      <p>Bayar guna Touch 'n Go eWallet atau Buy Me a Coffee. Pilihan ansuran bulanan juga tersedia untuk kemudahan anda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HADIAH SECTION -->
+<section class="hadiah">
+  <div class="hadiah-inner">
+    <div class="hadiah-visual reveal">
+      <div class="hadiah-tag">🎁 Hadiah Sempurna</div>
+      <img class="hadiah-watch-img" src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80&fit=crop" alt="Rolex Datejust — Hadiah"/>
+      <div class="hadiah-occasion">
+        <div class="occasion-pill">Perkahwinan</div>
+        <div class="occasion-pill">Raya</div>
+        <div class="occasion-pill">Hari Jadi</div>
+        <div class="occasion-pill">Graduasi</div>
+        <div class="occasion-pill">Kenaikan Pangkat</div>
+      </div>
+    </div>
+    <div class="hadiah-text reveal">
+      <div class="s-kicker">Hadiah Istimewa</div>
+      <h2>Jam Mewah —<br/>Hadiah yang<br/>Tak Terlupa</h2>
+      <div class="h2-bm">"Beri hadiah yang akan diingati seumur hidup"</div>
+      <p>Mencari hadiah yang benar-benar bermakna? Jam tangan mewah bukan sekadar aksesori — ia adalah simbol status, kasih sayang dan penghargaan. Sesuai untuk sebarang majlis istimewa.</p>
+      <ul class="hadiah-list">
+        <li>Pembungkusan mewah percuma untuk hadiah</li>
+        <li>Kad ucapan peribadi dengan tulisan tangan</li>
+        <li>Penghantaran langsung ke majlis atau rumah penerima</li>
+        <li>Sijil keaslian disertakan sebagai jaminan</li>
+      </ul>
+      <a href="https://wa.me/601200000000?text=Saya%20nak%20beli%20jam%20sebagai%20hadiah%20istimewa." target="_blank" class="btn-wa" style="width:fit-content;">
+        <svg style="width:16px;height:16px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Tanya Tentang Hadiah
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ANSURAN / INSTALLMENT -->
+<section class="ansuran">
+  <div class="s-kicker reveal">Cara Bayaran</div>
+  <h2 class="reveal">Ansuran Bulanan<br/>— Ringan di Poket</h2>
+  <div class="h2-bm reveal">Jangan biar harga henti impian anda</div>
+  <div class="ansuran-grid reveal">
+    <div class="ans-card">
+      <div class="ans-period">3</div>
+      <div class="ans-label">Bulan</div>
+      <div class="ans-monthly">RM 934 <span style="font-size:0.8rem;font-family:var(--sans)">/bulan</span></div>
+      <div class="ans-per">untuk Tissot PRX (RM 2,800)</div>
+      <ul class="ans-features">
+        <li>Tiada faedah tersembunyi</li>
+        <li>Proses mudah via WA</li>
+        <li>Jam dihantar setelah DP</li>
+      </ul>
+    </div>
+    <div class="ans-card featured">
+      <div class="ans-badge">⭐ Paling Popular</div>
+      <div class="ans-period">6</div>
+      <div class="ans-label">Bulan</div>
+      <div class="ans-monthly">RM 7,500 <span style="font-size:0.8rem;font-family:var(--sans)">/bulan</span></div>
+      <div class="ans-per">untuk Rolex Datejust (RM 38,000 + caj)</div>
+      <ul class="ans-features">
+        <li>Deposit 30% sahaja</li>
+        <li>Baki dalam 6 bayaran</li>
+        <li>Jam diserah selepas DP</li>
+        <li>Proses dalam 24 jam</li>
+      </ul>
+    </div>
+    <div class="ans-card">
+      <div class="ans-period">12</div>
+      <div class="ans-label">Bulan</div>
+      <div class="ans-monthly">RM 16,250 <span style="font-size:0.8rem;font-family:var(--sans)">/bulan</span></div>
+      <div class="ans-per">untuk Rolex Submariner (RM 45,000+)</div>
+      <ul class="ans-features">
+        <li>Pelan jangka panjang</li>
+        <li>Fleksibel mengikut kemampuan</li>
+        <li>Hubungi WA untuk rundingan</li>
+      </ul>
+    </div>
+  </div>
+  <p class="ans-note">* Caj ansuran bergantung kepada model dan tempoh. Hubungi kami di WhatsApp untuk sebut harga peribadi.</p>
+</section>
+
+<!-- ORDER / TEMPAHAN -->
+<section class="order-sec" id="order">
+  <div class="s-kicker reveal">Tempahan</div>
+  <h2 class="reveal">Tempah Sekarang —<br/>Mudah &amp; Selamat</h2>
+  <div class="h2-bm reveal">Isi borang di bawah dan bayar melalui kaedah pilihan anda</div>
+
+  <div class="order-layout reveal">
+    <!-- Left Summary -->
+    <div class="order-sum-box">
+      <div class="sum-card" id="sumCard">
+        <img id="sumImg" src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=200&q=80&fit=crop" alt="Jam Dipilih"/>
+        <div class="sum-info">
+          <h4 id="sumName">Rolex Submariner Date</h4>
+          <p id="sumRef">Ref. 126610LN · Oystersteel</p>
+          <p id="sumBrand" style="margin-top:0.3rem;color:var(--emas2);font-size:0.7rem;">Rolex</p>
+        </div>
+      </div>
+      <div class="sum-price-row">
+        <div class="sum-price-label">Jumlah Harga</div>
+        <div class="sum-price-val" id="sumPrice">RM 45,000</div>
+      </div>
+      <div class="sum-perks">
+        <div class="s-perk">Penghantaran bima serata Malaysia</div>
+        <div class="s-perk">Kotak asal &amp; dokumen disertakan</div>
+        <div class="s-perk">Waranti perkhidmatan 2 tahun</div>
+        <div class="s-perk">100% original dijamin</div>
+        <div class="s-perk">Ansuran boleh berbincang</div>
+      </div>
+      <a href="https://wa.me/601200000000?text=Assalamualaikum%2C%20saya%20nak%20buat%20tempahan%20jam%20KRONOS." target="_blank" class="wa-order-btn">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Tempah Terus via WhatsApp
+      </a>
+      <p style="margin-top:0.8rem;font-size:0.65rem;color:rgba(245,215,142,0.4);text-align:center;">atau isi borang di sebelah kanan →</p>
+    </div>
+
+    <!-- Right Form -->
+    <div class="order-form-box">
+      <h3>Borang Tempahan</h3>
+      <div class="form-bm">Isi maklumat anda di bawah</div>
+
+      <div class="fg row2">
+        <div class="fg"><label>Nama Penuh</label><input type="text" placeholder="Ahmad Faizal"/></div>
+        <div class="fg"><label>No. WhatsApp</label><input type="tel" placeholder="+60 12-345 6789"/></div>
+      </div>
+      <div class="fg"><label>Alamat Penghantaran</label><input type="text" placeholder="No. Rumah, Jalan, Bandar, Negeri, Poskod"/></div>
+      <div class="fg">
+        <label>Pilih Jam</label>
+        <select id="watchSel" onchange="updateOrd()">
+          <option value="rolex-sub|RM 45,000|Rolex Submariner Date|Ref. 126610LN · Oystersteel|Rolex|https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=200&q=80&fit=crop">Rolex Submariner Date — RM 45,000</option>
+          <option value="tissot-prx|RM 2,800|Tissot PRX Automatic|Ref. T137.407 · Steel|Tissot|https://images.unsplash.com/photo-1619134778706-7015533a6150?w=200&q=80&fit=crop">Tissot PRX Automatic — RM 2,800</option>
+          <option value="rolex-dj|RM 38,000|Rolex Datejust 41|Ref. 126300 · Oystersteel|Rolex|https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80&fit=crop">Rolex Datejust 41 — RM 38,000</option>
+          <option value="vc-222|RM 195,000|Vacheron Constantin Historiques 222|Ref. 4200H/222A · Steel|Vacheron Constantin|https://images.unsplash.com/photo-1606041974734-0a8d44b4ef8e?w=200&q=80&fit=crop">Vacheron Constantin Historiques 222 — RM 195,000</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Catatan (Pilihan)</label>
+        <textarea rows="2" placeholder="Contoh: Untuk hadiah perkahwinan, sertakan kad ucapan..."></textarea>
+      </div>
+
+      <div class="form-divider"></div>
+      <span class="pay-method-label">Pilih Kaedah Bayaran</span>
+
+      <div class="pay-tabs">
+        <button class="p-tab active" onclick="switchTab('bmac', this)">☕ Buy Me a Coffee</button>
+        <button class="p-tab" onclick="switchTab('tng', this)">📲 Touch 'n Go</button>
+        <button class="p-tab" onclick="switchTab('wa', this)">
+          <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Via WA
+        </button>
+      </div>
+
+      <!-- BMAC Panel -->
+      <div class="pay-panel active" id="pp-bmac">
+        <div class="bmac-blk">
+          <div class="bmac-row">
+            <div class="bmac-ico">☕</div>
+            <div class="bmac-inf"><h4>Buy Me a Coffee</h4><p>tinypawtv · Selamat &amp; Pantas</p></div>
+          </div>
+          <a href="https://www.buymeacoffee.com/tinypawtv" target="_blank" class="bmac-pay-btn">☕ Teruskan Bayaran</a>
+        </div>
+      </div>
+
+      <!-- TnG Panel -->
+      <div class="pay-panel" id="pp-tng">
+        <div class="tng-blk">
+          <div class="tng-row">
+            <div class="tng-ico">TnG</div>
+            <div class="tng-inf"><h4>Touch 'n Go eWallet</h4><p>Imbas QR · Bayar Terus</p></div>
+          </div>
+          <div class="tng-qr-box">
+            <div class="tng-qr-lbl">Imbas untuk Bayar</div>
+            <!-- Gantikan dengan QR TnG anda -->
+            <div class="tng-qr-placeholder"></div>
+            <div class="tng-id">ID TnG: +60 12-000 0000</div>
+          </div>
+          <div class="tng-steps-row">
+            <div class="tng-step"><div class="step-n">1</div>Buka app Touch 'n Go eWallet anda</div>
+            <div class="tng-step"><div class="step-n">2</div>Tekan <strong>Imbas</strong> dan imbas QR di atas</div>
+            <div class="tng-step"><div class="step-n">3</div>Masukkan jumlah tepat seperti di sebelah</div>
+            <div class="tng-step"><div class="step-n">4</div>Hantar resit ke WhatsApp kami</div>
+          </div>
+          <a href="https://tngdigital.com.my" target="_blank" class="tng-pay-btn">📲 Buka App Touch 'n Go</a>
+        </div>
+      </div>
+
+      <!-- WA Panel -->
+      <div class="pay-panel" id="pp-wa">
+        <a href="https://wa.me/601200000000?text=Assalamualaikum%2C%20saya%20nak%20buat%20tempahan%20dan%20berbincang%20pasal%20bayaran." target="_blank" class="wa-order-btn" style="text-decoration:none;">
+          <svg style="width:18px;height:18px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Berbincang via WhatsApp
+        </a>
+        <p style="font-size:0.68rem;color:rgba(245,215,142,0.45);text-align:center;margin-top:0.5rem;">Kami akan balas dalam masa 1 jam</p>
+      </div>
+
+      <div class="pay-secure" style="margin-top:1rem;">🔒 Selamat · Terenkripsi · Amanah</div>
+      <p style="margin-top:1rem;font-size:0.65rem;color:rgba(245,215,142,0.35);line-height:1.7;">
+        Selepas bayaran, hantar resit + butiran tempahan ke WhatsApp: <strong style="color:var(--emas2)">+60 12-000 0000</strong>. Kami akan sahkan dalam masa 1 hari bekerja. ⌚
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testi-sec">
+  <div class="s-kicker reveal">Testimoni</div>
+  <h2 class="reveal" style="color:var(--hijau)">Dipercayai Oleh<br/>Pelanggan Malaysia</h2>
+  <div class="testi-grid reveal">
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"Memang terbaik! Rolex Submariner sampai dalam kotak asal, lengkap dengan dokumen. Packaging pun cantik sangat. Sangat puas hati dengan KRONOS!"</div>
+      <div class="t-author">Encik Hafiz Rozali</div>
+      <div class="t-loc">📍 Kuala Lumpur</div>
+      <div class="t-watch">Rolex Submariner Date</div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"Beli Tissot PRX untuk hadiah hari jadi isteri. Team KRONOS bantu dari awal sampai akhir via WhatsApp. Sangat professional dan responsif. Syabas!"</div>
+      <div class="t-author">Encik Danial Hisham</div>
+      <div class="t-loc">📍 Pulau Pinang</div>
+      <div class="t-watch">Tissot PRX Automatic</div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"Dapat Vacheron Constantin melalui KRONOS — servis kelas pertama. Bayar guna TnG pun senang je. Jam original 100%, confirm tak tipu. Akan beli lagi!"</div>
+      <div class="t-author">Encik Ridzwan Md Salleh</div>
+      <div class="t-loc">📍 Johor Bahru</div>
+      <div class="t-watch">Vacheron Constantin Historiques 222</div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
+  <div class="footer-top">
     <div>
-      <div class="footer-brand">KRONOS</div>
-      <p class="footer-sub">Malaysia's trusted curated marketplace for authenticated luxury Swiss timepieces. Every watch, a masterpiece.</p>
-      <a href="https://www.buymeacoffee.com/tinypawtv" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:#FFDD00;color:#000;font-size:0.7rem;padding:0.6rem 1.2rem;text-decoration:none;font-weight:600;margin-right:0.5rem;">☕ Buy Me a Coffee</a>
-      <a href="#order" style="display:inline-flex;align-items:center;gap:0.6rem;background:linear-gradient(135deg,#00AEEF,#0072BC);color:#fff;font-size:0.7rem;padding:0.6rem 1.2rem;text-decoration:none;font-weight:600;">📲 Touch 'n Go</a>
+      <div class="f-brand">KRONOS</div>
+      <p class="f-sub">Pembekal jam tangan mewah terpercaya di Malaysia. Kami komited dengan keaslian, kualiti dan kepuasan pelanggan.</p>
+      <div class="f-pay-row">
+        <a href="https://www.buymeacoffee.com/tinypawtv" target="_blank" class="f-pay-badge" style="background:#FFDD00;color:#333;">☕ Buy Me a Coffee</a>
+        <a href="#order" class="f-pay-badge" style="background:linear-gradient(135deg,#00AEEF,#0072BC);color:#fff;">📲 Touch 'n Go</a>
+        <a href="https://wa.me/601200000000" target="_blank" class="f-pay-badge" style="background:#25D366;color:#fff;">💬 WhatsApp</a>
+      </div>
     </div>
     <div class="footer-col">
-      <h4>Collection</h4>
-      <a href="#collection">Rolex Submariner</a>
-      <a href="#collection">Tissot PRX</a>
-      <a href="#collection">Rolex Datejust</a>
-      <a href="#collection">Vacheron 222</a>
+      <h4>Koleksi</h4>
+      <a href="#koleksi">Rolex Submariner</a>
+      <a href="#koleksi">Tissot PRX</a>
+      <a href="#koleksi">Rolex Datejust</a>
+      <a href="#koleksi">Vacheron Constantin</a>
     </div>
     <div class="footer-col">
-      <h4>Support</h4>
-      <a href="#">WhatsApp Us</a>
-      <a href="#">Authentication Policy</a>
-      <a href="#">Warranty</a>
-      <a href="#">Returns</a>
+      <h4>Sokongan</h4>
+      <a href="#">WhatsApp Kami</a>
+      <a href="#">Polisi Keaslian</a>
+      <a href="#">Waranti</a>
+      <a href="#">Pulangan Barang</a>
     </div>
     <div class="footer-col">
-      <h4>Follow</h4>
+      <h4>Media Sosial</h4>
       <a href="#">Instagram</a>
       <a href="#">TikTok</a>
       <a href="#">Facebook</a>
+      <a href="#">Telegram</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 KRONOS Timepieces · All rights reserved</div>
-    <div class="footer-trust">
-      <div class="trust-badge">Authenticated</div>
-      <div class="trust-badge">Insured Shipping</div>
-      <div class="trust-badge">2yr Warranty</div>
+    <div class="f-copy">© 2026 KRONOS Timepieces Malaysia · Hak Cipta Terpelihara</div>
+    <div class="f-badges">
+      <div class="f-badge">Dijamin Original</div>
+      <div class="f-badge">Penghantaran Selamat</div>
+      <div class="f-badge">Waranti 2 Tahun</div>
     </div>
   </div>
 </footer>
@@ -930,26 +1200,40 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // Switch payment tab
-  function switchPay(id, btn) {
-    document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+  // Tab switch
+  function switchTab(id, btn) {
+    document.querySelectorAll('.p-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('panel-' + id).classList.add('active');
+    document.getElementById('pp-' + id).classList.add('active');
   }
 
   // Update order summary
-  function updateOrder() {
-    const sel = document.getElementById('watchSelect');
-    const parts = sel.value.split('|');
-    const price = parts[1], name = parts[2], ref = parts[3], brand = parts[4], img = parts[5];
+  function updateOrd() {
+    const sel = document.getElementById('watchSel');
+    const [, price, name, ref, brand, img] = sel.value.split('|');
     document.getElementById('sumPrice').textContent = price;
     document.getElementById('sumName').textContent = name;
     document.getElementById('sumRef').textContent = ref;
     document.getElementById('sumBrand').textContent = brand;
     document.getElementById('sumImg').src = img;
-    document.getElementById('sumImg').alt = name;
   }
+
+  // Live clock hands
+  function tickClock() {
+    const now = new Date();
+    const h = now.getHours() % 12 + now.getMinutes() / 60;
+    const m = now.getMinutes() + now.getSeconds() / 60;
+    const s = now.getSeconds();
+    const hh = document.querySelector('.hand-h');
+    const mh = document.querySelector('.hand-m');
+    const sh = document.querySelector('.hand-s');
+    if (hh) hh.style.transform = `rotate(${h * 30}deg)`;
+    if (mh) mh.style.transform = `rotate(${m * 6}deg)`;
+    if (sh) sh.style.transform = `rotate(${s * 6}deg)`;
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
 </script>
 </body>
 </html>
