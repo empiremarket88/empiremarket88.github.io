@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nusa Heights Apartment – Iskandar Puteri, Johor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:    #c9a84c;
+      --gold-lt: #e2c880;
+      --navy:    #0d1b2a;
+      --slate:   #1e2f42;
+      --cream:   #f8f4ed;
+      --off:     #f0ece4;
+      --mid:     #8a8a8a;
+      --white:   #ffffff;
+      --trans:   transition: all 0.4s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: transparent;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+    nav.scrolled {
+      background: rgba(13,27,42,0.97);
+      box-shadow: 0 2px 30px rgba(0,0,0,0.3);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 26px; height: 2px;
+      background: var(--white);
+      transition: var(--trans);
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    /* Gradient overlay with animated shimmer */
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(13,27,42,0.75) 0%, rgba(30,47,66,0.55) 50%, rgba(201,168,76,0.15) 100%);
+      z-index: 1;
+    }
+
+    /* Aerial image via Google Maps Static API style placeholder */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=1.4429469,103.5982337&zoom=16&size=1600x900&maptype=satellite&key=');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.7) saturate(1.1);
+    }
+
+    /* Fallback atmospheric gradient bg */
+    .hero-bg-fallback {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 40%, #1e3a5f 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, #0d4a3a 0%, transparent 55%),
+        linear-gradient(160deg, #0d1b2a 0%, #1a3040 40%, #0a2a1a 100%);
+      z-index: 0;
+    }
+
+    /* Decorative grid overlay */
+    #home::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--white);
+      padding: 2rem;
+      animation: fadeUp 1.2s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.08em;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s ease both;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 0.3rem;
+    }
+    .hero-stat .value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .divider-v {
+      width: 1px;
+      height: 40px;
+      background: rgba(201,168,76,0.4);
+      align-self: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--gold);
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      opacity: 0;
+      animation: fadeUp 1s 1s ease both;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: transparent;
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s;
+      margin-left: 1rem;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: fadeUp 1s 1.3s ease both;
+      opacity: 0;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(var(--gold), transparent);
+      animation: scrollLine 2s ease infinite;
+    }
+
+    @keyframes scrollLine {
+      0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      50%  { opacity: 1; transform: scaleY(1); }
+      100% { opacity: 0; transform: scaleY(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 7rem 4rem;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .gold-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    .section-body {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #4a5568;
+      max-width: 680px;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .highlight-card {
+      padding: 1.8rem;
+      border: 1px solid rgba(201,168,76,0.25);
+      background: var(--cream);
+      position: relative;
+    }
+    .highlight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--gold);
+    }
+    .highlight-card .hc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .highlight-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .highlight-card p {
+      font-size: 0.85rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .key-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--off);
+    }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .fact-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* ─── VR TOUR ─── */
+    #vr {
+      background: var(--navy);
+      padding: 7rem 4rem;
+    }
+    #vr .section-label { color: var(--gold); }
+    #vr .section-title { color: var(--white); }
+    #vr .section-body { color: rgba(255,255,255,0.65); }
+
+    .vr-container {
+      margin-top: 3rem;
+      position: relative;
+      border: 1px solid rgba(201,168,76,0.3);
+      overflow: hidden;
+    }
+
+    .vr-tabs {
+      display: flex;
+      background: rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .vr-tab {
+      padding: 1rem 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      border: none;
+      background: none;
+      transition: color 0.3s, background 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+    .vr-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+      background: rgba(201,168,76,0.06);
+    }
+
+    .vr-frame {
+      display: none;
+      width: 100%;
+      height: 520px;
+    }
+    .vr-frame.active { display: block; }
+    .vr-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Street View launcher */
+    .sv-launcher {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .sv-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(13,60,90,0.9) 0%, transparent 60%),
+        radial-gradient(ellipse at 75% 40%, rgba(10,40,25,0.8) 0%, transparent 55%),
+        linear-gradient(160deg, #0a1628 0%, #0d2a1a 60%, #091520 100%);
+    }
+    /* Animated grid lines on the background */
+    .sv-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.07) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .sv-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem;
+      max-width: 520px;
+    }
+    .sv-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 20px rgba(201,168,76,0.5));
+    }
+    .sv-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .sv-content p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .sv-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .sv-btn-main {
+      display: inline-block;
+      padding: 0.95rem 2rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border: 2px solid var(--gold);
+      transition: background 0.3s, color 0.3s;
+    }
+    .sv-btn-main:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+    .sv-btn-alt {
+      display: inline-block;
+      padding: 0.95rem 1.5rem;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.82rem;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .sv-btn-alt:hover {
+      border-color: var(--gold-lt);
+      color: var(--gold-lt);
+    }
+    .sv-note {
+      font-size: 0.72rem !important;
+      color: rgba(255,255,255,0.35) !important;
+      margin-bottom: 0 !important;
+    }
+
+    .vr-fullscreen-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: rgba(0,0,0,0.4);
+    }
+    .vr-fullscreen-bar span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+    }
+    .vr-fullscreen-bar a {
+      font-size: 0.72rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .vr-fullscreen-bar a:hover { text-decoration: underline; }
+
+    /* ─── LOCATION ─── */
+    #location {
+      background: var(--cream);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .map-wrapper {
+      position: relative;
+      border: 1px solid rgba(201,168,76,0.3);
+      overflow: hidden;
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+    }
+
+    .amenities-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .amenity-category {
+      margin-bottom: 2rem;
+    }
+    .amenity-category h4 {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .amenity-category h4::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(201,168,76,0.25);
+    }
+
+    .amenity-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .amenity-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.08);
+      font-size: 0.88rem;
+    }
+    .amenity-list li:last-child { border-bottom: none; }
+    .amenity-name { color: var(--navy); }
+    .amenity-dist {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 500;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    /* ─── UNITS ─── */
+    #units {
+      background: var(--white);
+    }
+
+    .units-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .unit-card {
+      border: 1px solid var(--off);
+      background: var(--cream);
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .unit-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+    .unit-card-header {
+      background: var(--slate);
+      color: var(--white);
+      padding: 1.5rem;
+    }
+    .unit-type {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .unit-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+    }
+    .unit-card-body { padding: 1.5rem; }
+    .unit-detail {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.85rem;
+    }
+    .unit-detail:last-child { border-bottom: none; }
+    .unit-detail .k { color: var(--mid); }
+    .unit-detail .v { font-weight: 500; color: var(--navy); }
+    .unit-price {
+      margin-top: 1.2rem;
+      padding: 1rem;
+      background: var(--navy);
+      text-align: center;
+    }
+    .unit-price .from { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-lt); }
+    .unit-price .amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    /* ─── GALLERY ─── */
+    #gallery {
+      background: var(--navy);
+      padding: 7rem 4rem;
+    }
+    #gallery .section-label { color: var(--gold); }
+    #gallery .section-title { color: var(--white); }
+
+    .gallery-tabs {
+      display: flex;
+      gap: 0;
+      margin-top: 2.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      flex-wrap: wrap;
+    }
+    .gallery-tab {
+      padding: 0.8rem 1.8rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s, border-color 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      margin-bottom: -1px;
+    }
+    .gallery-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+    .gallery-tab:hover { color: rgba(255,255,255,0.8); }
+
+    .gallery-panel { display: none; margin-top: 2rem; }
+    .gallery-panel.active { display: block; }
+
+    /* Photo grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 0.6rem;
+    }
+    .photo-grid .pg-main {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+    }
+    .photo-item {
+      position: relative;
+      overflow: hidden;
+      background: #0d2035;
+      cursor: pointer;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, filter 0.3s;
+      filter: brightness(0.92);
+    }
+    .photo-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1);
+    }
+    .pg-main { height: 420px; }
+    .pg-side  { height: 204px; }
+
+    /* 4-equal grid for unit interiors */
+    .photo-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+    }
+    .photo-grid-4 .photo-item { height: 220px; }
+    .photo-grid-4 .photo-item.tall {
+      grid-row: span 2;
+      height: 100%;
+    }
+
+    /* Surroundings grid */
+    .surroundings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .surround-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .surround-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8);
+      transition: transform 0.5s ease, filter 0.3s;
+    }
+    .surround-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+    .surround-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.2rem;
+      background: linear-gradient(transparent, rgba(13,27,42,0.92));
+    }
+    .surround-caption .sc-dist {
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .surround-caption .sc-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+
+    .gallery-note {
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+    }
+    .lb-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-size: 2rem;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lb-prev, .lb-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      font-size: 2.5rem;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s;
+    }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+    .lb-prev:hover, .lb-next:hover { color: var(--gold); }
+    .lb-counter {
+      position: absolute;
+      bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+    }
+
+    @media (max-width: 900px) {
+      #gallery { padding: 5rem 2rem; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .pg-main { grid-column: 1/3; height: 260px; grid-row: 1; }
+      .pg-side { height: 160px; }
+      .photo-grid-4 { grid-template-columns: 1fr 1fr; }
+      .photo-grid-4 .photo-item { height: 160px; }
+      .surroundings-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── FACILITIES ─── */
+    #facilities {
+      background: var(--navy);
+    }
+    #facilities .section-title { color: var(--white); }
+    #facilities .section-label { color: var(--gold); }
+    #facilities .gold-rule { }
+
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .facility-item {
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(255,255,255,0.03);
+      text-align: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .facility-item:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: var(--gold);
+    }
+    .facility-item .fi-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .facility-item .fi-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+
+    /* ─── INVESTMENT ─── */
+    #investment {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a3040 100%);
+      padding: 6rem 4rem;
+    }
+    #investment .section-title { color: var(--white); }
+    #investment .section-label { color: var(--gold); }
+
+    .inv-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .inv-card {
+      padding: 2.5rem;
+      border-top: 2px solid var(--gold);
+      background: rgba(255,255,255,0.04);
+    }
+    .inv-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .inv-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+    .inv-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      padding-top: 0.5rem;
+    }
+    .contact-info p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #4a5568;
+      margin-bottom: 2.5rem;
+    }
+    .contact-detail {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .contact-detail .cd-icon {
+      font-size: 1.2rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .contact-detail .cd-text h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.25rem;
+    }
+    .contact-detail .cd-text p {
+      font-size: 0.95rem;
+      color: var(--navy);
+      margin-bottom: 0;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: var(--white);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      padding: 1.1rem;
+      background: #25D366;
+      color: #ffffff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 2px solid #25D366;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .form-submit:hover {
+      background: #1ebe5d;
+      border-color: #1ebe5d;
+      color: #fff;
+    }
+
+    .form-disclaimer {
+      font-size: 0.72rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #080f18;
+      padding: 3rem 4rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      line-height: 1.7;
+      text-align: right;
+    }
+    .footer-copy a { color: var(--gold-lt); text-decoration: none; }
+
+    /* ─── TOAST ─── */
+    #toast {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 9999;
+      background: var(--slate);
+      color: var(--white);
+      padding: 1rem 1.8rem;
+      font-size: 0.88rem;
+      border-left: 3px solid var(--gold);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 998;
+      background: var(--navy);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-size: 2rem;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      section { padding: 5rem 2rem; }
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid,
+      .location-grid,
+      .contact-grid,
+      .inv-cards { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .divider-v { display: none; }
+      footer { padding: 2rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-copy { text-align: center; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobile()">✕</button>
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#vr" onclick="closeMobile()">Maps</a>
+  <a href="#location" onclick="closeMobile()">Location</a>
+  <a href="#units" onclick="closeMobile()">Unit Plans</a>
+  <a href="#facilities" onclick="closeMobile()">Facilities</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Nusa Heights</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#vr">Maps</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#units">Unit Plans</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="home">
+  <div class="hero-bg-fallback"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Iskandar Puteri · Gelang Patah · Johor</p>
+    <h1 class="hero-title">Nusa Heights</h1>
+    <p class="hero-subtitle">Apartment</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="label">Starting Price</div>
+        <div class="value">From RM 350,000</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="hero-stat">
+        <div class="label">Tenure</div>
+        <div class="value">Freehold</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="hero-stat">
+        <div class="label">Total Units</div>
+        <div class="value">910+</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="hero-stat">
+        <div class="label">Completion</div>
+        <div class="value">Ready 2016</div>
+      </div>
+    </div>
+    <a href="#contact" class="btn-primary">Register Interest</a>
+    <a href="#vr" class="btn-outline">Virtual Tour ↓</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <span class="section-label reveal">About Nusa Heights</span>
+        <h2 class="section-title reveal">A Home Above<br /><em>the Horizon</em></h2>
+        <div class="gold-rule reveal"></div>
+        <p class="section-body reveal">
+          Nusa Heights (also known as Nusa Puncak) is a prestigious freehold condominium development
+          nestled in the thriving locality of Gelang Patah, Iskandar Puteri, Johor — one of Malaysia's
+          most rapidly growing investment corridors.
+        </p>
+        <br />
+        <p class="section-body reveal reveal-delay-1">
+          Developed by the reputable SKS Group (MB World), this high-rise residential community comprises
+          5 blocks with over 910 thoughtfully designed units, offering studio to penthouse configurations
+          in a lush, well-managed environment. Situated with seamless access to the Second Link Highway
+          and Lebuhraya Persisiran Pantai JB–Nusajaya, residents enjoy unparalleled connectivity to
+          Singapore, Johor Bahru city, and beyond.
+        </p>
+        <div class="about-highlights reveal reveal-delay-2">
+          <div class="highlight-card">
+            <div class="hc-icon">🏗</div>
+            <h4>Freehold Title</h4>
+            <p>Full freehold ownership — your investment, your legacy.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="hc-icon">🌿</div>
+            <h4>Green Living</h4>
+            <p>Landscaped gardens and tranquil surroundings amid the city.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="hc-icon">🚗</div>
+            <h4>Highway Access</h4>
+            <p>Minutes to Second Link & Persisiran Pantai Expressway.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="hc-icon">📈</div>
+            <h4>Investment Grade</h4>
+            <p>Rental yield ~4.9% with strong capital appreciation potential.</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="key-facts">
+          <div class="fact-row">
+            <span class="fact-label">Developer</span>
+            <span class="fact-value">SKS Group (MB World)</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Property Type</span>
+            <span class="fact-value">Freehold Condominium</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Completion</span>
+            <span class="fact-value">2016</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Total Blocks</span>
+            <span class="fact-value">5 Blocks</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Total Units</span>
+            <span class="fact-value">910 Residential Units</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Studio Size</span>
+            <span class="fact-value">510 sq ft</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">2-Bedroom</span>
+            <span class="fact-value">750 – 1,042 sq ft</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">3-Bedroom</span>
+            <span class="fact-value">1,050 sq ft</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Penthouse</span>
+            <span class="fact-value">2,471 sq ft</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Starting Price</span>
+            <span class="fact-value" style="color:var(--gold)">From RM 350,000</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Est. Rental Yield</span>
+            <span class="fact-value">~4.9% p.a.</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Parking</span>
+            <span class="fact-value">Covered Parking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo Gallery -->
+<section id="gallery">
+  <div class="section-inner">
+    <span class="section-label reveal">Visual Tour</span>
+    <h2 class="section-title reveal">Building, Interiors &amp;<br /><em>Surroundings</em></h2>
+    <div class="gold-rule reveal"></div>
+
+    <div class="gallery-tabs reveal">
+      <button class="gallery-tab active" onclick="switchGallery('building', this)">🏢 Building</button>
+      <button class="gallery-tab" onclick="switchGallery('interiors', this)">🛋 Unit Interiors</button>
+      <button class="gallery-tab" onclick="switchGallery('surroundings', this)">🌳 Surroundings</button>
+    </div>
+
+    <!-- Building Exterior -->
+    <div class="gallery-panel active" id="gpanel-building">
+      <div class="photo-grid">
+        <div class="photo-item pg-main" onclick="openLightbox(0,'building')">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=85" alt="Nusa Heights Apartment Exterior" loading="lazy" />
+        </div>
+        <div class="photo-item pg-side" onclick="openLightbox(1,'building')">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=85" alt="Nusa Heights Block View" loading="lazy" />
+        </div>
+        <div class="photo-item pg-side" onclick="openLightbox(2,'building')">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85" alt="Nusa Heights Entrance" loading="lazy" />
+        </div>
+      </div>
+      <p class="gallery-note">Photos sourced from property listings at Nusa Heights Apartment, Taman Nusa Puncak, Gelang Patah.</p>
+    </div>
+
+    <!-- Unit Interiors -->
+    <div class="gallery-panel" id="gpanel-interiors">
+      <div class="photo-grid-4">
+        <div class="photo-item" onclick="openLightbox(0,'interiors')">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=85" alt="Living Room" loading="lazy" />
+        </div>
+        <div class="photo-item" onclick="openLightbox(1,'interiors')">
+          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=85" alt="Bedroom" loading="lazy" />
+        </div>
+        <div class="photo-item" onclick="openLightbox(2,'interiors')">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=85" alt="Kitchen" loading="lazy" />
+        </div>
+        <div class="photo-item" onclick="openLightbox(3,'interiors')">
+          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=85" alt="Bathroom" loading="lazy" />
+        </div>
+        <div class="photo-item" onclick="openLightbox(4,'interiors')">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=85" alt="Balcony View" loading="lazy" />
+        </div>
+        <div class="photo-item" onclick="openLightbox(5,'interiors')">
+          <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&q=85" alt="Dining Area" loading="lazy" />
+        </div>
+        <div class="photo-item" onclick="openLightbox(6,'interiors')">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=85" alt="Master Bedroom" loading="lazy" />
+        </div>
+        <div class="photo-item" onclick="openLightbox(7,'interiors')">
+          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=700&q=80" alt="Swimming Pool" loading="lazy" />
+        </div>
+      </div>
+      <p class="gallery-note">Photos from actual Nusa Heights units currently listed. Pool photo for illustration.</p>
+    </div>
+
+    <!-- Surroundings -->
+    <div class="gallery-panel" id="gpanel-surroundings">
+      <div class="surroundings-grid">
+        <div class="surround-card" onclick="openLightbox(0,'surroundings')">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Legoland_Malaysia_Resort.jpg/1200px-Legoland_Malaysia_Resort.jpg" alt="Legoland Malaysia" loading="lazy" />
+          <div class="surround-caption">
+            <div class="sc-dist">3.9 km away</div>
+            <div class="sc-name">LEGOLAND® Malaysia</div>
+          </div>
+        </div>
+        <div class="surround-card" onclick="openLightbox(1,'surroundings')">
+          <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=700&q=80" alt="EduCity Iskandar Puteri" loading="lazy" />
+          <div class="surround-caption">
+            <div class="sc-dist">~5 min drive</div>
+            <div class="sc-name">EduCity Iskandar Puteri</div>
+          </div>
+        </div>
+        <div class="surround-card" onclick="openLightbox(2,'surroundings')">
+          <img src="https://images.unsplash.com/photo-1610016302534-6f67f1c968d8?w=700&q=80" alt="AEON Bukit Indah" loading="lazy" />
+          <div class="surround-caption">
+            <div class="sc-dist">~8 min drive</div>
+            <div class="sc-name">AEON Bukit Indah Mall</div>
+          </div>
+        </div>
+        <div class="surround-card" onclick="openLightbox(3,'surroundings')">
+          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=700&q=80" alt="Swimming Pool Facilities" loading="lazy" />
+          <div class="surround-caption">
+            <div class="sc-dist">On-site</div>
+            <div class="sc-name">Outdoor Swimming Pool</div>
+          </div>
+        </div>
+        <div class="surround-card" onclick="openLightbox(4,'surroundings')">
+          <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=700&q=80" alt="Highway Access" loading="lazy" />
+          <div class="surround-caption">
+            <div class="sc-dist">~10 min</div>
+            <div class="sc-name">Second Link (CIQ Tuas)</div>
+          </div>
+        </div>
+        <div class="surround-card" onclick="openLightbox(5,'surroundings')">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=80" alt="Gymnasium Facilities" loading="lazy" />
+          <div class="surround-caption">
+            <div class="sc-dist">On-site</div>
+            <div class="sc-name">Fitness Centre</div>
+          </div>
+        </div>
+      </div>
+      <p class="gallery-note">Legoland photo © Wikimedia Commons. Other surroundings photos for illustration purposes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lb-close" onclick="closeLightboxBtn()">✕</button>
+  <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+  <img id="lb-img" src="" alt="" />
+  <button class="lb-next" onclick="lbNav(1)">›</button>
+  <div class="lb-counter" id="lb-counter">1 / 8</div>
+</div>
+
+<!-- VR / Maps -->
+<section id="vr">
+  <div class="section-inner">
+    <span class="section-label reveal">Interactive Maps</span>
+    <h2 class="section-title reveal">Satellite &amp;<br /><em>Area Map</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-body reveal">
+      Explore Nusa Heights from above — switch between a close-up satellite aerial view of the
+      development and a wider neighbourhood map showing key surrounding amenities.
+    </p>
+    <div class="vr-container reveal reveal-delay-1">
+      <div class="vr-tabs">
+        <button class="vr-tab active" onclick="switchVR('satellite', this)">🛰 Satellite Aerial View</button>
+        <button class="vr-tab" onclick="switchVR('surroundings', this)">🗺 Neighbourhood &amp; Amenities</button>
+        <button class="vr-tab" onclick="switchVR('streetview', this)">🔭 Street View</button>
+      </div>
+
+      <!-- Satellite View — hybrid (5e1), close zoom -->
+      <div class="vr-frame active" id="vr-satellite">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d993.0!2d103.5975377!3d1.4432048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0b07112d86e7%3A0xac615fbea3f1c410!2sNusa%20Heights%20Apartment!5e1!3m2!1sen!2smy!4v1712345678901!5m2!1sen!2smy"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Nusa Heights Satellite Aerial View">
+        </iframe>
+      </div>
+
+      <!-- Neighbourhood map — wider zoom showing amenities -->
+      <div class="vr-frame" id="vr-surroundings">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15923.0!2d103.5975377!3d1.4432048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0b07112d86e7%3A0xac615fbea3f1c410!2sNusa%20Heights%20Apartment!5e0!3m2!1sen!2smy!4v1712345678902!5m2!1sen!2smy"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Nusa Heights Neighbourhood">
+        </iframe>
+      </div>
+
+      <!-- Street View launch panel -->
+      <div class="vr-frame" id="vr-streetview">
+        <div class="sv-launcher">
+          <div class="sv-bg"></div>
+          <div class="sv-content">
+            <div class="sv-icon">🔭</div>
+            <h3>Google Street View</h3>
+            <p>Explore the streets around Nusa Heights Apartment in full 360° interactive Street View — powered by Google Maps.</p>
+            <div class="sv-buttons">
+              <a href="https://www.google.com/maps/@1.4429469,103.5982337,3a,75y,180h,90t/data=!3m4!1e1!3m2!1s0x31da0b07112d86e7:0xac615fbea3f1c410!2e0" target="_blank" class="sv-btn-main">🌐 Open Street View</a>
+              <a href="https://www.google.com/maps/place/Nusa+Heights+Apartment/@1.4429469,103.5982337,293m" target="_blank" class="sv-btn-alt">Open in Google Maps ↗</a>
+            </div>
+            <p class="sv-note">Opens in a new tab · Drag to look around in 360°</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vr-fullscreen-bar">
+        <span>📍 Taman Nusa Puncak, Gelang Patah, 81550 Johor</span>
+        <a href="https://www.google.com/maps/place/Nusa+Heights+Apartment/@1.4429469,103.5982337,293m/data=!3m1!1e3!4m6!3m5!1s0x31da0b07112d86e7:0xac615fbea3f1c410!8m2!3d1.4429469!4d103.5982337" target="_blank">Open in Google Maps ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Location & Amenities -->
+<section id="location">
+  <div class="section-inner">
+    <span class="section-label reveal">Connectivity &amp; Surroundings</span>
+    <h2 class="section-title reveal">Location &amp;<br /><em>Nearby Amenities</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="location-grid" style="margin-top:3rem">
+      <div class="reveal">
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7961.0!2d103.5975377!3d1.4432048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0b07112d86e7%3A0xac615fbea3f1c410!2sNusa%20Heights%20Apartment!5e0!3m2!1sen!2smy!4v1712345678903!5m2!1sen!2smy"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Nusa Heights Location Map">
+          </iframe>
+        </div>
+        <div style="margin-top:1.5rem; padding:1.5rem; background:var(--navy); color:rgba(255,255,255,0.7); font-size:0.85rem; line-height:1.8">
+          <strong style="color:var(--gold); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase">Expressway Access</strong><br/>
+          ✓ Second Link Highway (CIQ Tuas) — ~10 min<br/>
+          ✓ Lebuhraya Persisiran Pantai JB–Nusajaya — Direct access<br/>
+          ✓ Iskandar Coastal Highway — 5 min<br/>
+          ✓ Buses &amp; Taxis available at main entrance every 3–8 min
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <h3 class="amenities-heading">Surrounding Conveniences</h3>
+
+        <div class="amenity-category">
+          <h4>🛍 Shopping &amp; Retail</h4>
+          <ul class="amenity-list">
+            <li><span class="amenity-name">AEON Bukit Indah Mall</span><span class="amenity-dist">~8 min drive</span></li>
+            <li><span class="amenity-name">Tesco Extra Bukit Indah</span><span class="amenity-dist">~8 min drive</span></li>
+            <li><span class="amenity-name">Taman Nusa Perintis 2 Shoplots</span><span class="amenity-dist">~3 min walk</span></li>
+            <li><span class="amenity-name">Retail Shops &amp; Restaurants</span><span class="amenity-dist">~3 min walk</span></li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🎓 Education</h4>
+          <ul class="amenity-list">
+            <li><span class="amenity-name">University of Southampton Malaysia</span><span class="amenity-dist">~4 min drive</span></li>
+            <li><span class="amenity-name">EduCity Iskandar (Multi-University)</span><span class="amenity-dist">~5 min drive</span></li>
+            <li><span class="amenity-name">Gelang Patah Primary &amp; Secondary School</span><span class="amenity-dist">~5 min drive</span></li>
+            <li><span class="amenity-name">Ladang Pendas National School</span><span class="amenity-dist">~6 min drive</span></li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🎡 Leisure &amp; Attractions</h4>
+          <ul class="amenity-list">
+            <li><span class="amenity-name">LEGOLAND® Malaysia Resort</span><span class="amenity-dist">3.9 km</span></li>
+            <li><span class="amenity-name">Sanrio Hello Kitty Town</span><span class="amenity-dist">~5 min drive</span></li>
+            <li><span class="amenity-name">Puteri Harbour Waterfront</span><span class="amenity-dist">~8 min drive</span></li>
+            <li><span class="amenity-name">Nusajaya City Centre</span><span class="amenity-dist">~10 min drive</span></li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🏥 Healthcare &amp; Transport</h4>
+          <ul class="amenity-list">
+            <li><span class="amenity-name">KPJ Puteri Specialist Hospital</span><span class="amenity-dist">~10 min drive</span></li>
+            <li><span class="amenity-name">Clinics &amp; Pharmacies</span><span class="amenity-dist">Nearby</span></li>
+            <li><span class="amenity-name">Sultan Ismail Airport (JHB)</span><span class="amenity-dist">~23 km</span></li>
+            <li><span class="amenity-name">Senai International Airport</span><span class="amenity-dist">~28 km</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Unit Plans -->
+<section id="units">
+  <div class="section-inner">
+    <span class="section-label reveal">Floor Plans &amp; Pricing</span>
+    <h2 class="section-title reveal">Unit Types &amp;<br /><em>Built-up Areas</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-body reveal">Choose from a range of configurations to suit every lifestyle and budget — from cosy studios ideal for investment, to spacious 3-bedroom family homes.</p>
+    <div class="units-grid">
+      <div class="unit-card reveal">
+        <div class="unit-card-header">
+          <div class="unit-type">Type A</div>
+          <div class="unit-name">Studio</div>
+        </div>
+        <div class="unit-card-body">
+          <div class="unit-detail"><span class="k">Built-up</span><span class="v">510 sq ft</span></div>
+          <div class="unit-detail"><span class="k">Bedrooms</span><span class="v">Studio</span></div>
+          <div class="unit-detail"><span class="k">Bathrooms</span><span class="v">1</span></div>
+          <div class="unit-detail"><span class="k">Best For</span><span class="v">Investment / Rental</span></div>
+          <div class="unit-price">
+            <div class="from">Starting From</div>
+            <div class="amount">RM 350,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="unit-card reveal reveal-delay-1">
+        <div class="unit-card-header">
+          <div class="unit-type">Type B</div>
+          <div class="unit-name">2 Bedroom</div>
+        </div>
+        <div class="unit-card-body">
+          <div class="unit-detail"><span class="k">Built-up</span><span class="v">750 sq ft</span></div>
+          <div class="unit-detail"><span class="k">Bedrooms</span><span class="v">2</span></div>
+          <div class="unit-detail"><span class="k">Bathrooms</span><span class="v">2</span></div>
+          <div class="unit-detail"><span class="k">Best For</span><span class="v">Couple / Small Family</span></div>
+          <div class="unit-price">
+            <div class="from">Starting From</div>
+            <div class="amount">RM 420,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="unit-card reveal reveal-delay-2">
+        <div class="unit-card-header" style="background: var(--gold); color: var(--navy)">
+          <div class="unit-type" style="color:var(--navy); opacity:0.7">Type C · Popular</div>
+          <div class="unit-name">3 Bedroom</div>
+        </div>
+        <div class="unit-card-body">
+          <div class="unit-detail"><span class="k">Built-up</span><span class="v">1,050 sq ft</span></div>
+          <div class="unit-detail"><span class="k">Bedrooms</span><span class="v">3</span></div>
+          <div class="unit-detail"><span class="k">Bathrooms</span><span class="v">2</span></div>
+          <div class="unit-detail"><span class="k">Best For</span><span class="v">Family / Own Stay</span></div>
+          <div class="unit-price">
+            <div class="from">Starting From</div>
+            <div class="amount">RM 490,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="unit-card reveal reveal-delay-3">
+        <div class="unit-card-header" style="background: #0d1b2a">
+          <div class="unit-type">Type D</div>
+          <div class="unit-name">Penthouse</div>
+        </div>
+        <div class="unit-card-body">
+          <div class="unit-detail"><span class="k">Built-up</span><span class="v">2,471 sq ft</span></div>
+          <div class="unit-detail"><span class="k">Bedrooms</span><span class="v">5</span></div>
+          <div class="unit-detail"><span class="k">Bathrooms</span><span class="v">5</span></div>
+          <div class="unit-detail"><span class="k">Best For</span><span class="v">Luxury Living</span></div>
+          <div class="unit-price">
+            <div class="from">Enquire for Price</div>
+            <div class="amount">Contact Us</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem; font-size:0.78rem; color:var(--mid)">* Prices subject to change. Contact our sales team for the latest availability and offers.</p>
+  </div>
+</section>
+
+<!-- Facilities -->
+<section id="facilities">
+  <div class="section-inner">
+    <span class="section-label reveal">Lifestyle Amenities</span>
+    <h2 class="section-title reveal">World-Class<br /><em>Facilities</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="facilities-grid">
+      <div class="facility-item reveal">
+        <div class="fi-icon">🏊</div>
+        <div class="fi-name">Outdoor Pool</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-1">
+        <div class="fi-icon">🏋️</div>
+        <div class="fi-name">Fitness Centre</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-2">
+        <div class="fi-icon">🏠</div>
+        <div class="fi-name">Clubhouse</div>
+      </div>
+      <div class="facility-item reveal">
+        <div class="fi-icon">🌿</div>
+        <div class="fi-name">Landscaped Gardens</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-1">
+        <div class="fi-icon">🛝</div>
+        <div class="fi-name">Children's Playground</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-2">
+        <div class="fi-icon">🔒</div>
+        <div class="fi-name">24-Hour Security</div>
+      </div>
+      <div class="facility-item reveal">
+        <div class="fi-icon">🚗</div>
+        <div class="fi-name">Covered Parking</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-1">
+        <div class="fi-icon">♟</div>
+        <div class="fi-name">Multi-Purpose Hall</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-2">
+        <div class="fi-icon">🛗</div>
+        <div class="fi-name">High-Speed Lifts</div>
+      </div>
+      <div class="facility-item reveal">
+        <div class="fi-icon">📦</div>
+        <div class="fi-name">Parcel Locker / Store</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-1">
+        <div class="fi-icon">🌅</div>
+        <div class="fi-name">Scenic Views</div>
+      </div>
+      <div class="facility-item reveal reveal-delay-2">
+        <div class="fi-icon">🏪</div>
+        <div class="fi-name">Shop-Office Level</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Investment Highlights -->
+<section id="investment">
+  <div class="section-inner">
+    <span class="section-label reveal">Why Invest</span>
+    <h2 class="section-title reveal">An Exceptional<br /><em>Investment Opportunity</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="inv-cards">
+      <div class="inv-card reveal">
+        <div class="inv-num">~4.9%</div>
+        <div class="inv-label">Rental Yield per Annum</div>
+        <div class="inv-desc">Strong rental demand driven by EduCity students, Legoland staff, and Iskandar Puteri professionals seeking quality, affordable accommodation.</div>
+      </div>
+      <div class="inv-card reveal reveal-delay-1">
+        <div class="inv-num">3.9km</div>
+        <div class="inv-label">From Legoland Malaysia</div>
+        <div class="inv-desc">Proximity to world-class theme parks, shopping malls, universities and healthcare facilities ensures sustained tenant demand year-round.</div>
+      </div>
+      <div class="inv-card reveal reveal-delay-2">
+        <div class="inv-num">Freehold</div>
+        <div class="inv-label">Land Tenure — Forever Yours</div>
+        <div class="inv-desc">A rare freehold title in Iskandar Puteri means your property retains maximum long-term value with no leasehold concerns for you or your heirs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-label reveal">Get In Touch</span>
+        <h2 class="section-title reveal">Register Your<br /><em>Interest Today</em></h2>
+        <div class="gold-rule reveal"></div>
+        <p class="reveal">
+          Take the first step toward your dream home or next investment. Fill in the form and our
+          dedicated sales team will reach out with unit availability, pricing, and an exclusive walkthrough.
+        </p>
+        <div class="contact-detail reveal">
+          <div class="cd-icon">📍</div>
+          <div class="cd-text">
+            <h4>Address</h4>
+            <p>Taman Nusa Puncak, Jalan Gelang Patah,<br/>81550 Gelang Patah, Iskandar Puteri, Johor</p>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-1">
+          <div class="cd-icon">📱</div>
+          <div class="cd-text">
+            <h4>Sales Agent — WhatsApp</h4>
+            <p><strong>Mr Ryan Lee</strong><br/>+6016 441 0814</p>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-2">
+          <div class="cd-icon">⏰</div>
+          <div class="cd-text">
+            <h4>Available Hours</h4>
+            <p>Monday–Sunday: 9:00 AM – 9:00 PM</p>
+          </div>
+        </div>
+        <div class="contact-detail reveal reveal-delay-3">
+          <div class="cd-icon">💬</div>
+          <div class="cd-text">
+            <h4>Quick WhatsApp</h4>
+            <p><a href="https://wa.me/60164410814?text=Hi%20Mr%20Ryan%20Lee%2C%20I'm%20interested%20in%20Nusa%20Heights%20Apartment." target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;">Chat with us directly ↗</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input type="text" id="firstName" placeholder="Ahmad" />
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input type="text" id="lastName" placeholder="Bin Abdullah" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="phone" placeholder="+60 12-345 6789" />
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Unit Type of Interest</label>
+            <select id="unitType">
+              <option value="">— Select Unit Type —</option>
+              <option>Studio (510 sq ft) – From RM 350,000</option>
+              <option>2 Bedroom (750 sq ft) – From RM 420,000</option>
+              <option>3 Bedroom (1,050 sq ft) – From RM 490,000</option>
+              <option>Penthouse (2,471 sq ft) – Enquire</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Purpose</label>
+            <select id="purpose">
+              <option value="">— Select Purpose —</option>
+              <option>Own Stay</option>
+              <option>Investment / Rental</option>
+              <option>Both</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message (Optional)</label>
+            <textarea id="message" placeholder="Tell us more about your requirements…"></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()">📲 Send via WhatsApp →</button>
+          <p class="form-disclaimer">Clicking submit will open WhatsApp with your details pre-filled to send directly to Mr Ryan Lee (+6016 441 0814). Your information is kept confidential.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Nusa Heights Apartment</div>
+    <div class="footer-copy">
+      © 2025 Nusa Heights Apartment · Gelang Patah, Iskandar Puteri, Johor<br/>
+      Sales: <a href="https://wa.me/60164410814" target="_blank">Mr Ryan Lee +6016 441 0814</a> · All prices are indicative and subject to change.
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast">✅ Thank you! Our team will contact you shortly.</div>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  // Mobile menu
+  function openMobile() { document.getElementById('mobileMenu').classList.add('open'); }
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // VR tab switch
+  function switchVR(id, btn) {
+    document.querySelectorAll('.vr-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.vr-frame').forEach(f => f.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('vr-' + id).classList.add('active');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Gallery tab switch
+  function switchGallery(id, btn) {
+    document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('gpanel-' + id).classList.add('active');
+  }
+
+  // Lightbox
+  const lbSets = {
+    building: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=90',
+      'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=90',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=90'
+    ],
+    interiors: [
+      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=90',
+      'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1200&q=90',
+      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=90',
+      'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=90',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=90',
+      'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=1200&q=90',
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=90',
+      'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=900&q=80'
+    ],
+    surroundings: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Legoland_Malaysia_Resort.jpg/1200px-Legoland_Malaysia_Resort.jpg',
+      'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=900&q=80',
+      'https://images.unsplash.com/photo-1610016302534-6f67f1c968d8?w=900&q=80',
+      'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=900&q=80',
+      'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=900&q=80',
+      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80'
+    ]
+  };
+  let lbCurrent = 0, lbSet = 'building';
+
+  function openLightbox(idx, set) {
+    lbCurrent = idx; lbSet = set;
+    const imgs = lbSets[set];
+    document.getElementById('lb-img').src = imgs[idx];
+    document.getElementById('lb-counter').textContent = (idx+1) + ' / ' + imgs.length;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightboxBtn() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeLightbox(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightboxBtn();
+  }
+  function lbNav(dir) {
+    const imgs = lbSets[lbSet];
+    lbCurrent = (lbCurrent + dir + imgs.length) % imgs.length;
+    document.getElementById('lb-img').src = imgs[lbCurrent];
+    document.getElementById('lb-counter').textContent = (lbCurrent+1) + ' / ' + imgs.length;
+    event.stopPropagation();
+  }
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightboxBtn();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+  function submitForm() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const phone     = document.getElementById('phone').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const unitType  = document.getElementById('unitType').value;
+    const purpose   = document.getElementById('purpose').value;
+    const message   = document.getElementById('message').value.trim();
+
+    if (!firstName || !phone) {
+      alert('Please fill in at least your name and phone number to continue.');
+      return;
+    }
+
+    const name = [firstName, lastName].filter(Boolean).join(' ');
+    const lines = [
+      `Hello Mr Ryan Lee,`,
+      ``,
+      `I am interested in *Nusa Heights Apartment* and would like to register my interest.`,
+      ``,
+      `*Name:* ${name}`,
+      `*Phone:* ${phone}`,
+      phone !== email ? `*Email:* ${email || '—'}` : null,
+      unitType ? `*Unit Type:* ${unitType}` : null,
+      purpose  ? `*Purpose:* ${purpose}` : null,
+      message  ? `*Message:* ${message}` : null,
+      ``,
+      `Please contact me at your earliest convenience. Thank you!`
+    ].filter(l => l !== null).join('\n');
+
+    const waUrl = 'https://wa.me/60164410814?text=' + encodeURIComponent(lines);
+    window.open(waUrl, '_blank');
+
+    // Clear form after opening WhatsApp
+    ['firstName','lastName','phone','email','unitType','purpose','message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+  }
+</script>
+</body>
+</html>
