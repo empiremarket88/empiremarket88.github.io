@@ -708,8 +708,8 @@
 <!-- ORDER FORM -->
 <section class="order-sec" id="order">
   <div class="s-kicker reveal">Borang Tempahan</div>
-  <h2 class="reveal">Tempah &amp; COD —<br/>Mudah &amp; Pantas</h2>
-  <div class="h2-sub reveal">Isi borang, mesej WhatsApp akan auto-terisi!</div>
+  <h2 class="reveal">Tempah Sekarang —<br/>COD atau Pos</h2>
+  <div class="h2-sub reveal">Pilih kaedah penghantaran, isi borang — mesej WhatsApp akan auto-terisi!</div>
   <div class="order-layout reveal">
     <div>
       <div class="sum-card" id="sumCard">
@@ -722,23 +722,53 @@
           </p>
         </div>
       </div>
-      <div class="sum-perks">
-        <div class="s-perk">COD di 8th Avenue, Taman Bukit Indah</div>
-        <div class="s-perk">Bayar selepas tengok jam sendiri</div>
-        <div class="s-perk">Pelbagai pilihan harga & model</div>
-        <div class="s-perk">Arrange tarikh &amp; masa via WhatsApp</div>
+      <div class="sum-perks" id="sumPerks">
+        <div class="s-perk" id="perk1">COD di 8th Avenue, Taman Bukit Indah</div>
+        <div class="s-perk" id="perk2">Bayar selepas tengok jam sendiri</div>
+        <div class="s-perk" id="perk3">Pelbagai pilihan harga &amp; model</div>
+        <div class="s-perk" id="perk4">Arrange tarikh &amp; masa via WhatsApp</div>
       </div>
       <a href="#" id="waDirectBtn" target="_blank" class="wa-order-btn" style="margin-top:1.5rem">
         <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Hantar Terus ke WhatsApp
       </a>
     </div>
     <div class="order-form-box">
-      <h3>Borang Tempahan COD</h3>
+      <h3 id="formTitle">Borang Tempahan</h3>
       <div class="form-sub">Isi maklumat di bawah — mesej WA akan auto-terisi!</div>
+
+      <!-- ── DELIVERY METHOD TOGGLE ── -->
+      <div style="margin-bottom:1.5rem">
+        <label style="font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,215,142,.5);display:block;margin-bottom:.6rem">Kaedah Penghantaran *</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+          <button type="button" id="btnCOD" onclick="setDelivery('cod')"
+            style="padding:.85rem .5rem;border:2px solid var(--emas);background:var(--emas);color:var(--hijau);font-family:var(--sans);font-weight:700;font-size:.75rem;letter-spacing:.08em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem;transition:all .2s">
+            🤝 <span>COD</span>
+            <span style="font-size:.58rem;font-weight:400;opacity:.8">Jumpa terus · Bukit Indah</span>
+          </button>
+          <button type="button" id="btnPos" onclick="setDelivery('pos')"
+            style="padding:.85rem .5rem;border:2px solid rgba(201,150,58,.3);background:transparent;color:rgba(245,215,142,.5);font-family:var(--sans);font-weight:700;font-size:.75rem;letter-spacing:.08em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem;transition:all .2s">
+            📦 <span>Pos / Kurier</span>
+            <span style="font-size:.58rem;font-weight:400;opacity:.8">Hantar ke seluruh Malaysia</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── POSTAGE REMINDER BANNER (hidden by default) ── -->
+      <div id="postageReminder" style="display:none;background:rgba(229,57,53,.1);border:1px solid rgba(229,57,53,.4);padding:1rem 1.1rem;margin-bottom:1.2rem;border-radius:2px">
+        <div style="font-size:.75rem;font-weight:700;color:#ff8a80;margin-bottom:.4rem">⚠️ Penting — Untuk Penghantaran Pos:</div>
+        <div style="font-size:.72rem;color:rgba(255,200,180,.85);line-height:1.7">
+          1. Buat <strong>bayaran penuh</strong> terlebih dahulu (TnG / Buy Me a Coffee / Bank Transfer)<br/>
+          2. <strong>Screenshot resit pembayaran</strong> anda<br/>
+          3. WhatsApp resit ke <strong style="color:#ff8a80">010-334 0733</strong> bersama borang tempahan ini<br/>
+          4. Kami akan proses &amp; hantar dalam <strong>1-2 hari bekerja</strong> selepas bayaran disahkan
+        </div>
+      </div>
+
       <div class="fg row2">
         <div class="fg"><label>Nama Penuh *</label><input type="text" id="fName" placeholder="Ahmad Faizal" oninput="buildWAMsg()"/></div>
         <div class="fg"><label>No. WhatsApp *</label><input type="tel" id="fPhone" placeholder="+60 12-345 6789" oninput="buildWAMsg()"/></div>
       </div>
+
       <div class="fg" style="margin-top:1rem">
         <label>Model &amp; Produk *</label>
         <select id="fModel" onchange="selectModel()">
@@ -756,34 +786,50 @@
 <option value="Seiko Presage Cream Orange — RM159|seikoorg">Seiko Presage — Cream / Orange — RM159</option>
 <option value="Seiko Chronograph Silver — RM179|seikosil1">Seiko Chronograph — Silver — RM179</option>
 <option value="Tali Kulit 22mm — RM29|leather1">Tali Kulit 22mm — Pelbagai Warna — RM29</option>
-
         </select>
       </div>
-      <div class="fg row2" style="margin-top:1rem">
-        <div class="fg"><label>Tarikh COD *</label><input type="date" id="fDate" oninput="buildWAMsg()"/></div>
-        <div class="fg">
-          <label>Masa COD *</label>
-          <select id="fTime" onchange="buildWAMsg()">
-            <option value="">-- Pilih Masa --</option>
-            <option>10:00 pagi</option><option>11:00 pagi</option>
-            <option>2:00 petang</option>
-            <option>3:00 petang</option><option>4:00 petang</option>
-            <option>5:00 petang</option><option>6:00 petang</option>
-            <option>7:00 malam</option><option>8:00 malam</option><option>9:00 malam</option><option>10:00 malam</option>
-          </select>
+
+      <!-- ── COD FIELDS (tarikh & masa) ── -->
+      <div id="codFields">
+        <div class="fg row2" style="margin-top:1rem">
+          <div class="fg"><label>Tarikh COD *</label><input type="date" id="fDate" oninput="buildWAMsg()"/></div>
+          <div class="fg">
+            <label>Masa COD *</label>
+            <select id="fTime" onchange="buildWAMsg()">
+              <option value="">-- Pilih Masa --</option>
+              <option>10:00 pagi</option><option>11:00 pagi</option>
+              <option>2:00 petang</option><option>3:00 petang</option>
+              <option>4:00 petang</option><option>5:00 petang</option>
+              <option>6:00 petang</option><option>7:00 malam</option>
+              <option>8:00 malam</option><option>9:00 malam</option>
+              <option>10:00 malam</option>
+            </select>
+          </div>
         </div>
       </div>
+
+      <!-- ── POSTAGE FIELDS (alamat) ── -->
+      <div id="posFields" style="display:none">
+        <div class="fg" style="margin-top:1rem">
+          <label>Alamat Penghantaran Penuh *</label>
+          <textarea id="fAddress" rows="3" placeholder="No. rumah, jalan, taman, poskod, negeri..." oninput="buildWAMsg()"></textarea>
+        </div>
+      </div>
+
       <div class="fg" style="margin-top:.5rem">
         <label>Catatan Tambahan (Pilihan)</label>
         <textarea id="fNote" rows="2" placeholder="Contoh: Saya akan datang dengan kenderaan..." oninput="buildWAMsg()"></textarea>
       </div>
+
       <div class="msg-preview-wrap">
         <div class="msg-preview-label">📋 Pratonton Mesej WhatsApp</div>
         <div id="msgPreview" style="font-size:.72rem;color:rgba(253,246,227,.7);line-height:1.7;white-space:pre-wrap;font-family:monospace">Isi borang di atas untuk lihat pratonton mesej...</div>
       </div>
+
       <button onclick="sendToWA()" class="wa-order-btn"><svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> ✅ Hantar Tempahan ke WhatsApp</button>
+
       <div class="form-divider"></div>
-      <span class="pay-method-label">Kaedah Bayaran Semasa COD</span>
+      <span class="pay-method-label" id="payMethodLabel">Kaedah Bayaran Semasa COD</span>
       <div class="pay-tabs">
         <button class="p-tab active" onclick="swTab('bmac',this)">☕ Buy Me a Coffee</button>
         <button class="p-tab" onclick="swTab('tng',this)">📲 Touch 'n Go</button>
@@ -999,16 +1045,68 @@
     buildWAMsg();
   }
 
+  // ── DELIVERY METHOD ──
+  let deliveryMode = 'cod'; // 'cod' or 'pos'
+
+  function setDelivery(mode) {
+    deliveryMode = mode;
+    const isCOD = mode === 'cod';
+
+    // Toggle button styles
+    const btnCOD = document.getElementById('btnCOD');
+    const btnPos = document.getElementById('btnPos');
+    if(isCOD) {
+      btnCOD.style.background = 'var(--emas)'; btnCOD.style.color = 'var(--hijau)'; btnCOD.style.borderColor = 'var(--emas)';
+      btnPos.style.background = 'transparent'; btnPos.style.color = 'rgba(245,215,142,.5)'; btnPos.style.borderColor = 'rgba(201,150,58,.3)';
+    } else {
+      btnPos.style.background = 'var(--emas)'; btnPos.style.color = 'var(--hijau)'; btnPos.style.borderColor = 'var(--emas)';
+      btnCOD.style.background = 'transparent'; btnCOD.style.color = 'rgba(245,215,142,.5)'; btnCOD.style.borderColor = 'rgba(201,150,58,.3)';
+    }
+
+    // Show/hide fields
+    document.getElementById('codFields').style.display = isCOD ? '' : 'none';
+    document.getElementById('posFields').style.display = isCOD ? 'none' : '';
+    document.getElementById('postageReminder').style.display = isCOD ? 'none' : '';
+
+    // Update form title and pay label
+    document.getElementById('formTitle').textContent = isCOD ? 'Borang Tempahan COD' : 'Borang Tempahan Pos / Kurier';
+    document.getElementById('payMethodLabel').textContent = isCOD ? 'Kaedah Bayaran Semasa COD' : 'Kaedah Bayaran (Bayar Dahulu)';
+
+    // Update note placeholder
+    document.getElementById('fNote').placeholder = isCOD
+      ? 'Contoh: Saya akan datang dengan kenderaan...'
+      : 'Contoh: Tolong packed dengan bubble wrap...';
+
+    // Update left panel perks
+    if(isCOD) {
+      document.getElementById('perk1').textContent = 'COD di 8th Avenue, Taman Bukit Indah';
+      document.getElementById('perk2').textContent = 'Bayar selepas tengok jam sendiri';
+      document.getElementById('perk3').textContent = 'Pelbagai pilihan harga & model';
+      document.getElementById('perk4').textContent = 'Arrange tarikh & masa via WhatsApp';
+    } else {
+      document.getElementById('perk1').textContent = '📦 Penghantaran ke seluruh Malaysia';
+      document.getElementById('perk2').textContent = '💳 Bayar penuh terlebih dahulu';
+      document.getElementById('perk3').textContent = '📸 WhatsApp resit selepas bayar';
+      document.getElementById('perk4').textContent = '🚚 Dihantar dalam 1–2 hari bekerja';
+    }
+
+    buildWAMsg();
+  }
+
   function buildWAMsg() {
     const name  = document.getElementById('fName').value.trim() || '(nama belum diisi)';
     const phone = document.getElementById('fPhone').value.trim() || '(no. belum diisi)';
     const modelRaw = document.getElementById('fModel').value;
     const model = modelRaw.split('|')[0] || 'Pilih model';
-    const dateRaw = document.getElementById('fDate').value;
-    const date = dateRaw ? new Date(dateRaw).toLocaleDateString('ms-MY',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) : '(tarikh belum dipilih)';
-    const time = document.getElementById('fTime').value || '(masa belum dipilih)';
-    const note = document.getElementById('fNote').value.trim();
-    const msg =
+    const note  = document.getElementById('fNote').value.trim();
+
+    let msg = '';
+
+    if(deliveryMode === 'cod') {
+      const dateRaw = document.getElementById('fDate').value;
+      const date = dateRaw ? new Date(dateRaw).toLocaleDateString('ms-MY',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) : '(tarikh belum dipilih)';
+      const time = document.getElementById('fTime').value || '(masa belum dipilih)';
+      msg =
 `Assalamualaikum KRONOS 👋
 
 *📋 TEMPAHAN JAM — COD*
@@ -1023,6 +1121,27 @@
 ━━━━━━━━━━━━━━━━━━━${note ? '\n📝 *Catatan:* ' + note + '\n━━━━━━━━━━━━━━━━━━━' : ''}
 
 Saya berminat untuk COD jam ini. Boleh confirm? Terima kasih! 🙏`;
+    } else {
+      const address = (document.getElementById('fAddress') ? document.getElementById('fAddress').value.trim() : '') || '(alamat belum diisi)';
+      msg =
+`Assalamualaikum KRONOS 👋
+
+*📦 TEMPAHAN JAM — POS / KURIER*
+━━━━━━━━━━━━━━━━━━━
+👤 *Nama:* ${name}
+📱 *No. WA:* ${phone}
+⌚ *Model:* ${model}
+━━━━━━━━━━━━━━━━━━━
+🏠 *Alamat Penghantaran:*
+${address}
+━━━━━━━━━━━━━━━━━━━${note ? '\n📝 *Catatan:* ' + note + '\n━━━━━━━━━━━━━━━━━━━' : ''}
+
+✅ Saya telah buat bayaran penuh.
+📸 Resit bayaran akan saya WhatsApp ke 010-334 0733 selepas ini.
+
+Mohon sahkan tempahan saya. Terima kasih! 🙏`;
+    }
+
     document.getElementById('msgPreview').textContent = msg;
     document.getElementById('waDirectBtn').href = 'https://wa.me/60103340733?text=' + encodeURIComponent(msg);
     return msg;
@@ -1031,6 +1150,9 @@ Saya berminat untuk COD jam ini. Boleh confirm? Terima kasih! 🙏`;
   function sendToWA() {
     if(!document.getElementById('fName').value.trim()) {
       alert('Sila isi nama anda terlebih dahulu.'); return;
+    }
+    if(deliveryMode === 'pos' && document.getElementById('fAddress') && !document.getElementById('fAddress').value.trim()) {
+      alert('Sila isi alamat penghantaran anda.'); return;
     }
     window.open('https://wa.me/60103340733?text=' + encodeURIComponent(buildWAMsg()), '_blank');
   }
