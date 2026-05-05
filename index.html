@@ -854,7 +854,7 @@
     }
 
     .cod-details::before {
-      content: '📍 Lokasi COD';
+      content: '📍  Lokasi COD';
       font-family: var(--serif);
       font-size: .7rem;
       letter-spacing: .15em;
@@ -1709,6 +1709,68 @@
 </head>
 
 <body>
+  <script>
+    /* 
+       =========================================
+       KONFIGURASI HARGA & PRODUK KRONOS
+       Anda boleh tukar harga di sini sahaja.
+       =========================================
+    */
+    const KRONOS_CONFIG = {
+
+
+      pricing: {
+        prx: { current: 179, old: 299 },
+        lume: { current: 279, old: 349 },
+        lelode: { current: 199, old: 299 },
+        rolexdj: { current: 399, old: 499 },
+        rolexgmt: { current: 599, old: 799 },
+        seikoorg: { current: 159, old: 259 },
+        seikosil: { current: 179, old: 289 },
+        leather: { current: 29, old: 59 }
+      },
+      // Model mapping untuk kegunaan sistem
+      products: {
+        'prxblack': { name: 'Tissot PRX 40mm', subName: 'Hitam / Black', desc: 'Black Dial · Steel Bracelet', pKey: 'prx', img1: 'prxblack', flag: '🔥 Paling Laris', flagStyle: 'background:var(--red);color:#fff', isActive: 1 },
+        'prxgreen': { name: 'Tissot PRX 40mm', subName: 'Hijau / Green', desc: 'Green Dial · Steel Bracelet', pKey: 'prx', img1: 'prxgreen', flag: '🌿 Hijau', flagStyle: 'background:var(--hijau);color:var(--emas2)', isActive: 1 },
+        'prxdkblue': { name: 'Tissot PRX 40mm', subName: 'Biru Gelap / Dark Blue', desc: 'Dark Blue Dial · Steel Bracelet', pKey: 'prx', img1: 'prxdkblue', flag: '💙 Biru Gelap', flagStyle: 'background:var(--hijau);color:var(--emas2)', isActive: 1 },
+        'prxsilver': { name: 'Tissot PRX 40mm', subName: 'Silver / Perak', desc: 'Silver Dial · Steel Bracelet', pKey: 'prx', img1: 'prxsilver', flag: '⚪ Silver', flagStyle: 'background:var(--hijau);color:var(--emas2)', isActive: 1 },
+        'prxtiffany': { name: 'Tissot PRX 40mm', subName: 'Tiffany Blue', desc: 'Tiffany Blue Dial · Steel Bracelet', pKey: 'prx', img1: 'prxtiffany', flag: '🩵 Tiffany Blue', flagStyle: 'background:#0abfbc;color:#fff', isActive: 1 },
+        'prxwdkblue': { name: 'Tissot PRX 40mm', subName: 'Waffle Dark Blue', desc: 'Waffle Dark Blue Dial · Steel Bracelet', pKey: 'prx', img1: 'prxwdkblue', flag: '🔲 Waffle Biru', flagStyle: 'background:var(--hijau);color:var(--emas2)', isActive: 1 },
+        'prxwwhite': { name: 'Tissot PRX 40mm', subName: 'Waffle White', desc: 'Waffle White Dial · Steel Bracelet', pKey: 'prx', img1: 'prxwwhite', flag: '🔳 Waffle Putih', flagStyle: 'background:var(--hijau);color:var(--emas2)', isActive: 1 },
+        'prxlume': { name: 'Tissot PRX 40mm', subName: 'White Lume', desc: 'White Lume Dial · Steel Bracelet', pKey: 'lume', img1: 'prxlume1', img2: 'prxlume2', flag: '✨ Lume Edisi Khas', flagStyle: 'background:var(--emas);color:var(--hijau)', isActive: 1 },
+        'lelode': { name: 'Tissot Le Lode', subName: 'Powermatic 80', desc: 'Silver Dial · Leather Strap', pKey: 'lelode', img1: 'lelode1', img2: 'lelode2', flag: '🏆 Klasik', flagStyle: 'background:var(--emas);color:var(--hijau)', isActive: 1 },
+        'rolexdj': { name: 'Rolex Datejust', subName: 'Silver', desc: 'Silver Dial · Jubilee Bracelet', pKey: 'rolexdj', img1: 'rolexdj1', img2: 'rolexdj2', flag: '👑 Premium', flagStyle: 'background:#1a1a1a;color:#e8c97a', isActive: 1 },
+        'rolexgmt': { name: 'Rolex GMT Master II', subName: 'Black', desc: 'Black Dial · Jubilee Bracelet', pKey: 'rolexgmt', img1: 'rolexgmt1', img2: 'rolexgmt2', flag: '👑 Ekslusif', flagStyle: 'background:#1a1a1a;color:#e8c97a', isActive: 1 },
+        'seikoorg': { name: 'Seiko Presage', subName: 'Cream / Orange', desc: 'Cream Dial · Leather Strap', pKey: 'seikoorg', img1: 'seikoorg', flag: '🟠 Seiko', flagStyle: 'background:#c04a00;color:#fff', isActive: 1 },
+        'seikosil': { name: 'Seiko Chronograph', subName: 'Silver', desc: 'Silver Dial · Steel Bracelet', pKey: 'seikosil', img1: 'seikosil1', img2: 'seikosil2', flag: '⏱ Kronograf', flagStyle: 'background:#c04a00;color:#fff', isActive: 0 },
+        'leather': { name: 'Tali Kulit 22mm', subName: 'Pelbagai Warna', desc: 'Crocodile Grain · Silver Buckle', pKey: 'leather', img1: 'leather1', img2: 'leather2', flag: '🎨 Aksesori', flagStyle: 'background:var(--coklat);color:var(--emas-pale)', isActive: 1 }
+      },
+
+      images: {
+        "leather1": "image/extracted_15.jpeg",
+        "leather2": "image/extracted_16.jpeg",
+        "lelode1": "image/extracted_17.jpeg",
+        "lelode2": "image/extracted_18.jpeg",
+        "prxblack": "image/extracted_19.jpeg",
+        "prxdkblue": "image/extracted_20.jpeg",
+        "prxgreen": "image/extracted_21.jpeg",
+        "prxsilver": "image/extracted_22.jpeg",
+        "prxtiffany": "image/extracted_23.jpeg",
+        "prxwdkblue": "image/extracted_24.jpeg",
+        "prxwwhite": "image/extracted_25.jpeg",
+        "prxlume1": "image/extracted_26.jpeg",
+        "prxlume2": "image/extracted_27.jpeg",
+        "rolexdj1": "image/extracted_28.jpeg",
+        "rolexdj2": "image/extracted_29.jpeg",
+        "rolexgmt1": "image/extracted_30.jpeg",
+        "rolexgmt2": "image/extracted_31.jpeg",
+        "seikoorg": "image/extracted_32.jpeg",
+        "seikosil1": "image/extracted_33.jpeg",
+        "seikosil2": "image/extracted_34.jpeg",
+      }
+    };
+  </script>
 
   <!-- Floating WA -->
   <a href="https://wa.me/60103340733?text=Assalamualaikum%2C+saya+berminat+dengan+koleksi+jam+KRONOS." target="_blank"
@@ -1748,7 +1810,7 @@
     <div class="hero-left">
       <div class="hero-badge">⌚ KRONOS · Koleksi 2026</div>
       <div class="promo-banner">🔥 TAWARAN ISTIMEWA — Stok Terhad!</div>
-      <div class="hero-tagline">Untuk mereka yang faham erti gaya…</div>
+      <div class="hero-tagline">Untuk mereka yang faham erti gaya...</div>
       <h1>Tissot · Seiko ·<br /><span class="emas">Rolex</span><br />COD Bukit Indah.</h1>
       <div class="hero-bm">"Koleksi jam tangan berkelas, harga yang tidak membebankan poket anda."</div>
       <p class="hero-desc">Pelbagai koleksi tersedia — Tissot PRX, Tissot Le Lode, Seiko Presage, Seiko Chronograph,
@@ -1757,7 +1819,7 @@
       <div class="price-hero">
         <div>
           <div class="price-from">Bermula dari</div>
-          <div class="price-new-hero">RM29</div>
+          <div class="price-new-hero" id="hero-min-price">RM29</div>
         </div>
       </div>
       <div class="hero-cta-row">
@@ -1771,7 +1833,7 @@
         </a>
       </div>
       <div class="hero-cod">
-        📍 <span>COD di <strong>8th Avenue, Taman Bukit Indah</strong>, Johor Bahru</span> &nbsp;·&nbsp; <a
+        📍  <span>COD di <strong>8th Avenue, Taman Bukit Indah</strong>, Johor Bahru</span> &nbsp;·&nbsp; <a
           href="https://maps.google.com/?q=Jalan+Indah+8,+Taman+Bukit+Indah,+81200+Johor+Bahru,+Johor"
           target="_blank">Lihat di Google Maps →</a>
       </div>
@@ -1821,22 +1883,45 @@
   <!-- MARQUEE -->
   <div class="marquee-bar">
     <div class="marquee-inner">
-      <div class="m-item">Tissot PRX · RM149 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Tissot Le Lode · RM199 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Seiko Presage · RM159 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Seiko Chrono · RM179 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Rolex Datejust · RM399 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Rolex GMT II · RM599 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Tali Kulit 22mm · RM29 <span style="color:var(--hijau2)">◆</span></div>
+      <div class="m-item">Tissot PRX · <span id="mq-prx">RM149</span> <span style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Tissot Le Lode · <span id="mq-lelode">RM199</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Seiko Presage · <span id="mq-seikoorg">RM159</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Seiko Chrono · <span id="mq-seikosil">RM179</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Rolex Datejust · <span id="mq-rolexdj">RM399</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Rolex GMT II · <span id="mq-rolexgmt">RM599</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Tali Kulit 22mm · <span id="mq-leather">RM29</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
       <div class="m-item">COD Taman Bukit Indah JB <span style="color:var(--hijau2)">◆</span></div>
       <div class="m-item">WhatsApp 010-334 0733 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Tissot PRX · RM149 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Tissot Le Lode · RM199 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Seiko Presage · RM159 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Seiko Chrono · RM179 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Rolex Datejust · RM399 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Rolex GMT II · RM599 <span style="color:var(--hijau2)">◆</span></div>
-      <div class="m-item">Tali Kulit 22mm · RM29 <span style="color:var(--hijau2)">◆</span></div>
+      <div class="m-item">Tissot PRX · <span id="mq-prx2">RM149</span> <span style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Tissot Le Lode · <span id="mq-lelode2">RM199</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Seiko Presage · <span id="mq-seikoorg2">RM159</span> <span
+          style="color:var(--hijau2)">◆</span></div>
+      <div class="m-item">Seiko Chrono · <span id="mq-seikosil2">RM179</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Rolex Datejust · <span id="mq-rolexdj2">RM399</span> <span
+          style="color:var(--hijau2)">◆</span></div>
+      <div class="m-item">Rolex GMT II · <span id="mq-rolexgmt2">RM599</span> <span
+          style="color:var(--hijau2)">◆</span>
+      </div>
+      <div class="m-item">Tali Kulit 22mm · <span id="mq-leather2">RM29</span> <span
+          style="color:var(--hijau2)">◆</span></div>
       <div class="m-item">COD Taman Bukit Indah JB <span style="color:var(--hijau2)">◆</span></div>
       <div class="m-item">WhatsApp 010-334 0733 <span style="color:var(--hijau2)">◆</span></div>
     </div>
@@ -1847,378 +1932,8 @@
     <div class="s-kicker reveal">Koleksi KRONOS 2026</div>
     <h2 class="reveal">Pilihan Jam Tangan Berkelas</h2>
     <div class="h2-sub reveal">Tissot · Seiko · Rolex · Aksesori — semua tersedia</div>
-    <div class="products-grid reveal">
-
-      <div class="p-card" id="card-prxblack">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--red);color:#fff">🔥 Paling Laris</span>
-          <img src="" alt="Tissot PRX 40mm" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM199</div>
-              <div class="p-price-new">RM149</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Hitam / Black</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">Black Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX Hitam (Black Dial) — RM149','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-prxgreen">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--hijau);color:var(--emas2)">🌿 Hijau</span>
-          <img src="" alt="Tissot PRX 40mm" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM199</div>
-              <div class="p-price-new">RM149</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Hijau / Green</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">Green Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX Hijau (Green Dial) — RM149','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-prxdkblue">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--hijau);color:var(--emas2)">💙 Biru Gelap</span>
-          <img src="" alt="Tissot PRX 40mm" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM199</div>
-              <div class="p-price-new">RM149</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Biru Gelap / Dark Blue</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">Dark Blue Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX Biru Gelap (Dark Blue) — RM149','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-prxsilver">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--hijau);color:var(--emas2)">⚪ Silver</span>
-          <img src="" alt="Tissot PRX 40mm" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM199</div>
-              <div class="p-price-new">RM149</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Silver / Perak</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">Silver Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX Silver — RM149','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-prxtiffany">
-        <div class="p-img">
-          <span class="p-flag" style="background:#0abfbc;color:#fff">🩵 Tiffany Blue</span>
-          <img src="" alt="Tissot PRX 40mm" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM199</div>
-              <div class="p-price-new">RM149</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Tiffany Blue</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">Tiffany Blue Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX Tiffany Blue — RM149','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-prxwdkblue">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--hijau);color:var(--emas2)">🔲 Waffle Biru</span>
-          <img src="" alt="Tissot PRX 40mm" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM199</div>
-              <div class="p-price-new">RM149</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Waffle Dark Blue</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">Waffle Dark Blue Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX Waffle Dark Blue — RM149','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-prxwwhite">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--hijau);color:var(--emas2)">🔳 Waffle Putih</span>
-          <img src="" alt="Tissot PRX 40mm" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM199</div>
-              <div class="p-price-new">RM149</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Waffle White</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">Waffle White Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX Waffle White — RM149','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-prxlume">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--emas);color:var(--hijau)">✨ Lume Edisi Khas</span>
-
-          <div class="p-img-toggle" id="ptog-prxlume">
-            <img src=" alt=" Tissot PRX 40mm" class="p-img-main active" id="pimg1-prxlume" />
-            <img src=" alt=" Tissot PRX 40mm 2" class="p-img-main" id="pimg2-prxlume" />
-            <div class="p-img-dots">
-              <div class="p-idot active" onclick="swImg('prxlume',0,this)"></div>
-              <div class="p-idot" onclick="swImg('prxlume',1,this)"></div>
-            </div>
-          </div>
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM299</div>
-              <div class="p-price-new">RM249</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">White Lume</div>
-          <div class="p-name">Tissot PRX 40mm</div>
-          <div class="p-ref">White Lume Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Tissot PRX White Lume — RM249','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-lelode">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--emas);color:var(--hijau)">🏆 Klasik</span>
-
-          <div class="p-img-toggle" id="ptog-lelode">
-            <img src=" alt=" Tissot Le Lode" class="p-img-main active" id="pimg1-lelode" />
-            <img src=" alt=" Tissot Le Lode 2" class="p-img-main" id="pimg2-lelode" />
-            <div class="p-img-dots">
-              <div class="p-idot active" onclick="swImg('lelode',0,this)"></div>
-              <div class="p-idot" onclick="swImg('lelode',1,this)"></div>
-            </div>
-          </div>
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM299</div>
-              <div class="p-price-new">RM199</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Powermatic 80</div>
-          <div class="p-name">Tissot Le Lode</div>
-          <div class="p-ref">Silver Dial · Leather Strap</div>
-          <a class="p-btn" onclick="orderThis('Tissot Le Lode Powermatic 80 — RM199','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-rolexdj">
-        <div class="p-img">
-          <span class="p-flag" style="background:#1a1a1a;color:#e8c97a">👑 Premium</span>
-
-          <div class="p-img-toggle" id="ptog-rolexdj">
-            <img src=" alt=" Rolex Datejust" class="p-img-main active" id="pimg1-rolexdj" />
-            <img src=" alt=" Rolex Datejust 2" class="p-img-main" id="pimg2-rolexdj" />
-            <div class="p-img-dots">
-              <div class="p-idot active" onclick="swImg('rolexdj',0,this)"></div>
-              <div class="p-idot" onclick="swImg('rolexdj',1,this)"></div>
-            </div>
-          </div>
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM499</div>
-              <div class="p-price-new">RM399</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Silver</div>
-          <div class="p-name">Rolex Datejust</div>
-          <div class="p-ref">Silver Dial · Jubilee Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Rolex Datejust Silver — RM399','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-rolexgmt">
-        <div class="p-img">
-          <span class="p-flag" style="background:#1a1a1a;color:#e8c97a">👑 Ekslusif</span>
-
-          <div class="p-img-toggle" id="ptog-rolexgmt">
-            <img src=" alt=" Rolex GMT Master II" class="p-img-main active" id="pimg1-rolexgmt" />
-            <img src=" alt=" Rolex GMT Master II 2" class="p-img-main" id="pimg2-rolexgmt" />
-            <div class="p-img-dots">
-              <div class="p-idot active" onclick="swImg('rolexgmt',0,this)"></div>
-              <div class="p-idot" onclick="swImg('rolexgmt',1,this)"></div>
-            </div>
-          </div>
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM799</div>
-              <div class="p-price-new">RM599</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Black</div>
-          <div class="p-name">Rolex GMT Master II</div>
-          <div class="p-ref">Black Dial · Jubilee Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Rolex GMT Master II Black — RM599','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-seikoorg">
-        <div class="p-img">
-          <span class="p-flag" style="background:#c04a00;color:#fff">🟠 Seiko</span>
-          <img src="" alt="Seiko Presage" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM259</div>
-              <div class="p-price-new">RM159</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Cream / Orange</div>
-          <div class="p-name">Seiko Presage</div>
-          <div class="p-ref">Cream Dial · Leather Strap</div>
-          <a class="p-btn" onclick="orderThis('Seiko Presage Cream Orange — RM159','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-seikosil">
-        <div class="p-img">
-          <span class="p-flag" style="background:#c04a00;color:#fff">⏱ Kronograf</span>
-
-          <div class="p-img-toggle" id="ptog-seikosil">
-            <img src=" alt=" Seiko Chronograph" class="p-img-main active" id="pimg1-seikosil" />
-            <img src=" alt=" Seiko Chronograph 2" class="p-img-main" id="pimg2-seikosil" />
-            <div class="p-img-dots">
-              <div class="p-idot active" onclick="swImg('seikosil',0,this)"></div>
-              <div class="p-idot" onclick="swImg('seikosil',1,this)"></div>
-            </div>
-          </div>
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM289</div>
-              <div class="p-price-new">RM179</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Silver</div>
-          <div class="p-name">Seiko Chronograph</div>
-          <div class="p-ref">Silver Dial · Steel Bracelet</div>
-          <a class="p-btn" onclick="orderThis('Seiko Chronograph Silver — RM179','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
-      <div class="p-card" id="card-leather">
-        <div class="p-img">
-          <span class="p-flag" style="background:var(--coklat);color:var(--emas-pale)">🎨 Aksesori</span>
-
-          <div class="p-img-toggle" id="ptog-leather">
-            <img src=" alt=" Tali Kulit 22mm" class="p-img-main active" id="pimg1-leather" />
-            <img src=" alt=" Tali Kulit 22mm 2" class="p-img-main" id="pimg2-leather" />
-            <div class="p-img-dots">
-              <div class="p-idot active" onclick="swImg('leather',0,this)"></div>
-              <div class="p-idot" onclick="swImg('leather',1,this)"></div>
-            </div>
-          </div>
-          <div class="p-price-overlay">
-            <div>
-              <div class="p-price-old">RM59</div>
-              <div class="p-price-new">RM29</div>
-            </div>
-          </div>
-        </div>
-        <div class="p-body">
-          <div class="p-color-name">Pelbagai Warna</div>
-          <div class="p-name">Tali Kulit 22mm</div>
-          <div class="p-ref">Crocodile Grain · Silver Buckle</div>
-          <a class="p-btn" onclick="orderThis('Tali Kulit 22mm — RM29','')" href="#order">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg> Tempah via WhatsApp
-          </a>
-        </div>
-      </div>
+    <div class="products-grid reveal" id="products-grid">
+      <!-- Produk akan dijana secara dinamik dari KRONOS_CONFIG -->
     </div>
   </section>
 
@@ -2229,9 +1944,10 @@
     <div class="h2-sub reveal">Kepercayaan anda adalah keutamaan kami</div>
     <div class="kenapa-grid reveal">
       <div class="k-card">
-        <div class="k-num">01</div><span class="k-icon">💰</span>
-        <h3>Harga Terbaik<span>Bermula RM29</span></h3>
-        <p>Pelbagai pilihan jam tangan dari RM29 hingga RM599. Harga berpatutan untuk koleksi berkelas.</p>
+        <div class="k-num">01</div><span class="k-icon">🏷️</span>
+        <h3>Harga Terbaik<span>Bermula <span id="k-min-price">RM29</span></span></h3>
+        <p>Pelbagai pilihan jam tangan dari <span id="k-range">RM29 hingga RM599</span>. Harga berpatutan untuk koleksi
+          berkelas.</p>
       </div>
       <div class="k-card">
         <div class="k-num">02</div><span class="k-icon">🤝</span>
@@ -2239,7 +1955,7 @@
         <p>Jumpa di 8th Avenue, Taman Bukit Indah, JB. Tengok sendiri, baru bayar. Tiada risiko.</p>
       </div>
       <div class="k-card">
-        <div class="k-num">03</div><span class="k-icon">🎨</span>
+        <div class="k-num">03</div><span class="k-icon">⌚</span>
         <h3>Koleksi Pelbagai<span>Tissot · Seiko · Rolex</span></h3>
         <p>14 model tersedia — jam Swiss, Jepun, aksesori. Ada untuk setiap citarasa dan bajet.</p>
       </div>
@@ -2263,7 +1979,7 @@
           <div class="cod-area">81200 Johor Bahru, Johor · Berdekatan AEON Bukit Indah</div>
           <a class="cod-map-btn"
             href="https://maps.google.com/?q=Jalan+Indah+8,+Taman+Bukit+Indah,+81200+Johor+Bahru,+Johor"
-            target="_blank">📍 Buka Google Maps →</a>
+            target="_blank">📍  Buka Google Maps →</a>
         </div>
         <div class="cod-steps">
           <div class="cod-step">
@@ -2304,7 +2020,7 @@
         </div>
         <div style="margin-top:1rem;display:flex;gap:.8rem;flex-wrap:wrap">
           <a href="https://maps.google.com/?q=Jalan+Indah+8,+Taman+Bukit+Indah,+81200+Johor+Bahru,+Johor"
-            target="_blank" class="cod-map-btn">📍 Buka Google Maps</a>
+            target="_blank" class="cod-map-btn">📍  Buka Google Maps</a>
           <a href="https://wa.me/60103340733?text=Assalamualaikum%2C+saya+nak+COD+di+Bukit+Indah.+Boleh+arrange%3F"
             target="_blank" class="btn-wa" style="font-size:.7rem;padding:.75rem 1.2rem"><svg
               style="width:14px;height:14px;fill:#fff" viewBox="0 0 24 24">
@@ -2396,18 +2112,25 @@
             </option>
             <option value="Tissot PRX Hijau (Green Dial) — RM149|prxgreen">Tissot PRX 40mm — Hijau / Green — RM149
             </option>
-            <option value="Tissot PRX Biru Gelap (Dark Blue) — RM149|prxdkblue">Tissot PRX 40mm — Biru Gelap / Dark Blue
+            <option value="Tissot PRX Biru Gelap (Dark Blue) — RM149|prxdkblue">Tissot PRX 40mm — Biru Gelap / Dark
+              Blue
               — RM149</option>
             <option value="Tissot PRX Silver — RM149|prxsilver">Tissot PRX 40mm — Silver / Perak — RM149</option>
-            <option value="Tissot PRX Tiffany Blue — RM149|prxtiffany">Tissot PRX 40mm — Tiffany Blue — RM149</option>
-            <option value="Tissot PRX Waffle Dark Blue — RM149|prxwdkblue">Tissot PRX 40mm — Waffle Dark Blue — RM149
+            <option value="Tissot PRX Tiffany Blue — RM149|prxtiffany">Tissot PRX 40mm — Tiffany Blue — RM149
             </option>
-            <option value="Tissot PRX Waffle White — RM149|prxwwhite">Tissot PRX 40mm — Waffle White — RM149</option>
+            <option value="Tissot PRX Waffle Dark Blue — RM149|prxwdkblue">Tissot PRX 40mm — Waffle Dark Blue —
+              RM149
+            </option>
+            <option value="Tissot PRX Waffle White — RM149|prxwwhite">Tissot PRX 40mm — Waffle White — RM149
+            </option>
             <option value="Tissot PRX White Lume — RM249|prxlume1">Tissot PRX 40mm — White Lume — RM249</option>
-            <option value="Tissot Le Lode Powermatic 80 — RM199|lelode1">Tissot Le Lode — Powermatic 80 — RM199</option>
+            <option value="Tissot Le Lode Powermatic 80 — RM199|lelode1">Tissot Le Lode — Powermatic 80 — RM199
+            </option>
             <option value="Rolex Datejust Silver — RM399|rolexdj1">Rolex Datejust — Silver — RM399</option>
-            <option value="Rolex GMT Master II Black — RM599|rolexgmt1">Rolex GMT Master II — Black — RM599</option>
-            <option value="Seiko Presage Cream Orange — RM159|seikoorg">Seiko Presage — Cream / Orange — RM159</option>
+            <option value="Rolex GMT Master II Black — RM599|rolexgmt1">Rolex GMT Master II — Black — RM599
+            </option>
+            <option value="Seiko Presage Cream Orange — RM159|seikoorg">Seiko Presage — Cream / Orange — RM159
+            </option>
             <option value="Seiko Chronograph Silver — RM179|seikosil1">Seiko Chronograph — Silver — RM179</option>
             <option value="Tali Kulit 22mm — RM29|leather1">Tali Kulit 22mm — Pelbagai Warna — RM29</option>
           </select>
@@ -2453,7 +2176,7 @@
         </div>
 
         <div class="msg-preview-wrap">
-          <div class="msg-preview-label">📋 Pratonton Mesej WhatsApp</div>
+          <div class="msg-preview-label">📍 ‹ Pratonton Mesej WhatsApp</div>
           <div id="msgPreview"
             style="font-size:.72rem;color:rgba(253,246,227,.7);line-height:1.7;white-space:pre-wrap;font-family:monospace">
             Isi borang di atas untuk lihat pratonton mesej...</div>
@@ -2469,7 +2192,7 @@
         <span class="pay-method-label" id="payMethodLabel">Kaedah Bayaran Semasa COD</span>
         <div class="pay-tabs">
           <button class="p-tab active" onclick="swTab('bmac',this)">☕ Buy Me a Coffee</button>
-          <button class="p-tab" onclick="swTab('tng',this)">📲 Touch 'n Go</button>
+          <button class="p-tab" onclick="swTab('tng',this)">📱 Touch 'n Go</button>
           <button class="p-tab" onclick="swTab('tunai',this)">💵 Tunai</button>
         </div>
         <div class="pay-panel active" id="pp-bmac">
@@ -2503,19 +2226,19 @@
                 <div style="font-size:0.65rem;color:#888;letter-spacing:0.1em;text-transform:uppercase">Contoh
                   pengiraan:</div>
                 <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#5a4a00"><span>RM149
-                    (Tissot PRX)</span><span style="font-weight:700">≈ USD 36.34</span></div>
+                    (Tissot PRX)</span><span style="font-weight:700" id="bmac-prx">≈ USD 36.34</span></div>
                 <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#5a4a00"><span>RM249 (Le
-                    Lode / Lume)</span><span style="font-weight:700">≈ USD 60.80</span></div>
+                    Lode / Lume)</span><span style="font-weight:700" id="bmac-lume">≈ USD 60.80</span></div>
                 <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#5a4a00"><span>RM399
-                    (Rolex Datejust)</span><span style="font-weight:700">≈ USD 97.32</span></div>
+                    (Rolex Datejust)</span><span style="font-weight:700" id="bmac-rolexdj">≈ USD 97.32</span></div>
                 <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#5a4a00"><span>RM599
-                    (Rolex GMT II)</span><span style="font-weight:700">≈ USD 146.10</span></div>
+                    (Rolex GMT II)</span><span style="font-weight:700" id="bmac-rolexgmt">≈ USD 146.10</span></div>
                 <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#5a4a00"><span>RM159
-                    (Seiko Presage)</span><span style="font-weight:700">≈ USD 38.78</span></div>
+                    (Seiko Presage)</span><span style="font-weight:700" id="bmac-seikoorg">≈ USD 38.78</span></div>
                 <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#5a4a00"><span>RM179
-                    (Seiko Chrono)</span><span style="font-weight:700">≈ USD 43.66</span></div>
+                    (Seiko Chrono)</span><span style="font-weight:700" id="bmac-seikosil">≈ USD 43.66</span></div>
                 <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#5a4a00"><span>RM29 (Tali
-                    Kulit)</span><span style="font-weight:700">≈ USD 7.07</span></div>
+                    Kulit)</span><span style="font-weight:700" id="bmac-leather">≈ USD 7.07</span></div>
               </div>
               <p style="font-size:0.65rem;color:#888;margin-top:0.5rem;font-style:italic">* Kadar ÷4.1 adalah anggaran.
                 Kadar sebenar bergantung pada kadar pertukaran semasa bank anda.</p>
@@ -2529,7 +2252,8 @@
                 Imbas QR Code untuk bayar terus</div>
               <img src="image/extracted_14.png" alt="Buy Me a Coffee QR Code"
                 style="width:160px;height:160px;object-fit:contain" />
-              <div style="font-size:0.62rem;color:#888;text-align:center">Imbas dengan kamera telefon anda →<br />pilih
+              <div style="font-size:0.62rem;color:#888;text-align:center">Imbas dengan kamera telefon anda
+                →<br />pilih
                 jumlah USD yang betul di atas</div>
             </div>
 
@@ -2568,7 +2292,7 @@
                 <div class="step-n">4</div>Screenshot resit &amp; hantar ke WA
               </div>
             </div>
-            <a href="https://tngdigital.com.my" target="_blank" class="tng-pay-btn">📲 Buka App Touch 'n Go</a>
+            <a href="https://tngdigital.com.my" target="_blank" class="tng-pay-btn">📱 Buka App Touch 'n Go</a>
           </div>
         </div>
         <div class="pay-panel" id="pp-tunai">
@@ -2579,7 +2303,7 @@
               produk pilihan anda. Bayar terus kepada kami selepas puas hati.</p>
           </div>
         </div>
-        <div class="pay-secure">🔒 Selamat · Telus · Amanah</div>
+        <div class="pay-secure">🛡️ Selamat · Telus · Amanah</div>
       </div>
     </div>
   </section>
@@ -2593,9 +2317,10 @@
         <div class="t-quote">"</div>
         <div class="t-stars">★★★★★</div>
         <div class="t-text">"COD kat Bukit Indah semalam. Tissot PRX hitam memang cantik, nampak mewah sangat. Harga
-          RM149 berbaloi gila!"</div>
+          <span id="t-prx-price">RM149</span> berbaloi gila!"
+        </div>
         <div class="t-author">Encik Hafiz Rozali</div>
-        <div class="t-loc">📍 Taman Bukit Indah, JB</div>
+        <div class="t-loc">📍  Taman Bukit Indah, JB</div>
         <div class="t-watch">Tissot PRX Black Dial</div>
       </div>
       <div class="t-card">
@@ -2604,16 +2329,7 @@
         <div class="t-text">"Dapat Seiko Presage. Memang lain kelasnya — dail cream dengan tangan emas. Proses COD
           mudah, recommended!"</div>
         <div class="t-author">Encik Danial Hisham</div>
-        <div class="t-loc">📍 Skudai, JB</div>
-        <div class="t-watch">Seiko Presage Cream Orange</div>
-      </div>
-      <div class="t-card">
-        <div class="t-quote">"</div>
-        <div class="t-stars">★★★★★</div>
-        <div class="t-text">"Rolex GMT Master II memang standout. Ramai tanya pakai jam apa. RM599 berbaloi untuk
-          kualiti sebegini!"</div>
-        <div class="t-author">Encik Ridzwan Salleh</div>
-        <div class="t-loc">📍 Johor Bahru</div>
+        <div class="t-loc">📍  Johor Bahru</div>
         <div class="t-watch">Rolex GMT Master II Black</div>
       </div>
     </div>
@@ -2656,7 +2372,6 @@
       <div class="footer-col">
         <h4>Ikuti Kami</h4>
         <a href="#">Instagram</a>
-        <a href="#">TikTok</a>
         <a href="#">Facebook</a>
         <a href="#">Telegram</a>
       </div>
@@ -2666,206 +2381,193 @@
       <div class="f-badges">
         <div class="f-badge">COD Bukit Indah</div>
         <div class="f-badge">14 Model</div>
-        <div class="f-badge">RM29–RM599</div>
+        <div class="f-badge" id="f-range">RM29–RM599</div>
       </div>
     </div>
   </footer>
 
   <script>
-    const img_b64 = {
-      "leather1": "image/extracted_15.jpeg",
-      "leather2": "image/extracted_16.jpeg",
-      "lelode1": "image/extracted_17.jpeg",
-      "lelode2": "image/extracted_18.jpeg",
-      "prxblack": "image/extracted_19.jpeg",
-      "prxdkblue": "image/extracted_20.jpeg",
-      "prxgreen": "image/extracted_21.jpeg",
-      "prxsilver": "image/extracted_22.jpeg",
-      "prxtiffany": "image/extracted_23.jpeg",
-      "prxwdkblue": "image/extracted_24.jpeg",
-      "prxwwhite": "image/extracted_25.jpeg",
-      "prxlume1": "image/extracted_26.jpeg",
-      "prxlume2": "image/extracted_27.jpeg",
-      "rolexdj1": "image/extracted_28.jpeg",
-      "rolexdj2": "image/extracted_29.jpeg",
-      "rolexgmt1": "image/extracted_30.jpeg",
-      "rolexgmt2": "image/extracted_31.jpeg",
-      "seikoorg": "image/extracted_32.jpeg",
-      "seikosil1": "image/extracted_33.jpeg",
-      "seikosil2": "image/extracted_34.jpeg",
-    };
 
-
-    // Scroll reveal
+    // ── UI INTERACTION ──
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    // Hero watch images (desktop dots — 7 models)
     const heroWatchKeys = ['prxblack', 'prxgreen', 'prxdkblue', 'prxsilver', 'prxtiffany', 'lelode1', 'seikosil1'];
     function changeHeroWatch(idx, el) {
-      document.getElementById('heroWatchImg').src = img_b64[heroWatchKeys[idx]];
+      const src = KRONOS_CONFIG.images[heroWatchKeys[idx]];
+      if (src) document.getElementById('heroWatchImg').src = src;
       document.querySelectorAll('#heroDots .c-dot').forEach(d => d.classList.remove('active'));
       el.classList.add('active');
     }
 
-    // Mobile watch strip
     const mwKeys = ["prxblack", "prxgreen", "prxdkblue", "prxsilver", "prxtiffany", "prxwdkblue", "prxwwhite"];
     const mwLabels = ['⚫ PRX Hitam', '🟢 PRX Hijau', '🔵 PRX Biru Gelap', '⚪ PRX Silver', '🩵 PRX Tiffany Blue', '🔲 PRX Waffle Biru', '🔳 PRX Waffle Putih'];
     function changeMW(idx, el) {
-      document.getElementById('mobileWatchImg').src = img_b64[mwKeys[idx]];
+      const src = KRONOS_CONFIG.images[mwKeys[idx]];
+      if (src) document.getElementById('mobileWatchImg').src = src;
       document.querySelectorAll('#mobileDots .c-dot').forEach(d => d.classList.remove('active'));
       el.classList.add('active');
       const hint = document.getElementById('mColorHint');
       if (hint) hint.textContent = mwLabels[idx];
     }
 
-    // Product card image toggle (for cards with 2 photos)
     function swImg(pid, idx, dot) {
       const imgs = document.querySelectorAll('#pimg1-' + pid + ', #pimg2-' + pid);
       imgs.forEach((img, i) => img.classList.toggle('active', i === idx));
       dot.parentElement.querySelectorAll('.p-idot').forEach((d, i) => d.classList.toggle('active', i === idx));
     }
 
-    // Order this product
-    function orderThis(model, imgSrc) {
-      // Update select to matching model
-      const sel = document.getElementById('fModel');
-      for (let i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].value.startsWith(model + '|') || sel.options[i].value.split('|')[0] === model) {
-          sel.selectedIndex = i; break;
-        }
+    // ── CORE LOGIC ──
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      for (const [id, info] of Object.entries(KRONOS_CONFIG.products)) {
+        if (info.isActive !== 1) continue;
+        const price = KRONOS_CONFIG.pricing[info.pKey];
+        const img1Src = KRONOS_CONFIG.images[info.img1] || info.img1;
+        const img2Src = KRONOS_CONFIG.images[info.img2] || info.img2;
+
+        let imgHTML = info.img2 ? `
+          <div class="p-img-toggle" id="ptog-${id}">
+            <img src="${img1Src}" alt="${info.name}" class="p-img-main active" id="pimg1-${id}" />
+            <img src="${img2Src}" alt="${info.name} 2" class="p-img-main" id="pimg2-${id}" />
+            <div class="p-img-dots">
+              <div class="p-idot active" onclick="swImg('${id}',0,this)"></div>
+              <div class="p-idot" onclick="swImg('${id}',1,this)"></div>
+            </div>
+          </div>` : `<img src="${img1Src}" alt="${info.name}" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s" />`;
+
+        const cardHTML = `
+          <div class="p-card" id="card-${id}">
+            <div class="p-img">
+              <span class="p-flag" style="${info.flagStyle}">${info.flag}</span>
+              ${imgHTML}
+              <div class="p-price-overlay"><div><div class="p-price-old">RM${price.old}</div><div class="p-price-new">RM${price.current}</div></div></div>
+            </div>
+            <div class="p-body">
+              <div class="p-color-name">${info.subName}</div>
+              <div class="p-name">${info.name}</div>
+              <div class="p-ref">${info.desc}</div>
+              <a class="p-btn" onclick="orderThis('${id}')" href="#order">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg> Tempah via WhatsApp
+              </a>
+            </div>
+          </div>`;
+        grid.insertAdjacentHTML('beforeend', cardHTML);
       }
-      document.getElementById('sumName').textContent = model;
-      // Find and show the actual product image in summary
-      const opts = document.getElementById('fModel');
-      const val = opts.value;
-      const imgKey = val.split('|')[1];
-      if (imgKey && img_b64[imgKey]) document.getElementById('sumImg').src = img_b64[imgKey];
+    }
+
+    function initPricing() {
+      const p = KRONOS_CONFIG.pricing;
+      const activeProducts = Object.entries(KRONOS_CONFIG.products).filter(([id, info]) => info.isActive === 1);
+      const activePriceKeys = [...new Set(activeProducts.map(([id, info]) => info.pKey))];
+      const activePrices = activePriceKeys.map(key => p[key].current);
+      const minPrice = activePrices.length ? Math.min(...activePrices) : 0;
+      const maxPrice = activePrices.length ? Math.max(...activePrices) : 0;
+
+      if (document.getElementById('hero-min-price')) document.getElementById('hero-min-price').textContent = 'RM' + minPrice;
+      if (document.getElementById('k-min-price')) document.getElementById('k-min-price').textContent = 'RM' + minPrice;
+      if (document.getElementById('k-range')) document.getElementById('k-range').textContent = 'RM' + minPrice + ' hingga RM' + maxPrice;
+      if (document.getElementById('f-range')) document.getElementById('f-range').textContent = 'RM' + minPrice + '–RM' + maxPrice;
+
+      const mqMap = { 'prx': 'prx', 'lelode': 'lelode', 'seikoorg': 'seikoorg', 'seikosil': 'seikosil', 'rolexdj': 'rolexdj', 'rolexgmt': 'rolexgmt', 'leather': 'leather' };
+      for (const [mqId, pKey] of Object.entries(mqMap)) {
+        const active = activePriceKeys.includes(pKey);
+        [mqId, mqId + '2'].forEach(id => {
+          const el = document.getElementById('mq-' + id);
+          if (el) { el.parentElement.style.display = active ? '' : 'none'; if (active) el.textContent = 'RM' + p[pKey].current; }
+        });
+      }
+
+      for (const [key, val] of Object.entries(p)) {
+        const el = document.getElementById('bmac-' + key);
+        if (el) el.textContent = '≈ USD ' + (val.current / 4.1).toFixed(2);
+      }
+
+      if (document.getElementById('t-prx-price')) document.getElementById('t-prx-price').textContent = 'RM' + p.prx.current;
+      if (document.getElementById('t-gmt-price')) document.getElementById('t-gmt-price').textContent = 'RM' + p.rolexgmt.current;
+
+      const sel = document.getElementById('fModel');
+      if (sel) {
+        sel.innerHTML = '';
+        activeProducts.forEach(([id, info]) => {
+          const price = p[info.pKey].current;
+          const opt = document.createElement('option');
+          opt.value = info.name + ' — ' + info.subName + ' — RM' + price + '|' + (info.img1 || id);
+          opt.textContent = info.name + ' — ' + info.subName + ' — RM' + price;
+          sel.appendChild(opt);
+        });
+      }
+    }
+
+    // ── FORM & WHATSAPP ──
+    let deliveryMode = 'cod';
+    function setDelivery(mode) {
+      deliveryMode = mode;
+      const isCOD = mode === 'cod';
+      const btnCOD = document.getElementById('btnCOD'), btnPos = document.getElementById('btnPos');
+      if (btnCOD && btnPos) {
+        btnCOD.className = isCOD ? 'btn-method active' : 'btn-method';
+        btnPos.className = isCOD ? 'btn-method' : 'btn-method active';
+        btnCOD.style.background = isCOD ? 'var(--emas)' : 'transparent';
+        btnCOD.style.color = isCOD ? 'var(--hijau)' : 'rgba(245,215,142,.5)';
+        btnPos.style.background = isCOD ? 'transparent' : 'var(--emas)';
+        btnPos.style.color = isCOD ? 'rgba(245,215,142,.5)' : 'var(--hijau)';
+      }
+      document.getElementById('codFields').style.display = isCOD ? '' : 'none';
+      document.getElementById('posFields').style.display = isCOD ? 'none' : '';
+      document.getElementById('formTitle').textContent = isCOD ? 'Borang Tempahan COD' : 'Borang Tempahan Pos / Kurier';
+      document.getElementById('payMethodLabel').textContent = isCOD ? 'Kaedah Bayaran Semasa COD' : 'Kaedah Bayaran (Bayar Dahulu)';
       buildWAMsg();
-      setTimeout(() => { document.getElementById('order').scrollIntoView({ behavior: 'smooth' }); }, 100);
+    }
+
+    function orderThis(pid) {
+      const info = KRONOS_CONFIG.products[pid];
+      const price = KRONOS_CONFIG.pricing[info.pKey].current;
+      const sel = document.getElementById('fModel');
+      const match = info.name + ' — ' + info.subName + ' — RM' + price;
+      for (let i = 0; i < sel.options.length; i++) { if (sel.options[i].value.startsWith(match)) { sel.selectedIndex = i; break; } }
+      selectModel();
+      document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
     }
 
     function selectModel() {
       const val = document.getElementById('fModel').value;
       const parts = val.split('|');
-      const model = parts[0];
-      const imgKey = parts[1];
-      document.getElementById('sumName').textContent = model;
-      if (imgKey && img_b64[imgKey]) document.getElementById('sumImg').src = img_b64[imgKey];
-      buildWAMsg();
-    }
-
-    // ── DELIVERY METHOD ──
-    let deliveryMode = 'cod'; // 'cod' or 'pos'
-
-    function setDelivery(mode) {
-      deliveryMode = mode;
-      const isCOD = mode === 'cod';
-
-      // Toggle button styles
-      const btnCOD = document.getElementById('btnCOD');
-      const btnPos = document.getElementById('btnPos');
-      if (isCOD) {
-        btnCOD.style.background = 'var(--emas)'; btnCOD.style.color = 'var(--hijau)'; btnCOD.style.borderColor = 'var(--emas)';
-        btnPos.style.background = 'transparent'; btnPos.style.color = 'rgba(245,215,142,.5)'; btnPos.style.borderColor = 'rgba(201,150,58,.3)';
-      } else {
-        btnPos.style.background = 'var(--emas)'; btnPos.style.color = 'var(--hijau)'; btnPos.style.borderColor = 'var(--emas)';
-        btnCOD.style.background = 'transparent'; btnCOD.style.color = 'rgba(245,215,142,.5)'; btnCOD.style.borderColor = 'rgba(201,150,58,.3)';
-      }
-
-      // Show/hide fields
-      document.getElementById('codFields').style.display = isCOD ? '' : 'none';
-      document.getElementById('posFields').style.display = isCOD ? 'none' : '';
-      document.getElementById('postageReminder').style.display = isCOD ? 'none' : '';
-
-      // Update form title and pay label
-      document.getElementById('formTitle').textContent = isCOD ? 'Borang Tempahan COD' : 'Borang Tempahan Pos / Kurier';
-      document.getElementById('payMethodLabel').textContent = isCOD ? 'Kaedah Bayaran Semasa COD' : 'Kaedah Bayaran (Bayar Dahulu)';
-
-      // Update note placeholder
-      document.getElementById('fNote').placeholder = isCOD
-        ? 'Contoh: Saya akan datang dengan kenderaan...'
-        : 'Contoh: Tolong packed dengan bubble wrap...';
-
-      // Update left panel perks
-      if (isCOD) {
-        document.getElementById('perk1').textContent = 'COD di 8th Avenue, Taman Bukit Indah';
-        document.getElementById('perk2').textContent = 'Bayar selepas tengok jam sendiri';
-        document.getElementById('perk3').textContent = 'Pelbagai pilihan harga & model';
-        document.getElementById('perk4').textContent = 'Arrange tarikh & masa via WhatsApp';
-      } else {
-        document.getElementById('perk1').textContent = '📦 Penghantaran ke seluruh Malaysia';
-        document.getElementById('perk2').textContent = '💳 Bayar penuh terlebih dahulu';
-        document.getElementById('perk3').textContent = '📸 WhatsApp resit selepas bayar';
-        document.getElementById('perk4').textContent = '🚚 Dihantar dalam 1–2 hari bekerja';
-      }
-
+      document.getElementById('sumName').textContent = parts[0];
+      if (parts[1] && KRONOS_CONFIG.images[parts[1]]) document.getElementById('sumImg').src = KRONOS_CONFIG.images[parts[1]];
       buildWAMsg();
     }
 
     function buildWAMsg() {
       const name = document.getElementById('fName').value.trim() || '(nama belum diisi)';
       const phone = document.getElementById('fPhone').value.trim() || '(no. belum diisi)';
-      const modelRaw = document.getElementById('fModel').value;
-      const model = modelRaw.split('|')[0] || 'Pilih model';
-      const note = document.getElementById('fNote').value.trim();
-
-      let msg = '';
+      const model = document.getElementById('fModel').value.split('|')[0] || 'Pilih model';
+      let msg = `Assalamualaikum KRONOS 👋\n\n*${deliveryMode === 'cod' ? '📋 TEMPAHAN JAM — COD' : '📦 TEMPAHAN JAM — POS / KURIER'}*\n━━━━━━━━━━━━━━━━━━━\n👤 *Nama:* ${name}\n📱 *No. WA:* ${phone}\n⌚ *Model:* ${model}\n━━━━━━━━━━━━━━━━━━━\n`;
 
       if (deliveryMode === 'cod') {
-        const dateRaw = document.getElementById('fDate').value;
-        const date = dateRaw ? new Date(dateRaw).toLocaleDateString('ms-MY', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : '(tarikh belum dipilih)';
+        const d = document.getElementById('fDate').value;
+        const date = d ? new Date(d).toLocaleDateString('ms-MY', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : '(tarikh belum dipilih)';
         const time = document.getElementById('fTime').value || '(masa belum dipilih)';
-        msg =
-          `Assalamualaikum KRONOS 👋
-
-*📋 TEMPAHAN JAM — COD*
-━━━━━━━━━━━━━━━━━━━
-👤 *Nama:* ${name}
-📱 *No. WA:* ${phone}
-⌚ *Model:* ${model}
-━━━━━━━━━━━━━━━━━━━
-📅 *Tarikh COD:* ${date}
-🕐 *Masa COD:* ${time}
-📍 *Lokasi:* 8th Avenue, Taman Bukit Indah, JB
-━━━━━━━━━━━━━━━━━━━${note ? '\n📝 *Catatan:* ' + note + '\n━━━━━━━━━━━━━━━━━━━' : ''}
-
-Saya berminat untuk COD jam ini. Boleh confirm? Terima kasih! 🙏`;
+        msg += `📅 *Tarikh COD:* ${date}\n🕐 *Masa COD:* ${time}\n📍 *Lokasi:* 8th Avenue, Taman Bukit Indah, JB\n`;
       } else {
-        const address = (document.getElementById('fAddress') ? document.getElementById('fAddress').value.trim() : '') || '(alamat belum diisi)';
-        msg =
-          `Assalamualaikum KRONOS 👋
-
-*📦 TEMPAHAN JAM — POS / KURIER*
-━━━━━━━━━━━━━━━━━━━
-👤 *Nama:* ${name}
-📱 *No. WA:* ${phone}
-⌚ *Model:* ${model}
-━━━━━━━━━━━━━━━━━━━
-🏠 *Alamat Penghantaran:*
-${address}
-━━━━━━━━━━━━━━━━━━━${note ? '\n📝 *Catatan:* ' + note + '\n━━━━━━━━━━━━━━━━━━━' : ''}
-
-✅ Saya telah buat bayaran penuh.
-📸 Resit bayaran akan saya WhatsApp ke 010-334 0733 selepas ini.
-
-Mohon sahkan tempahan saya. Terima kasih! 🙏`;
+        const addr = (document.getElementById('fAddress')?.value.trim()) || '(alamat belum diisi)';
+        msg += `🏠 *Alamat Penghantaran:*\n${addr}\n\n✅ Saya telah buat bayaran penuh.\n📸 Resit bayaran akan saya WhatsApp selepas ini.\n`;
       }
+      msg += `━━━━━━━━━━━━━━━━━━━\n\n${deliveryMode === 'cod' ? 'Saya berminat untuk COD jam ini. Boleh confirm?' : 'Mohon sahkan tempahan saya.'} Terima kasih! 🙏`;
 
       document.getElementById('msgPreview').textContent = msg;
-      document.getElementById('waDirectBtn').href = 'https://wa.me/60103340733?text=' + encodeURIComponent(msg);
+      if (document.getElementById('waDirectBtn')) document.getElementById('waDirectBtn').href = 'https://wa.me/60103340733?text=' + encodeURIComponent(msg);
       return msg;
     }
 
     function sendToWA() {
-      if (!document.getElementById('fName').value.trim()) {
-        alert('Sila isi nama anda terlebih dahulu.'); return;
-      }
-      if (deliveryMode === 'pos' && document.getElementById('fAddress') && !document.getElementById('fAddress').value.trim()) {
-        alert('Sila isi alamat penghantaran anda.'); return;
-      }
+      if (!document.getElementById('fName').value.trim()) { alert('Sila isi nama anda terlebih dahulu.'); return; }
+      if (deliveryMode === 'pos' && !document.getElementById('fAddress')?.value.trim()) { alert('Sila isi alamat penghantaran anda.'); return; }
       window.open('https://wa.me/60103340733?text=' + encodeURIComponent(buildWAMsg()), '_blank');
     }
 
@@ -2876,34 +2578,22 @@ Mohon sahkan tempahan saya. Terima kasih! 🙏`;
       document.getElementById('pp-' + id).classList.add('active');
     }
 
-    // Init
-    // ── INIT: populate all image src from img_b64 ──
     function initImages() {
-      const heroEl = document.getElementById('heroWatchImg');
-      if (heroEl && img_b64['prxblack']) heroEl.src = img_b64['prxblack'];
-      const mobEl = document.getElementById('mobileWatchImg');
-      if (mobEl && img_b64['prxblack']) mobEl.src = img_b64['prxblack'];
-      const sumEl = document.getElementById('sumImg');
-      if (sumEl && img_b64['prxblack']) sumEl.src = img_b64['prxblack'];
-      const singles = ['prxblack', 'prxgreen', 'prxdkblue', 'prxsilver', 'prxtiffany', 'prxwdkblue', 'prxwwhite', 'seikoorg'];
-      singles.forEach(key => {
-        const el = document.querySelector('#card-' + key + ' .p-img > img');
-        if (el && img_b64[key]) el.src = img_b64[key];
-      });
-      [['prxlume', 'prxlume1', 'prxlume2'], ['lelode', 'lelode1', 'lelode2'],
-      ['rolexdj', 'rolexdj1', 'rolexdj2'], ['rolexgmt', 'rolexgmt1', 'rolexgmt2'],
-      ['seikosil', 'seikosil1', 'seikosil2'], ['leather', 'leather1', 'leather2']
-      ].forEach(([pid, k1, k2]) => {
-        const i1 = document.getElementById('pimg1-' + pid);
-        const i2 = document.getElementById('pimg2-' + pid);
-        if (i1 && img_b64[k1]) i1.src = img_b64[k1];
-        if (i2 && img_b64[k2]) i2.src = img_b64[k2];
+      ['heroWatchImg', 'mobileWatchImg', 'sumImg'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && KRONOS_CONFIG.images['prxblack']) el.src = KRONOS_CONFIG.images['prxblack'];
       });
     }
-    initImages();
 
-    buildWAMsg();
-    document.getElementById('fDate').min = new Date().toISOString().split('T')[0];
+    function init() {
+      renderProducts();
+      initPricing();
+      initImages();
+      buildWAMsg();
+    }
+
+    window.onload = init;
+    if (document.getElementById('fDate')) document.getElementById('fDate').min = new Date().toISOString().split('T')[0];
   </script>
 </body>
 
